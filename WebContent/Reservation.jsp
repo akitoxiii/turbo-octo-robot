@@ -4,8 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>予約画面</title>
 </head>
+
+<%-- ============ 本文ここから ============ --%>
 <body>
 
 </body>
