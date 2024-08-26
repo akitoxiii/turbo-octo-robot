@@ -55,8 +55,16 @@ int firstDayWeek = cl.get(Calendar.DAY_OF_WEEK) - 1;  // 月の最初の曜日�
 
 <h1>予約画面</h1>
 <br><br>
+<%-- 今月（配列もカレンダーも０からのカウントなので＋１をする必要がない？） --%>
+<%= month[(cl.get(Calendar.MONTH))] %>
+<br>
+
+<%-- ============ フォーム送信 ============ --%>
+<form method="post" action="ReservationCon"></form>
+<%-- ============ フォーム送信 ============ --%>
 
 
+<%-- カレンダーテーブル --%>
 <table>
 	<thead>
 	<tr>
@@ -72,30 +80,43 @@ int firstDayWeek = cl.get(Calendar.DAY_OF_WEEK) - 1;  // 月の最初の曜日�
 	
 	<tbody>
 	<tr>
-	<%-- // firstDayWeekで出した数分、空の項目をコピーして出力する
 	
-	Collections.nCopies(firstDayWeek, %> <td> </td> <% ) --%>
-	
-	<% 
-	for(int i =0; i <= firstDayWeek; i++){ %>
+	<% // 月に合わせて１日の前の空白を表示
+	for(int i =1; i <= firstDayWeek; i++){ %>
 	<td> </td>
 	<% } %>
 	
 	<% // 後は１日から月末までの日まで繰り返す
-	for(int i = firstDay; i <= lastDay; i++){ %>
-	<td><% System.out.print(i); %></td>>
+	for(int i = firstDay; i <= lastDay; i++){ %> 
+	
+	<td><input type="hidden" name="dayId"
+					value="<%= i %>" id="<%= i %>">
+					
+		<a href="javascript:void(0)" onclick="DayLink('<%= i %>');"><%= i %></td></a> 
 	<% // 空白＋日付の数が７になったら列を変える
 	if ((firstDayWeek + i) % 7 == 0) { %>
-	</tr>
-	<% } %>
+	</tr><tr>
+	<% }
+	} %>
 	
+	</tr>
 	
 	</tbody>
 	</table>
 
 
 
-
+<%-- ============ フォーム送信 ============ --%>
+	<script type="text/javascript">
+	function DayLink(dayId){
+			var form = document.forms[0];
+			var input = document.getElementById(dayId);
+			form.appendChild(input);
+			document.body.appendChild(form);
+			form.submit();	<%-- ここで送信 --%>
+		}
+	</script>
+<%-- ============ フォーム送信 ============ --%>
 
 </body>
 </html>

@@ -12,6 +12,7 @@
 	rel="stylesheet">
 <%-- ============ Googleフォント・noto san ここまで ============ --%>
 
+<<<<<<< HEAD
 
 <title>Insert title here</title>
 </head>
@@ -24,6 +25,22 @@
 <br><br>
 
 
+=======
+<title>時間選択画面</title>
+</head>
+
+<%-- ============ bodyここから ============ --%>
+<body>
+
+
+<br><br>
+<form action="Resarvation" method="post">
+
+
+
+
+ </form>
+>>>>>>> branch 'main' of https://github.com/akitoxiii/turbo-octo-robot.git
 
 </body>
 </html>
