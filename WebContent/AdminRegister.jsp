@@ -100,7 +100,7 @@
             
             <label for="privilege">管理権限</label>
             <select id="privilege" name="privilege" required>
-                <option value="0">なし</option>
+                <option value="0">顧客</option>
                 <option value="1">管理者</option>
             </select>
             
