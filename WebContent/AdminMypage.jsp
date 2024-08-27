@@ -66,7 +66,7 @@
             <input type="button" value="会員一覧 (CSV出力)" onclick="location.href='customerList.csv'">
         </form>
         <form action="registerServlet" method="get">
-            <input type="button" value="会員登録" onclick="location.href='register.jsp'">
+            <input type="button" value="会員登録" onclick="location.href='AdminRegister.jsp'">
         </form>
         <a href="logoutServlet">ログアウト</a>
     </div>
