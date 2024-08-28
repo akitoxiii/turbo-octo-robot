@@ -9,7 +9,7 @@ public class ReservationBean implements Serializable {
 	private String userId;
 	private Timestamp reservationDate;
 	private Timestamp updateDateTime;
-	
+	private int reservationTime;
 	
 	
 	public int getReservationId() {
@@ -53,8 +53,20 @@ public class ReservationBean implements Serializable {
 	public Timestamp getUpdateDateTime() {
 		return updateDateTime;
 	}
+	
 	public void setUpdateDateTime(Timestamp updateDateTime) {
 		this.updateDateTime = updateDateTime;
+	}
+	
+	
+	
+	
+	public int getReservationTime() {
+		return reservationTime;
+	}
+	
+	public void setReservationTime(int reservationTime) {
+		this.reservationTime = reservationTime;
 	}
 	
 	

@@ -26,7 +26,7 @@ form{
   float: left;
   margin-right: 20px;
   width:135px;
-  border-left: solid 3px #e0505d;
+  border-left: solid 3px #4CAF50;
   padding-left: 10px;
 }
 .inputs{
@@ -50,7 +50,7 @@ textarea{
   text-align: center;
 }
 input[type="submit"]{
-  background: #e0505c;
+  background: #4CAF50;
   border: none;
   color: white;
   font-size:17px;

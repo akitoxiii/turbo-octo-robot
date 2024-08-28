@@ -20,17 +20,20 @@ public class ReservationDao {
 	/**
 	 * 
 	 * >>予約件数検索メソッド
+	 * 
 	 * その日時に予約件数が何件あるかをセレクトするメソッド(予約可能かどうかの判定に使用)
 	 * ーーーーsql文と引数がまだ不明ーーーー
 	 * 
 	 */
 
-	public int saerchTime(int rday, int rtime) {
+	public int saerchTime(int reservationId) {
 
 		// SELECTしたデータを格納する変数宣言
 		ResultSet rs = null;
 		// return用変数
 		int num = 0;
+		
+		
 
 		try {
 			// OracleJDBC用ドライバのロード
@@ -38,13 +41,13 @@ public class ReservationDao {
 			// DBに接続
 			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl","RICE","OKOME");
 
-			String sql = "SELECT COUNT(*) FROM RESERVATION_TABLE WHERE ";
+			String sql = "SELECT COUNT(*) FROM RESERVATION_TABLE WHERE RESERVATION_ID = ? OR RESERVATION_ID = ?";
 
 			// SQLをプリコンパイル
 			stmt = conn.prepareStatement(sql);
 			
 			// パラメーターセット
-			// stmt.setString(1, regiBean.getItemName());
+			 stmt.setInt(1, reservationId 2,);
 			
 			// SQL実行
 			rs = stmt.executeQuery();
