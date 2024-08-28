@@ -62,7 +62,7 @@
             <input type="submit" value="ログイン">
         </form>
         <form action="registerServlet" method="get">
-            <input type="button" value="新規登録" onclick="location.href='register.jsp'">
+            <input type="button" value="新規登録" onclick="location.href='UserRegister.jsp'">
         </form>
     </div>
 </body>
