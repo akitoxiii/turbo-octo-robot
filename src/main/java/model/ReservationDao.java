@@ -38,12 +38,14 @@ public class ReservationDao {
 			// DBに接続
 			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl","RICE","OKOME");
 
-			String sql = "";
+			String sql = "SELECT COUNT(*) FROM RESERVATION_TABLE WHERE ";
 
 			// SQLをプリコンパイル
 			stmt = conn.prepareStatement(sql);
+			
 			// パラメーターセット
-			stmt.setString(1, regiBean.getItemName());
+			// stmt.setString(1, regiBean.getItemName());
+			
 			// SQL実行
 			rs = stmt.executeQuery();
 
