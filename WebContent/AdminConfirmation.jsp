@@ -61,7 +61,7 @@ body {
 	<div class="confirm-container">
 		<h1>新規管理者情報確認画面</h1>
 
-		<label>ログインユーザーID</label>
+		<label>ID</label>
 		<p><%=session.getAttribute("loginUserId")%></p>
 
 		<p><%=session.getAttribute("loginUserName")%></p>
