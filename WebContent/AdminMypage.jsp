@@ -82,7 +82,7 @@ body {
 			<input type="button" value="会員登録"
 				onclick="location.href='AdminRegister.jsp'">
 		</form>
-		<a href="logoutServlet">ログアウト</a>
+		<a href="logout.jsp">ログアウト</a>
 	</div>
 </body>
 </html>

@@ -60,7 +60,7 @@
             <input type="button" value="予約する" onclick="location.href='reservation.jsp'">
             <input type="button" value="予約確認" onclick="location.href='reservationInfo.jsp'">
         </form>
-        <a href="logoutServlet">ログアウト</a>
+        <a href="logout.jsp">ログアウト</a>
     </div>
 </body>
 </html>
