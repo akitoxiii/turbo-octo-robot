@@ -54,7 +54,7 @@
         <h1>Forest 予約システム</h1>
         <div class="user-info">
             <p>ID: <%= session.getAttribute("loginUserId") %></p>
-            <p><%= session.getAttribute("loginUserName") %>さん</p>
+            <p><%= session.getAttribute("loginUserName") %></p>
         </div>
         <form action="reservationServlet" method="post">
             <input type="button" value="予約する" onclick="location.href='reservation.jsp'">
