@@ -83,7 +83,14 @@ body {
 
 		<label>管理権限</label>
 		<p>
-			<%=session.getAttribute("privilege").equals("1") ? "管理者" : "顧客"%>
+			<%
+			String privilege = (String) session.getAttribute("privilege");
+			if (privilege != null) {
+				out.print(privilege.equals("1") ? "管理者" : "顧客");
+			} else {
+				out.print("権限情報がありません");
+			}
+			%>
 		</p>
 
 		<div style="text-align: center;">
