@@ -82,15 +82,14 @@ body {
 		<div class="user-info">
 			<p>
 				ID:
-				<%= session.getAttribute("loginUserId") %></p>
+				<%=session.getAttribute("loginUserId")%></p>
 			<p>
-				名前:
-				<%= session.getAttribute("loginUserName") %></p>
+				<%=session.getAttribute("loginUserName")%></p>
 		</div>
 
 		<%-- エラーメッセージ表示 --%>
 		<div class="error-message">
-			<%= request.getAttribute("userError") != null ? request.getAttribute("userError") : "" %>
+			<%=request.getAttribute("userError") != null ? request.getAttribute("userError") : ""%>
 		</div>
 
 		<form action="registerAdminConfirmServlet" method="post">
