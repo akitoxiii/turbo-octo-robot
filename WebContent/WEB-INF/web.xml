@@ -29,4 +29,14 @@
     <servlet-name>LoginCon</servlet-name>
     <url-pattern>/LoginCon</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UserMypageServlet</display-name>
+    <servlet-name>UserMypageServlet</servlet-name>
+    <servlet-class>controller.UserMypageServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserMypageServlet</servlet-name>
+    <url-pattern>/UserMypageServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
