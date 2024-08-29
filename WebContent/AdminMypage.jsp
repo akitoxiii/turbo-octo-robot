@@ -63,8 +63,8 @@ body {
 		<div class="user-info">
 			<p>
 				ID:
-				<%=session.getAttribute("loginUserId")%></p>
-			<p><%=session.getAttribute("loginUserName")%></p>
+				<%=session.getAttribute("userId")%></p>
+			<p><%=session.getAttribute("userName")%></p>
 		</div>
 		<form action="reservationListServlet" method="get">
 			<input type="button" value="全予約一覧"
