@@ -5,19 +5,19 @@ import java.sql.Timestamp;
 
 public class ReservationBean implements Serializable {
 	
-	private int reservationId;
+	private String reservationId;
 	private String userId;
 	private Timestamp reservationDate;
 	private Timestamp updateDateTime;
 	private int reservationTime;
 	
 	
-	public int getReservationId() {
+	public String getReservationId() {
 		return reservationId;
 	}
 	
 	
-	public void setReservationId(int reservationId) {
+	public void setReservationId(String reservationId) {
 		this.reservationId = reservationId;
 	}
 	

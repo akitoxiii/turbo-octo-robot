@@ -2,7 +2,6 @@ package controller;
 
 import java.io.IOException;
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -11,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.ReservationBean;
+import model.ReservationDao;
 
 /**
  * Servlet implementation class Reservation
@@ -58,7 +58,6 @@ public class Reservation extends HttpServlet {
 
 			//=========
 
-			// 予約当日の年月日、時間に＋１か２をして予約IDを作る
 
 
 
@@ -97,6 +96,7 @@ public class Reservation extends HttpServlet {
 		// 時間選択画面から送られる時間情報を入れる
 		int reservationTime= (int) request.getAttribute("time");
 
+		
 		// ①時間情報が空なら一回目の遷移なので、日付をBeanに入れて保存する
 		if(reservationTime ==0) {
 			Timestamp reservationDate = (Timestamp)request.getAttribute("dayId");
@@ -114,31 +114,28 @@ public class Reservation extends HttpServlet {
 			reseBean = (ReservationBean)session.getAttribute("reseBean");
 			// そこに予約時間を追加する
 			reseBean.setReservationTime(reservationTime);
-
-			
-			
-			
-			// 以下の予約日時と時間を送ったら予約IDを作成するメソッドをDAOに作ったほうがいいかも
-			// 日時と時間から予約IDを生成する
-			
-			// 予約時間を20240801のような形式で保存
-			// ①日にち(これで20240801のようになる？↓)
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyymmdd");
-			String date = sdf.format(reseBean.getReservationDate());
-
-			
-			// ②時間
-			int rTime = reseBean.getReservationTime();
-			
-			// 二つをつなげて、最後日に1か2を付ける
 			
 			
 			
 			
 			
+			// 予約ID
+			Timestamp day = reseBean.getReservationDate();
+			ReservationDao dao = new ReservationDao();
+			
+			String rId = dao.generatingId(day, reservationTime);
+			
+			
+			
+			
+			// 予約IDもしまっておく
+			reseBean.setReservationId(rId);
 			
 			// もう一度sessionにしまう
 			session.setAttribute("reseBean", "reseBean");
+			
+			
+		
 
 
 
