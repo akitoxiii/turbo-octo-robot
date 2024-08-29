@@ -29,7 +29,7 @@ public class LoginCon extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("userId", user.getUserId());
 			session.setAttribute("userName", user.getUserName());
-			session.setAttribute("privilege", user.getUserPrivilege());
+			session.setAttribute("userPrivilege", user.getUserPrivilege());
 
 			// 管理者か顧客かで分岐
 			if (user.getUserPrivilege() == 1) {
