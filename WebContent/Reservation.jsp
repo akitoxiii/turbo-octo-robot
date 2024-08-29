@@ -4,6 +4,9 @@
     <%-- カレンダー、コレクションのインポート --%>
     <%@page import="java.util.Calendar"%>
     <%@page import="java.util.Collections"%>
+    <%@page import="java.util.Date"%>
+    <%@page import="java.text.SimpleDateFormat"%>
+    
     <%-- ーーーーーーーーーーーーーーーーーー --%>
     
 <!DOCTYPE html>
@@ -55,14 +58,14 @@ int firstDayWeek = cl.get(Calendar.DAY_OF_WEEK) - 1;  // 月の最初の曜日�
 
 <h1>予約画面</h1>
 <br><br>
-<%-- 今月（配列もカレンダーも０からのカウントなので＋１をする必要がない？） --%>
-<%= month[(cl.get(Calendar.MONTH))] %>
-<br>
+
 
 <%-- ============ フォーム送信 ============ --%>
 <form method="post" action="ReservationCon"></form>
 <%-- ============ フォーム送信 ============ --%>
-
+<%-- 今月（配列もカレンダーも０からのカウントなので＋１をする必要がない？） --%>
+<%= month[(cl.get(Calendar.MONTH))] %>
+<br>
 
 <%-- カレンダーテーブル --%>
 <table>
@@ -81,7 +84,91 @@ int firstDayWeek = cl.get(Calendar.DAY_OF_WEEK) - 1;  // 月の最初の曜日�
 	<tbody>
 	<tr>
 	
-	<% // 月に合わせて１日の前の空白を表示
+	<% 
+	Date date = new Date(); // 今日の日付
+	SimpleDateFormat dateFormat = new SimpleDateFormat("dd");
+	String strDate = dateFormat.format(date);
+	int intDate = Integer.parseInt(strDate);
+	
+	// 月に合わせて１日の前の空白を表示
+	for(int i =1; i <= firstDayWeek; i++){ %>
+	<td> </td>
+	<% }
+	
+	// 後は１日から月末までの日まで繰り返す
+	for(int i = firstDay; i <= lastDay; i++){ 
+		if(i <= intDate){
+	%> 
+	
+	<td><%= i %></td>
+	<%
+	if ((firstDayWeek + i) % 7 == 0) { %>
+	</tr><tr>
+	<% }
+	} 
+	
+	else if(i > intDate){ %>
+		<td><input type="hidden" name="dayId"
+				value="
+				<%= i %>" id="<%= i %>">
+				
+	<a href="javascript:void(0)" onclick="DayLink('<%= i %>');"><%= i %></td></a> 
+<% // 空白＋日付の数が７になったら列を変える
+if ((firstDayWeek + i) % 7 == 0) { %>
+</tr><tr>
+	
+	
+	
+	<% 
+}
+	} 
+	} %>
+	
+
+	
+	</tr>
+	
+	</tbody>
+	</table>
+<br><br>
+
+<%-- 次月カレンダーテーブル --%>
+
+<% 
+
+// カレンダーに当日の年、月、１日をセットする
+cl.set(cl.get(Calendar.YEAR),cl.get(Calendar.MONTH)+1,firstDay);
+
+
+lastDay = cl.getActualMaximum(Calendar.DAY_OF_MONTH); // 月の最終日
+
+firstDayWeek = cl.get(Calendar.DAY_OF_WEEK) - 1;  // 月の最初の曜日をintで求める。DAY_OF_WEEKは日曜日なら１を取得する？
+
+
+%>
+
+<%= month[(cl.get(Calendar.MONTH))] %>
+<br>
+
+<%-- カレンダーテーブル --%>
+<table>
+	<thead>
+	<tr>
+	<th>日</th>
+	<th>月</th>
+	<th>火</th>
+	<th>水</th>
+	<th>木</th>
+	<th>金</th>
+	<th>土</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	<tr>
+	
+	<% 
+	// 月に合わせて１日の前の空白を表示
 	for(int i =1; i <= firstDayWeek; i++){ %>
 	<td> </td>
 	<% } %>
@@ -89,9 +176,7 @@ int firstDayWeek = cl.get(Calendar.DAY_OF_WEEK) - 1;  // 月の最初の曜日�
 	<% // 後は１日から月末までの日まで繰り返す
 	for(int i = firstDay; i <= lastDay; i++){ %> 
 	
-	<td><input type="hidden" name="dayId"
-					value="<%= i %>" id="<%= i %>">
-					
+	<td><input type="hidden" name="dayId" value="<%= i %>" id="<%= i %>">				
 		<a href="javascript:void(0)" onclick="DayLink('<%= i %>');"><%= i %></td></a> 
 	<% // 空白＋日付の数が７になったら列を変える
 	if ((firstDayWeek + i) % 7 == 0) { %>
@@ -103,6 +188,7 @@ int firstDayWeek = cl.get(Calendar.DAY_OF_WEEK) - 1;  // 月の最初の曜日�
 	
 	</tbody>
 	</table>
+
 
 
 

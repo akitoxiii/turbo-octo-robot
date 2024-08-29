@@ -100,6 +100,8 @@ public class Reservation extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		// doGet(request, response);
+		
+		
 
 		// 文字コードのセットとインスタンス化
 		request.setCharacterEncoding("UTF-8");
@@ -115,6 +117,8 @@ public class Reservation extends HttpServlet {
 		
 		// ①時間情報が空なら一回目の遷移なので、日付をBeanに入れて保存する
 		if(reservationTime ==0) {
+			
+			// =================要変更=======================
 			Timestamp reservationDate = (Timestamp)request.getAttribute("dayId");
 
 			reseBean.setReservationDate(reservationDate);
@@ -147,8 +151,7 @@ public class Reservation extends HttpServlet {
 			String userId = (String) request.getAttribute("userId");
 			// 会員IDが飛んできていなければ、ログイン情報を使用する。飛んできていれば、飛んできたものをそのまま保存する
 			if(userId == null) {
-				userId = (String)session.getAttribute("userId");
-				
+				userId = (String)session.getAttribute("loginUserId");
 			}
 			
 			// もう一度sessionにしまう（この時点で（二回目の遷移）予約ID、会員ID、予約日、予約時間が埋まっている）

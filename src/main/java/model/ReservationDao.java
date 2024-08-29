@@ -1,5 +1,6 @@
 package model;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,7 +15,12 @@ public class ReservationDao {
 	PreparedStatement stmt = null;
 
 
-
+	Date date = new Date(); // 今日の日付
+	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	String strDate = dateFormat.format(date);
+	
+	
+	
 
 
 
