@@ -43,7 +43,7 @@ public class UserLogicDao {
 			if (rs.next()) {
 				// ユーザー情報を取得し、UserIdBeanに設定
 				user = new UserIdBean();
-				user.setUserId(rs.getInt("USER_ID"));
+				user.setUserId(rs.getString("USER_ID"));
 				user.setUserName(rs.getString("USER_NAME"));
 				user.setUserEmail(rs.getString("USER_EMAIL"));
 				user.setUserPassword(rs.getString("USER_PASSWORD"));
