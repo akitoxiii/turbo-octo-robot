@@ -8,7 +8,6 @@ public class ReservationBean implements Serializable {
 	private String reservationId;
 	private String userId;
 	private Timestamp reservationDate;
-	private Timestamp updateDateTime;
 	private int reservationTime;
 	
 	
@@ -49,15 +48,7 @@ public class ReservationBean implements Serializable {
 	
 	
 	
-	
-	public Timestamp getUpdateDateTime() {
-		return updateDateTime;
-	}
-	
-	public void setUpdateDateTime(Timestamp updateDateTime) {
-		this.updateDateTime = updateDateTime;
-	}
-	
+
 	
 	
 	

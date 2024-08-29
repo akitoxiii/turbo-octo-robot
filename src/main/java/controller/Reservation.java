@@ -67,7 +67,6 @@ public class Reservation extends HttpServlet {
 
 
 
-
 			// 送られてこなければセッションスコープの内容（reseBean）を削除
 		}else {
 
