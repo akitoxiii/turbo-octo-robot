@@ -3,6 +3,8 @@ package controller;
 import java.io.IOException;
 import java.sql.Timestamp;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -35,6 +37,10 @@ public class Reservation extends HttpServlet {
 
 		// 文字コードのセットとインスタンス化
 		request.setCharacterEncoding("UTF-8");
+		
+		// 登録か修正かで遷移先を分ける
+		String screen= "";
+		
 		// ========================================
 		HttpSession session = request.getSession();
 		// ========================================
@@ -52,25 +58,36 @@ public class Reservation extends HttpServlet {
 		String action =request.getParameter("action");
 
 		if(action.equals("ok")) {
-
-			// 予約件数を取得するメソッドを使って、その日時の予約が その日のその時間ってどうやって渡す？どう探す？
-			int num = 0;
-
-			//=========
-
-
-
-
-
+			
+			// 登録
+			ReservationDao dao = new ReservationDao();
+			
+			int num = dao.reservation(reseBean);
+			
+			if(num ==1) {
 			// 登録後、セッションスコープの内容（reseBean）は削除？
-
-
-
-
+			session.removeAttribute("reseBean");
+			// numはリクエストに保存
+			request.setAttribute("num", num);
+			
+			screen = "/ReservationConfirm.jsp";
+			
 			// 送られてこなければセッションスコープの内容（reseBean）を削除
 		}else {
+			
+			screen = "/Reservation.jsp";
 
 		}
+			
+			
+			ServletContext app = this.getServletContext();
+			RequestDispatcher dispatcher = app.getRequestDispatcher("/ReservationConfirm.jsp");
+			dispatcher.forward(request,response);
+			
+			
+			
+		}
+		
 
 	}
 

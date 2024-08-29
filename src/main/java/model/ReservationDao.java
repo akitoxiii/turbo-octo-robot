@@ -185,18 +185,9 @@ public class ReservationDao {
 
 		// 試行結果のリターン
 		return num;
-
-
-		
-		
-		
 		
 	}
 	
-	
-	
-	
-	
-	
+
 
 }
