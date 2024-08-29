@@ -19,4 +19,14 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>LoginCon</display-name>
+    <servlet-name>LoginCon</servlet-name>
+    <servlet-class>controller.LoginCon</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginCon</servlet-name>
+    <url-pattern>/LoginCon</url-pattern>
+  </servlet-mapping>
 </web-app>
