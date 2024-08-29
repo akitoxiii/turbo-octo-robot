@@ -81,7 +81,13 @@ public class ReservationDao {
 
 		return num;
 	}
-
+	
+	
+	/*
+	 * 予約ID生成メソッド
+	 * 日にちと時間を組み合わせて、String型でIDを作成する
+	 * 
+	 */
 	
 	public String generatingId(Timestamp day, int time) {
 		
@@ -92,12 +98,9 @@ public class ReservationDao {
 		// 日時と時間から予約IDを生成する
 		
 		// 予約時間を20240801のような形式で保存
-		// ①日にち(これで20240801のようになる？↓)
+		// 日にち(これで20240801のようになる？↓)
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyymmdd");
 		String date = sdf.format(day);
-
-		
-		// ②時間
 		
 		
 		// 二つをつなげて(どうしてintのままなのにエラーがでないんだろう)、最後日に1か2を付ける
@@ -111,12 +114,85 @@ public class ReservationDao {
 		}else if(num ==1) {
 			rId = rId + "2";
 		}
-		
-		
+				
 		
 		return rId;
 		
 	}
+	
+	
+	/*
+	 * 
+	 * 予約登録メソッド
+	 * エラーを出す用
+	 * 
+	 */
+	
+	public int reservation(ReservationBean rb) {
+		// returnする変数宣言
+		int num = 0;
+		
+		try {
+			// OracleJDBCドライバのロード
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			// DBに接続（URL,USER_ID,PASSWORD)
+			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl","RICE","OKOME");
+
+			// 自動コミットを無効にする
+			conn.setAutoCommit(false);
+
+			// プレースホルダでSQL作成
+			String sql = "INSERT INTO RESERVATION_TABLE (RESERVATION_ID,USER_ID,RESERVATION_DATE,RESERVATION_TIME) VALUES(?,?,?,?)";
+			// SQLをプリコンパイル
+			stmt = conn.prepareStatement(sql);
+
+			// パラメーターセット
+			stmt.setString(1,rb.getReservationId());
+			stmt.setString(2,rb.getUserId());
+			stmt.setTimestamp(3, rb.getReservationDate());
+			stmt.setInt(4, rb.getReservationTime());
+
+			// SQLの実行
+			num = stmt.executeUpdate();
+
+
+			// ステートメントをクローズ
+			stmt.close();
+
+			// コミット
+			conn.commit();
+
+		}catch(SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+
+		}finally {
+			try{
+				// ステートメント実行していたらステートメントをクローズ
+				if(stmt != null) {
+					stmt.close();
+				}
+				// データベース接続していたらデータベースをクローズ
+				if(conn != null) {
+					// ロールバックしてからクローズ
+					conn.rollback();
+					conn.close();
+				}
+
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		// 試行結果のリターン
+		return num;
+
+
+		
+		
+		
+		
+	}
+	
 	
 	
 	

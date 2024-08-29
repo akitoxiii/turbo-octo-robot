@@ -115,41 +115,28 @@ public class Reservation extends HttpServlet {
 			// そこに予約時間を追加する
 			reseBean.setReservationTime(reservationTime);
 			
-			
-			
-			
-			
+		
 			// 予約ID
 			Timestamp day = reseBean.getReservationDate();
 			ReservationDao dao = new ReservationDao();
 			
 			String rId = dao.generatingId(day, reservationTime);
-			
-			
-			
-			
+	
 			// 予約IDもしまっておく
 			reseBean.setReservationId(rId);
 			
-			// もう一度sessionにしまう
-			session.setAttribute("reseBean", "reseBean");
-			
-			
-		
-
-
 
 
 			// リクエストから会員IDの取得
 			String userId = (String) request.getAttribute("userId");
-			// 会員IDが飛んできていなければ、ログイン情報を使用する
+			// 会員IDが飛んできていなければ、ログイン情報を使用する。飛んできていれば、飛んできたものをそのまま保存する
 			if(userId == null) {
-				session.getAttribute("userId");
-			}else {
-
+				userId = (String)session.getAttribute("userId");
+				
 			}
-
-
+			
+			// もう一度sessionにしまう（この時点で（二回目の遷移）予約ID、会員ID、予約日、予約時間が埋まっている）
+			session.setAttribute("reseBean", "reseBean");
 		}
 
 
