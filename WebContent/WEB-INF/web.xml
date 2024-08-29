@@ -39,4 +39,14 @@
     <servlet-name>UserMypageServlet</servlet-name>
     <url-pattern>/UserMypageServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AdminMypageServlet</display-name>
+    <servlet-name>AdminMypageServlet</servlet-name>
+    <servlet-class>controller.AdminMypageServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminMypageServlet</servlet-name>
+    <url-pattern>/AdminMypageServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
