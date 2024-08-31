@@ -33,6 +33,7 @@ public class UserLogicDao {
 
 			// SQLクエリの準備 - データベースのカラム名に合わせる
 			String sql = "SELECT * FROM USER_TABLE WHERE USER_ID = ? AND USER_PASSWORD = ?";
+			System.out.println("実行されるSQLクエリ: " + sql);
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, loginId); // loginId は USER_ID に対応
 			pstmt.setString(2, loginPassword); // loginPassword は USER_PASSWORD に対応
@@ -41,6 +42,9 @@ public class UserLogicDao {
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
+				System.out.println("データベースのユーザーID: " + rs.getString("USER_ID"));
+				System.out.println("データベースのパスワード: " + rs.getString("USER_PASSWORD"));
+
 				// ユーザー情報を取得し、UserIdBeanに設定
 				user = new UserIdBean();
 				user.setUserId(rs.getString("USER_ID"));
@@ -50,10 +54,13 @@ public class UserLogicDao {
 				user.setUserAdress(rs.getString("USER_ADDRESS"));
 				user.setUserPhone(rs.getString("USER_PHONE"));
 				user.setUserPrivilege(rs.getInt("USER_PRIVILEGE"));
+			} else {
+				System.out.println("ユーザーが見つかりませんでした: " + loginId);
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
+			System.out.println("データベースのエラーが発生しました。");
 		} finally {
 			try {
 				if (rs != null)
