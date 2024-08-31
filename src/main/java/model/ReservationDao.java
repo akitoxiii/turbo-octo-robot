@@ -1,11 +1,9 @@
 package model;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
 
@@ -13,14 +11,6 @@ public class ReservationDao {
 	// メンバ変数の用意
 	Connection conn = null;
 	PreparedStatement stmt = null;
-
-
-	Date date = new Date(); // 今日の日付
-	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-	String strDate = dateFormat.format(date);
-	
-	
-	
 
 
 
@@ -34,7 +24,7 @@ public class ReservationDao {
 	 * 
 	 */
 
-	public int saerchTime(Timestamp day, int time) {
+	public int saerchTime(String day, int time) {
 
 		// SELECTしたデータを格納する変数宣言
 		ResultSet rs = null;
@@ -49,7 +39,7 @@ public class ReservationDao {
 			// DBに接続
 			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl","RICE","OKOME");
 
-			// その日のその時間に予約が何件あるか（reservation_dateはtimestamp型、reservation_timrはnumber型）
+			// その日のその時間に予約が何件あるか（reservation_dateはtimestamp型、reservation_timeはnumber型）
 			String sql = "SELECT COUNT(*) FROM RESERVATION_TABLE WHERE RESERVATION_DATE = ? AND RESERVATION_TIME = ?";
 
 			// SQLをプリコンパイル
@@ -57,7 +47,7 @@ public class ReservationDao {
 			
 			
 			// パラメーターセット
-			 stmt.setTimestamp(1, day);
+			 stmt.setString(1, day);
 			 stmt.setInt(2, time);
 			
 			// SQL実行
@@ -95,7 +85,7 @@ public class ReservationDao {
 	 * 
 	 */
 	
-	public String generatingId(Timestamp day, int time) {
+	public String generatingId(String day, int time) { // int timeじゃなくてString timeかも
 		
 		String rId ="";
 		int num=0;
@@ -193,6 +183,18 @@ public class ReservationDao {
 		return num;
 		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 
 

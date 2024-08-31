@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.sql.Timestamp;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -112,20 +111,21 @@ public class Reservation extends HttpServlet {
 		String screen= "";
 
 		// 時間選択画面から送られる時間情報を入れる
-		int reservationTime= (int) request.getAttribute("time");
+		// int reservationTime= (int) request.getAttribute("time");
 
 		
 		// ①時間情報が空なら一回目の遷移なので、日付をBeanに入れて保存する
-		if(reservationTime ==0) {
+		if(request.getAttribute("time") ==null) {
 			
-			// =================要変更=======================
-			Timestamp reservationDate = (Timestamp)request.getAttribute("dayId");
+			// =================DB変更と月のデータも受けて、Beanに月と合わせて送るように変更する=======================
+			String reservationDate = (String)request.getAttribute("dayId");
+			
 
 			reseBean.setReservationDate(reservationDate);
-			session.setAttribute("reseBean", "reseBean");
+			session.setAttribute("reseBean", reseBean);
 
 			// 遷移先画面の設定
-			screen= "TimeReservation.jsp";
+			screen= "/TimeReservation.jsp";
 
 			// ②時間情報が送られている場合は、それも保存する（二回目の遷移）
 			// 会員IDも送られていているから、それも保存する
@@ -133,11 +133,19 @@ public class Reservation extends HttpServlet {
 			// まずスコープにある予約Beanを取る
 			reseBean = (ReservationBean)session.getAttribute("reseBean");
 			// そこに予約時間を追加する
+			
+			
+			
+			
+			int reservationTime= (int) request.getAttribute("time");
 			reseBean.setReservationTime(reservationTime);
+			
+			
+			
 			
 		
 			// 予約ID
-			Timestamp day = reseBean.getReservationDate();
+			String day = reseBean.getReservationDate();
 			ReservationDao dao = new ReservationDao();
 			
 			String rId = dao.generatingId(day, reservationTime);
@@ -155,10 +163,16 @@ public class Reservation extends HttpServlet {
 			}
 			
 			// もう一度sessionにしまう（この時点で（二回目の遷移）予約ID、会員ID、予約日、予約時間が埋まっている）
-			session.setAttribute("reseBean", "reseBean");
+			session.setAttribute("reseBean", reseBean);
+			
+			screen = "/ReservationConfirmation.jsp";
 		}
 
 
+		ServletContext app = this.getServletContext();
+		RequestDispatcher dispatcher = app.getRequestDispatcher(screen);
+		dispatcher.forward(request,response);
+		
 
 
 	}

@@ -23,7 +23,7 @@
 	rel="stylesheet">
 <%-- ============ Googleフォント・noto san ここまで ============ --%>
 
-
+<link rel="stylesheet" type="text/css" href="css/StyleCss.css">
 
 
 <title>予約画面</title>
@@ -55,13 +55,13 @@ int firstDayWeek = cl.get(Calendar.DAY_OF_WEEK) - 1;  // 月の最初の曜日�
 
 
 
-
+<div class="container">
 <h1>予約画面</h1>
 <br><br>
 
 
 <%-- ============ フォーム送信 ============ --%>
-<form method="post" action="ReservationCon"></form>
+<form method="post" action="Reservation"></form>
 <%-- ============ フォーム送信 ============ --%>
 <%-- 今月（配列もカレンダーも０からのカウントなので＋１をする必要がない？） --%>
 <%= month[(cl.get(Calendar.MONTH))] %>
@@ -101,18 +101,20 @@ int firstDayWeek = cl.get(Calendar.DAY_OF_WEEK) - 1;  // 月の最初の曜日�
 	%> 
 	
 	<td><%= i %></td>
-	<%
+	<% // 空白＋日付の数が７になったら列を変える
 	if ((firstDayWeek + i) % 7 == 0) { %>
 	</tr><tr>
 	<% }
 	} 
+		// 当日行以降はリンクにする
 	
 	else if(i > intDate){ %>
-		<td><input type="hidden" name="dayId"
-				value="
-				<%= i %>" id="<%= i %>">
-				
-	<a href="javascript:void(0)" onclick="DayLink('<%= i %>');"><%= i %></td></a> 
+		<td>
+		<input type="hidden" name="dayId" value="<%= i %>" id="<%= i %>">
+		<input type="hidden" name="monthId" value="<%= cl.get(Calendar.MONTH) %>" id="<%= cl.get(Calendar.MONTH) %>">
+		
+		<a href="javascript:void(0)" onclick="DayLink('<%= i %>');"><%= i %>
+		</td></a> 
 <% // 空白＋日付の数が７になったら列を変える
 if ((firstDayWeek + i) % 7 == 0) { %>
 </tr><tr>
@@ -150,7 +152,7 @@ firstDayWeek = cl.get(Calendar.DAY_OF_WEEK) - 1;  // 月の最初の曜日をint
 <%= month[(cl.get(Calendar.MONTH))] %>
 <br>
 
-<%-- カレンダーテーブル --%>
+
 <table>
 	<thead>
 	<tr>
@@ -176,8 +178,20 @@ firstDayWeek = cl.get(Calendar.DAY_OF_WEEK) - 1;  // 月の最初の曜日をint
 	<% // 後は１日から月末までの日まで繰り返す
 	for(int i = firstDay; i <= lastDay; i++){ %> 
 	
-	<td><input type="hidden" name="dayId" value="<%= i %>" id="<%= i %>">				
-		<a href="javascript:void(0)" onclick="DayLink('<%= i %>');"><%= i %></td></a> 
+	<td><input type="hidden" name="dayId" value="<%= i %>" id="<%= i %>">
+	<input type="hidden" name="monthId" value="<%= cl.get(Calendar.MONTH)+1 %>" id="<%= cl.get(Calendar.MONTH)+1 %>">				
+		
+		<% //月曜日は表示しない
+		if((firstDayWeek + i) % 7 == 2) {
+			 %>
+			<%= i %></td>
+			<%
+		}else{
+		 %>
+		
+		<a href="javascript:void(0)" onclick="DayLink('<%= i %>');"><%= i %></a> </td>
+		<%
+} %>
 	<% // 空白＋日付の数が７になったら列を変える
 	if ((firstDayWeek + i) % 7 == 0) { %>
 	</tr><tr>
@@ -204,5 +218,6 @@ firstDayWeek = cl.get(Calendar.DAY_OF_WEEK) - 1;  // 月の最初の曜日をint
 	</script>
 <%-- ============ フォーム送信 ============ --%>
 
+</div>
 </body>
 </html>

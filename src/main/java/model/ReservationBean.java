@@ -1,13 +1,12 @@
 package model;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
 
 public class ReservationBean implements Serializable {
 	
 	private String reservationId;
 	private String userId;
-	private Timestamp reservationDate;
+	private String reservationDate;
 	private int reservationTime;
 	
 	
@@ -36,12 +35,12 @@ public class ReservationBean implements Serializable {
 	
 	
 	
-	public Timestamp getReservationDate() {
+	public String getReservationDate() {
 		return reservationDate;
 	}
 	
 	
-	public void setReservationDate(Timestamp reservationDate) {
+	public void setReservationDate(String reservationDate) {
 		this.reservationDate = reservationDate;
 	}
 	

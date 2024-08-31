@@ -4,8 +4,9 @@
 <%@page import="model.UserIdBean"%>
 <%@page import="model.ReservationBean"%>
 <%@page import="model.ReservationDao"%>
-<%@page import=""%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="javax.servlet.http.HttpSession"%>
+<%@page import="java.util.Date"%>
 
 <!DOCTYPE html>
 <html>
@@ -61,26 +62,30 @@
 
 				
 				<% 
+				// セッションスコープから取得
+				 ReservationBean reseBean = (ReservationBean)session.getAttribute("reseBean");
      
-  // 予約時間を20240801のような形式で保存
+  // 予約時間を20240801のような形式で保存(reservationBeanでStrimgで保存しているので、もうそうなっている？)
   		// ①日にち
-  		SimpleDateFormat sdf = new SimpleDateFormat("yyyymmdd");
-  		String date = sdf.format(reseBean.getReservationDate());
+  		//  SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+  		// Date date = sdf.parse(reseBean.getReservationDate());
+  		 // String date = sdf.format(reseBean.getReservationDate());
+  		 String date = reseBean.getReservationDate();
+  		 
   		
   		// ②時間
-  		int reservationTime = reseBean.getReservationTime();
   		
      
      // DBで予約日時でセレクトするDaoを作り、それで帰ってきた件数をintで受ける。２なら表示しない。
      ReservationDao rs = new ReservationDao();
      
-    // int reservationTime = rs.saerchTime(session.getAttribute("rDay"),9);
-    // if(!(reservationTime ==2)){
+     int reservationTime = rs.saerchTime(date,9);
+     if(!(reservationTime ==2)){
       %>
 
 				<input id="9am" type="radio" name="time" value="9am"><label
 					for="9am">9:00</label><br>
-				<% // } %>
+				<%  } %>
 
 				<input id="10am" type="radio" name="time" value="10am"><label
 					for="10am">10:00</label><br> <input id="11am" type="radio"
