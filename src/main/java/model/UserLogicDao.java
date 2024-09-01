@@ -13,7 +13,7 @@ public class UserLogicDao {
 	private static final String PASSWORD = "COFFEE_TREE"; // スキーマのパスワード
 
 	// データベース接続を取得するメソッド
-	private Connection getConnection() throws Exception {
+	public Connection getConnection() throws Exception {
 		// Oracle JDBCドライバのロード
 		Class.forName("oracle.jdbc.driver.OracleDriver");
 		// データベース接続の取得

@@ -61,9 +61,7 @@ body {
 	<div class="admin-mypage-container">
 		<h1>Forest 予約システム</h1>
 		<div class="user-info">
-			<p>
-				ID:
-				<%=session.getAttribute("userId")%></p>
+			<p>ID: <%=session.getAttribute("userId")%></p>
 			<p><%=session.getAttribute("userName")%></p>
 		</div>
 		<form action="reservationListServlet" method="get">
@@ -76,7 +74,7 @@ body {
 		</form>
 		<form action="customerListServlet" method="get">
 			<input type="button" value="会員一覧 (CSV出力)"
-				onclick="location.href='customerList.csv'">
+				onclick="location.href='CustomerListServlet'">
 		</form>
 		<form action="registerServlet" method="get">
 			<input type="button" value="会員登録"
