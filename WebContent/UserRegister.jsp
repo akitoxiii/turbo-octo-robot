@@ -73,7 +73,8 @@ body {
 			<%=request.getAttribute("userError") != null ? request.getAttribute("userError") : ""%>
 		</div>
 
-		<form action="registerConfirmServlet" method="post">
+		<%-- サーブレット UserRegisterServlet へデータを送信する --%>
+		<form action="UserRegisterServlet" method="post">
 			<label for="email">メールアドレス</label> <input type="email" id="email"
 				name="userMailAddress" placeholder="メールアドレス" required> <label
 				for="password">パスワード</label> <input type="password" id="password"
