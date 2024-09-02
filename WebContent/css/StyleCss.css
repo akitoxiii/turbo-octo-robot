@@ -24,6 +24,8 @@ form{
 .item{
   overflow: hidden;
   margin-bottom: 20px;
+  width:460px;
+   margin:0 auto;
 }
 .label{
   float: left;

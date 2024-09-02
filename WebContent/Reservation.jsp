@@ -47,7 +47,6 @@ int lastDay = cl.getActualMaximum(Calendar.DAY_OF_MONTH); // 月の最終日
 
 int firstDayWeek = cl.get(Calendar.DAY_OF_WEEK) - 1;  // 月の最初の曜日をintで求める。DAY_OF_WEEKは日曜日なら１を取得する？
 
-
 %>
 
 <%  %>
@@ -97,7 +96,7 @@ int firstDayWeek = cl.get(Calendar.DAY_OF_WEEK) - 1;  // 月の最初の曜日�
 	
 	// 後は１日から月末までの日まで繰り返す
 	for(int i = firstDay; i <= lastDay; i++){ 
-		if(i <= intDate){
+		if(i <= intDate || (firstDayWeek + i) % 7 == 2){
 	%> 
 	
 	<td><%= i %></td>
@@ -110,10 +109,11 @@ int firstDayWeek = cl.get(Calendar.DAY_OF_WEEK) - 1;  // 月の最初の曜日�
 	
 	else if(i > intDate){ %>
 		<td>
+		<input type="hidden" name="yearId" value="<%= cl.get(Calendar.YEAR) %>" id="yearId">
+		<input type="hidden" name="monthId" value="<%= cl.get(Calendar.MONTH)+1 %>" id="monthId">
 		<input type="hidden" name="dayId" value="<%= i %>" id="<%= i %>">
-		<input type="hidden" name="monthId" value="<%= cl.get(Calendar.MONTH) %>" id="<%= cl.get(Calendar.MONTH) %>">
-		
-		<a href="javascript:void(0)" onclick="DayLink('<%= i %>');"><%= i %>
+
+		<a href="javascript:void(0)" onclick="DayLink('<%= i %>','monthId','yearId');"><%= i %>
 		</td></a> 
 <% // 空白＋日付の数が７になったら列を変える
 if ((firstDayWeek + i) % 7 == 0) { %>
@@ -140,6 +140,7 @@ if ((firstDayWeek + i) % 7 == 0) { %>
 
 // カレンダーに当日の年、月、１日をセットする
 cl.set(cl.get(Calendar.YEAR),cl.get(Calendar.MONTH)+1,firstDay);
+
 
 
 lastDay = cl.getActualMaximum(Calendar.DAY_OF_MONTH); // 月の最終日
@@ -178,9 +179,10 @@ firstDayWeek = cl.get(Calendar.DAY_OF_WEEK) - 1;  // 月の最初の曜日をint
 	<% // 後は１日から月末までの日まで繰り返す
 	for(int i = firstDay; i <= lastDay; i++){ %> 
 	
-	<td><input type="hidden" name="dayId" value="<%= i %>" id="<%= i %>">
-	<input type="hidden" name="monthId" value="<%= cl.get(Calendar.MONTH)+1 %>" id="<%= cl.get(Calendar.MONTH)+1 %>">				
-		
+	<td>
+	<input type="hidden" name="yearId" value="<%= cl.get(Calendar.YEAR) %>" id="yearId">
+	<input type="hidden" name="monthId" value="<%= cl.get(Calendar.MONTH)+2 %>" id="monthId">
+	<input type="hidden" name="dayId" value="<%= i %>" id="<%= i %>">	
 		<% //月曜日は表示しない
 		if((firstDayWeek + i) % 7 == 2) {
 			 %>
@@ -189,7 +191,7 @@ firstDayWeek = cl.get(Calendar.DAY_OF_WEEK) - 1;  // 月の最初の曜日をint
 		}else{
 		 %>
 		
-		<a href="javascript:void(0)" onclick="DayLink('<%= i %>');"><%= i %></a> </td>
+		<a href="javascript:void(0)" onclick="DayLink('<%= i %>','monthId','yearId');"><%= i %></a> </td>
 		<%
 } %>
 	<% // 空白＋日付の数が７になったら列を変える
@@ -208,10 +210,14 @@ firstDayWeek = cl.get(Calendar.DAY_OF_WEEK) - 1;  // 月の最初の曜日をint
 
 <%-- ============ フォーム送信 ============ --%>
 	<script type="text/javascript">
-	function DayLink(dayId){
+	function DayLink(dayId,monthId,yearId){
 			var form = document.forms[0];
 			var input = document.getElementById(dayId);
+			var input2 = document.getElementById(monthId);
+			var input3 = document.getElementById(yearId);
 			form.appendChild(input);
+			form.appendChild(input2);
+			form.appendChild(input3);
 			document.body.appendChild(form);
 			form.submit();	<%-- ここで送信 --%>
 		}

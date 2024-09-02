@@ -4,7 +4,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 
 
 public class ReservationDao {
@@ -24,7 +23,7 @@ public class ReservationDao {
 	 * 
 	 */
 
-	public int saerchTime(String day, int time) {
+	public int saerchTime(String day, String time) {
 
 		// SELECTしたデータを格納する変数宣言
 		ResultSet rs = null;
@@ -48,7 +47,7 @@ public class ReservationDao {
 			
 			// パラメーターセット
 			 stmt.setString(1, day);
-			 stmt.setInt(2, time);
+			 stmt.setString(2, time);
 			
 			// SQL実行
 			rs = stmt.executeQuery();
@@ -85,7 +84,7 @@ public class ReservationDao {
 	 * 
 	 */
 	
-	public String generatingId(String day, int time) { // int timeじゃなくてString timeかも
+	public String generatingId(String day, String time) { // int timeじゃなくてString timeかも
 		
 		String rId ="";
 		int num=0;
@@ -95,12 +94,14 @@ public class ReservationDao {
 		
 		// 予約時間を20240801のような形式で保存
 		// 日にち(これで20240801のようになる？↓)
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyymmdd");
-		String date = sdf.format(day);
+		// SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		// String date = sdf.format(day);
+		
+		// 9/1 送られた時点でもうそうなってる？
 		
 		
 		// 二つをつなげて(どうしてintのままなのにエラーがでないんだろう)、最後日に1か2を付ける
-		rId = date + time;
+		rId = day + time;
 		
 		// その時間の予約件数が０なら１、１なら２をつける
 		num = saerchTime(day,time);
@@ -145,8 +146,8 @@ public class ReservationDao {
 			// パラメーターセット
 			stmt.setString(1,rb.getReservationId());
 			stmt.setString(2,rb.getUserId());
-			stmt.setTimestamp(3, rb.getReservationDate());
-			stmt.setInt(4, rb.getReservationTime());
+			stmt.setString(3, rb.getReservationDate());
+			stmt.setString(4, rb.getReservationTime());
 
 			// SQLの実行
 			num = stmt.executeUpdate();

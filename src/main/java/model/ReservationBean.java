@@ -7,7 +7,7 @@ public class ReservationBean implements Serializable {
 	private String reservationId;
 	private String userId;
 	private String reservationDate;
-	private int reservationTime;
+	private String reservationTime;
 	
 	
 	public String getReservationId() {
@@ -51,11 +51,11 @@ public class ReservationBean implements Serializable {
 	
 	
 	
-	public int getReservationTime() {
+	public String getReservationTime() {
 		return reservationTime;
 	}
 	
-	public void setReservationTime(int reservationTime) {
+	public void setReservationTime(String reservationTime) {
 		this.reservationTime = reservationTime;
 	}
 	
