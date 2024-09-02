@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class UserIdBean implements Serializable{
 	
-	private int userId;
+	private String userId;
 	private String userName;
 	private String userEmail;
 	private String userPassword;
@@ -13,13 +13,13 @@ public class UserIdBean implements Serializable{
 	private int userPrivilege;
 	
 	
-	public int getUserId() {
+	public String getUserId() {
 		return userId;
 	}
 	
 	
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setUserId(String string) {
+		this.userId = string;
 	}
 	
 	

@@ -56,7 +56,7 @@
         <div class="error-message">
             <%= request.getAttribute("loginError") != null ? request.getAttribute("loginError") : "" %>
         </div>
-        <form action="loginServlet" method="post">
+        <form action="LoginCon" method="post">
             <input type="text" name="loginId" placeholder="ログインID" required>
             <input type="password" name="loginPassword" placeholder="ログインパスワード" required>
             <input type="submit" value="ログイン">
