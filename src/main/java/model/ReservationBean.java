@@ -1,23 +1,21 @@
 package model;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
 
 public class ReservationBean implements Serializable {
 	
-	private int reservationId;
+	private String reservationId;
 	private String userId;
-	private Timestamp reservationDate;
-	private Timestamp updateDateTime;
+	private String reservationDate;
+	private String reservationTime;
 	
 	
-	
-	public int getReservationId() {
+	public String getReservationId() {
 		return reservationId;
 	}
 	
 	
-	public void setReservationId(int reservationId) {
+	public void setReservationId(String reservationId) {
 		this.reservationId = reservationId;
 	}
 	
@@ -37,24 +35,28 @@ public class ReservationBean implements Serializable {
 	
 	
 	
-	public Timestamp getReservationDate() {
+	public String getReservationDate() {
 		return reservationDate;
 	}
 	
 	
-	public void setReservationDate(Timestamp reservationDate) {
+	public void setReservationDate(String reservationDate) {
 		this.reservationDate = reservationDate;
 	}
 	
 	
 	
 	
+
 	
-	public Timestamp getUpdateDateTime() {
-		return updateDateTime;
+	
+	
+	public String getReservationTime() {
+		return reservationTime;
 	}
-	public void setUpdateDateTime(Timestamp updateDateTime) {
-		this.updateDateTime = updateDateTime;
+	
+	public void setReservationTime(String reservationTime) {
+		this.reservationTime = reservationTime;
 	}
 	
 	
