@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,6 +14,9 @@ import javax.servlet.http.HttpSession;
 import model.ReservationBean;
 import model.ReservationDao;
 
+
+
+@WebServlet("/Reservation")
 /**
  * Servlet implementation class Reservation
  */
@@ -33,7 +37,7 @@ public class Reservation extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		// response.getWriter().append("Served at: ").append(request.getContextPath());
 
 		/*
 		 *  ================================
@@ -43,6 +47,12 @@ public class Reservation extends HttpServlet {
 
 		// 文字コードのセットとインスタンス化
 		request.setCharacterEncoding("UTF-8");
+
+
+		// ログを追加してactionパラメータの値を確認
+		String action = request.getParameter("action");
+		System.out.println("Action parameter: " + action);
+
 
 		// 登録か修正かで遷移先を分ける
 		String screen = "";
@@ -56,39 +66,46 @@ public class Reservation extends HttpServlet {
 
 		// // Date date = new Date(reseBean.getReservationDate()); // //
 
-		// 三回目の遷移で予約IDを取得し、一回目と二回目にsessionにしまった予約Beanを取り出し、入れる。
-		// また、DBへの登録をする
+		// DBへの登録をする
 
-		// action=OKが送られていれば、登録
-		String action = request.getParameter("action");
 
-		if (action.equals("ok")) {
+		// 送られてこなければセッションスコープの内容（reseBean）を削除
+		action = request.getParameter("action");
 
+		if (action ==null) {
+
+			session.removeAttribute("reseBean");
+			screen = "/Reservation.jsp";
+
+
+			// action=OKが送られていれば登録	
+		} else if(action.equals("ok")){
 			// 登録
 			ReservationDao dao = new ReservationDao();
 
 			int num = dao.reservation(reseBean);
 
 			if (num == 1) {
+				// 削除の前に予約IDをリクエストに入れておく
+				String yoyakuId = reseBean.getReservationId();
+				request.setAttribute("yoyakuId", yoyakuId);
+
 				// 登録後、セッションスコープの内容（reseBean）は削除？
 				session.removeAttribute("reseBean");
 				// numはリクエストに保存
 				request.setAttribute("num", num);
 
-				screen = "/ReservationConfirm.jsp";
+				screen = "/ReservationDone.jsp";
 
-				// 送られてこなければセッションスコープの内容（reseBean）を削除
-			} else {
-
-				screen = "/Reservation.jsp";
 
 			}
 
-			ServletContext app = this.getServletContext();
-			RequestDispatcher dispatcher = app.getRequestDispatcher("/ReservationConfirm.jsp");
-			dispatcher.forward(request, response);
-
+			
 		}
+		ServletContext app = this.getServletContext();
+		RequestDispatcher dispatcher = app.getRequestDispatcher(screen);
+		dispatcher.forward(request, response);
+
 
 	}
 
@@ -118,6 +135,7 @@ public class Reservation extends HttpServlet {
 		 */
 		// ①時間情報が空なら一回目の遷移なので、日付をBeanに入れて保存する
 		if (request.getParameter("time") == null) {
+
 
 			// =================DB変更と月のデータも受けて、Beanに月と合わせて送るように変更する=======================
 
@@ -158,7 +176,7 @@ public class Reservation extends HttpServlet {
 
 			// 予約ID
 			String yoyakuId = (String) session.getAttribute("nen") + (String) session.getAttribute("tuki")
-					+ (String) session.getAttribute("niti");
+			+ (String) session.getAttribute("niti");
 
 			ReservationDao dao = new ReservationDao();
 

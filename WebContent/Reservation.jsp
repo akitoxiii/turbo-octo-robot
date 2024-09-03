@@ -6,6 +6,7 @@
     <%@page import="java.util.Collections"%>
     <%@page import="java.util.Date"%>
     <%@page import="java.text.SimpleDateFormat"%>
+     <%@page import="model.ReservationDao"%>
     
     <%-- ーーーーーーーーーーーーーーーーーー --%>
     
@@ -46,6 +47,9 @@ cl.set(cl.get(Calendar.YEAR),cl.get(Calendar.MONTH),firstDay);
 int lastDay = cl.getActualMaximum(Calendar.DAY_OF_MONTH); // 月の最終日
 
 int firstDayWeek = cl.get(Calendar.DAY_OF_WEEK) - 1;  // 月の最初の曜日をintで求める。DAY_OF_WEEKは日曜日なら１を取得する？
+
+// Daoのインスタンス化
+ReservationDao dao = new ReservationDao();
 
 %>
 
@@ -107,7 +111,18 @@ int firstDayWeek = cl.get(Calendar.DAY_OF_WEEK) - 1;  // 月の最初の曜日�
 	} 
 		// 当日行以降はリンクにする
 	
-	else if(i > intDate){ %>
+	else if(i > intDate){
+		
+		
+		// ここで予約のある日を弾く（？年？月？日で送る）
+		// ＝＝＝めちゃ重になるので割愛します＝＝＝
+		// int calenderMonth = cl.get(Calendar.MONTH) +1;
+		//  if(dao.SeachDay((cl.get(Calendar.YEAR)) + "年" + calenderMonth + "月" + i + "日") >= 16){ %>
+			   <%-- <td><%= i %></td> 
+		
+			<%     
+		 }else{
+		  --%>
 		<td>
 		<input type="hidden" name="yearId" value="<%= cl.get(Calendar.YEAR) %>" id="yearId">
 		<input type="hidden" name="monthId" value="<%= cl.get(Calendar.MONTH)+1 %>" id="monthId">
@@ -189,8 +204,17 @@ firstDayWeek = cl.get(Calendar.DAY_OF_WEEK) - 1;  // 月の最初の曜日をint
 			<%= i %></td>
 			<%
 		}else{
-		 %>
+		 
 		
+		
+		// ここで予約のある日を弾く（？年？月？日）で送る）
+		int calenderMonth = cl.get(Calendar.MONTH) +1;
+		 if(dao.SeachDay((cl.get(Calendar.YEAR)) + "年" + calenderMonth + "月" + i + "日") >= 16){ %>
+		<%= i %></td> 
+		
+			<%     
+		 }else{
+			 %>
 		<a href="javascript:void(0)" onclick="DayLink('<%= i %>','monthId','yearId');"><%= i %></a> </td>
 		<%
 } %>
@@ -198,6 +222,7 @@ firstDayWeek = cl.get(Calendar.DAY_OF_WEEK) - 1;  // 月の最初の曜日をint
 	if ((firstDayWeek + i) % 7 == 0) { %>
 	</tr><tr>
 	<% }
+		}
 	} %>
 	
 	</tr>

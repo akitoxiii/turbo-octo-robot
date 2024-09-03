@@ -38,7 +38,13 @@
 		<p class="inputs"><%=reseBean.getReservationTime() + ":00"%></p>
 		
 		<p class="inputs"><%=reseBean.getReservationId()%></p>
-
+		
+		
+		<a href="Reservation?action=ok">予約</a>
+		<br>
+	<br>
+	<a href="Reservation">やりなおす</a>
+	
 
 	</div>
 

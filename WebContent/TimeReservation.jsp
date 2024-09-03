@@ -80,7 +80,7 @@
      ReservationDao rs = new ReservationDao();
      
      int reservationTime = rs.saerchTime(date,"9");
-     if(!(reservationTime <=2)){
+     if(reservationTime <2){
       %>
 
 				<input id="9" type="radio" name="time" value="9"><label
