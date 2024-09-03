@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Forest 予約システム - 新規会員登録</title>
+<link rel="stylesheet" type="text/css" href="css/StyleCss.css">
 <style>
 body {
 	font-family: Arial, sans-serif;

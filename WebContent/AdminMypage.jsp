@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Forest 予約システム - 管理者マイページ</title>
+<link rel="stylesheet" type="text/css" href="css/StyleCss.css">
 <style>
 body {
 	font-family: Arial, sans-serif;
