@@ -20,9 +20,14 @@ public class LoginCon extends HttpServlet {
 		String loginId = request.getParameter("loginId");
 		String loginPassword = request.getParameter("loginPassword");
 
-		// デバッグ情報を出力
-		System.out.println("Login ID: " + loginId);
-		System.out.println("Login Password: " + loginPassword);
+		// 古いセッションがある場合は無効化
+		HttpSession session = request.getSession(false);
+		if (session != null) {
+			session.invalidate();
+		}
+
+		// 新しいセッションを開始
+		session = request.getSession(true);
 
 		try {
 			// ユーザーロジックのDAOを使用して認証
@@ -31,33 +36,24 @@ public class LoginCon extends HttpServlet {
 
 			if (user != null) {
 				// ユーザーが存在する場合、セッションにユーザー情報を保存
-				HttpSession session = request.getSession();
 				session.setAttribute("userId", user.getUserId());
 				session.setAttribute("userName", user.getUserName());
 				session.setAttribute("userPrivilege", user.getUserPrivilege());
 
 				// 管理者か顧客かで分岐
 				if (user.getUserPrivilege() == 1) {
-					// 管理者の場合
-					response.sendRedirect("AdminMypage.jsp");
+					response.sendRedirect("AdminMypageServlet"); // AdminMypageServlet にリダイレクト
 				} else {
-					// 顧客の場合
-					response.sendRedirect("UserMypage.jsp");
+					response.sendRedirect("UserMypageServlet"); // 顧客用のマイページにリダイレクト
 				}
-				return; // sendRedirectを使用した後に処理を終了するため、ここでreturnを追加
 			} else {
-				// 認証に失敗した場合
 				request.setAttribute("loginError", "ログインIDまたはパスワードが正しくありません。");
-				System.out.println("Authentication failed for Login ID: " + loginId);
+				request.getRequestDispatcher("login.jsp").forward(request, response);
 			}
 		} catch (Exception e) {
-			// 例外が発生した場合
 			e.printStackTrace();
 			request.setAttribute("loginError", "システムエラーが発生しました。管理者にお問い合わせください。");
-			System.out.println("Exception occurred: " + e.getMessage());
+			request.getRequestDispatcher("login.jsp").forward(request, response);
 		}
-
-		// エラーメッセージがある場合、ログイン画面に戻る
-		request.getRequestDispatcher("login.jsp").forward(request, response);
 	}
 }

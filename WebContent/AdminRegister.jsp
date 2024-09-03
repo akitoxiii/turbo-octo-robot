@@ -82,9 +82,8 @@ body {
 		<div class="user-info">
 			<p>
 				ID:
-				<%=session.getAttribute("loginUserId")%></p>
-			<p>
-				<%=session.getAttribute("loginUserName")%></p>
+				<%=request.getAttribute("userId")%></p>
+			<p><%=request.getAttribute("userName")%></p>
 		</div>
 
 		<%-- エラーメッセージ表示 --%>
@@ -92,7 +91,7 @@ body {
 			<%=request.getAttribute("userError") != null ? request.getAttribute("userError") : ""%>
 		</div>
 
-		<form action="registerAdminConfirmServlet" method="post">
+		<form action="AdminRegisterServlet" method="post">
 			<label for="email">メールアドレス</label> <input type="email" id="email"
 				name="userMailAddress" placeholder="メールアドレス" required> <label
 				for="password">パスワード</label> <input type="password" id="password"

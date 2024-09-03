@@ -52,8 +52,8 @@ body {
 
 		<p>
 			ID:
-			<%=session.getAttribute("loginUserId")%></p>
-		<p><%=session.getAttribute("loginUserName")%></p>
+			<%=request.getAttribute("userId")%></p>
+		<p><%=request.getAttribute("userName")%></p>
 
 		<p>
 			会員ID:
@@ -63,7 +63,7 @@ body {
 
 		<button onclick="location.href='login.jsp'">ログイン画面へ</button>
 
-		<button onclick="location.href='AdminMypage.jsp'">メニュー画面へ</button>
+		<button onclick="location.href='AdminMypageServlet'">メニュー画面へ</button>
 	</div>
 </body>
 </html>
