@@ -79,7 +79,10 @@ body {
 			<input type="hidden" name="action" value="register"> <input
 				type="submit" value="会員登録">
 		</form>
-		<a href="logout.jsp">ログアウト</a>
+		<!-- ログアウトリンクをLogoutServletに設定 -->
+		<form action="LogoutServlet" method="post">
+			<input type="submit" value="ログアウト">
+		</form>
 	</div>
 </body>
 </html>
