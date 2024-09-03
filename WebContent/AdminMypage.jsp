@@ -34,7 +34,7 @@ body {
 	font-size: 18px;
 }
 
-.admin-mypage-container input[type="button"] {
+.admin-mypage-container input[type="submit"] {
 	width: 100%;
 	padding: 10px;
 	margin: 10px 0;
@@ -61,26 +61,28 @@ body {
 	<div class="admin-mypage-container">
 		<h1>Forest 予約システム</h1>
 		<div class="user-info">
-			<p>ID: <%=session.getAttribute("userId")%></p>
-			<p><%=session.getAttribute("userName")%></p>
+			<p>
+				ID:
+				<%=request.getAttribute("userId")%></p>
+			<p><%=request.getAttribute("userName")%></p>
 		</div>
-		<form action="reservationListServlet" method="get">
-			<input type="button" value="全予約一覧"
-				onclick="location.href='reservationList.jsp'">
+		<form action="ReservationListCon" method="get">
+			<input type="submit" value="全予約一覧">
 		</form>
 		<form action="reservationServlet" method="get">
-			<input type="button" value="予約する"
-				onclick="location.href='reservation.jsp'">
+			<input type="submit" value="予約する">
 		</form>
-		<form action="customerListServlet" method="get">
-			<input type="button" value="会員一覧 (CSV出力)"
-				onclick="location.href='CustomerListServlet'">
+		<form action="CustomerListServlet" method="get">
+			<input type="submit" value="会員一覧 (CSV出力)">
 		</form>
-		<form action="registerServlet" method="get">
-			<input type="button" value="会員登録"
-				onclick="location.href='AdminRegister.jsp'">
+		<form action="AdminMypageServlet" method="post">
+			<input type="hidden" name="action" value="register"> <input
+				type="submit" value="会員登録">
 		</form>
-		<a href="logout.jsp">ログアウト</a>
+		<!-- ログアウトリンクをLogoutServletに設定 -->
+		<form action="LogoutServlet" method="post">
+			<input type="submit" value="ログアウト">
+		</form>
 	</div>
 </body>
 </html>

@@ -51,7 +51,7 @@ body {
 		<h1>登録が完了しました。</h1>
 		<p>
 			会員ID:
-			<%=session.getAttribute("userId")%></p>
+			<%=request.getAttribute("userId")%></p>
 		<p>ご利用ありがとうございます。</p>
 
 		<button onclick="location.href='login.jsp'">ログイン画面へ</button>

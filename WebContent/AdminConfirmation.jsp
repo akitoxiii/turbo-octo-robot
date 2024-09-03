@@ -61,10 +61,13 @@ body {
 	<div class="confirm-container">
 		<h1>新規管理者情報確認画面</h1>
 
-		<label>ID</label>
-		<p><%=session.getAttribute("loginUserId")%></p>
-
-		<p><%=session.getAttribute("loginUserName")%></p>
+		<%-- ログインユーザー情報表示 --%>
+		<div class="user-info">
+			<p>
+				ID:
+				<%=request.getAttribute("userId")%></p>
+			<p><%=request.getAttribute("userName")%></p>
+		</div>
 
 		<label>メールアドレス</label>
 		<p><%=request.getAttribute("userMailAddress")%></p>
@@ -84,7 +87,7 @@ body {
 		<label>管理権限</label>
 		<p>
 			<%
-			String privilege = (String) session.getAttribute("privilege");
+			String privilege = (String) request.getAttribute("privilege");
 			if (privilege != null) {
 				out.print(privilege.equals("1") ? "管理者" : "顧客");
 			} else {
@@ -94,8 +97,23 @@ body {
 		</p>
 
 		<div style="text-align: center;">
-			<input type="button" value="戻る" onclick="history.back();"> <input
-				type="submit" value="登録">
+			<input type="button" value="戻る" onclick="history.back();">
+			<form action="AdminCompletionServlet" method="post">
+				<%-- 隠しフィールドを使ってデータを渡す --%>
+				<input type="hidden" name="userMailAddress"
+					value="<%=request.getAttribute("userMailAddress")%>"> <input
+					type="hidden" name="password"
+					value="<%=request.getAttribute("password")%>"> <input
+					type="hidden" name="userName"
+					value="<%=request.getAttribute("userName")%>"> <input
+					type="hidden" name="userAddress"
+					value="<%=request.getAttribute("userAddress")%>"> <input
+					type="hidden" name="userPhoneNumber"
+					value="<%=request.getAttribute("userPhoneNumber")%>"> <input
+					type="hidden" name="privilege"
+					value="<%=request.getAttribute("privilege")%>"> <input
+					type="submit" value="登録">
+			</form>
 		</div>
 	</div>
 </body>

@@ -80,7 +80,18 @@ body {
 			<input type="button" value="戻る" onclick="history.back();">
 			<%-- サーブレット UserCompletionServlet へデータを送信する --%>
 			<form action="UserCompletionServlet" method="post">
-				<input type="submit" value="登録">
+				<%-- 隠しフィールドを使ってデータを渡す --%>
+				<input type="hidden" name="userMailAddress"
+					value="<%=request.getAttribute("userMailAddress")%>"> <input
+					type="hidden" name="password"
+					value="<%=request.getAttribute("password")%>"> <input
+					type="hidden" name="userName"
+					value="<%=request.getAttribute("userName")%>"> <input
+					type="hidden" name="userAddress"
+					value="<%=request.getAttribute("userAddress")%>"> <input
+					type="hidden" name="userPhoneNumber"
+					value="<%=request.getAttribute("userPhoneNumber")%>"> <input
+					type="submit" value="登録">
 			</form>
 		</div>
 	</div>
