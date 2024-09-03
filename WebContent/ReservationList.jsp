@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
     
     <%@page import="java.util.ArrayList"%>
-    <%@page import="java.text.NumberFormat"%>
     <%@page import="model.ReservationBean"%>
     
     
@@ -10,17 +9,19 @@
 <html>
 <head>
 
-<link rel="stylesheet" type="text/css" href="css/Style.css">
+<link rel="stylesheet" type="text/css" href="css/StyleCss.css">
 
 <meta charset="UTF-8">
 <title>全予約一覧</title>
 </head>
 <body>
+
+<%-- 詳細へのフォームリンク --%>
+<form method="post" action="ReservationViewCon"></form>
+
+
+
 <div class="container">
-
-// 削除用フォーム
-<form method="post" action="DeleteCon"></form>
-
 
 <%-- 削除機能の結果表示 --%>
 	<%
@@ -46,9 +47,8 @@
 
 	<!-- for文でテーブル内容を繰り返す -->
 	<% 
-	NumberFormat comFormat = NumberFormat.getNumberInstance();
 	
-	 ArrayList<ReservatiionBean> allList = (ArrayList<ReservationBean>)request.getAttribute("allList");
+	 ArrayList<ReservationBean> allList = (ArrayList<ReservationBean>)request.getAttribute("allList");
 	 
 	 %>
 
@@ -56,10 +56,8 @@
 	<table class="table_sticky" id="listTable">
 		<thead>
 			<tr>
-				<th width="100">商品名</th>
-				<th width="10">値段</th>
-				<th width="10">在庫数</th>
-				<th width="40">項目選択</th>
+				<th width="100">予約ID</th>
+				<th width="10">ユーザーID</th>
 			</tr>
 		</thead>
 
@@ -69,19 +67,14 @@
 			 for(ReservationBean listAll : allList){
 			 %>
 			 <tr data-href="javascript:void(0)"
-					onclick="ContentLink('<%= listAll.getItemNo() %>');"> 
-				
-				
-				<td class="itemName"><a href="javascript:void(0)"
-					onclick="ContentLink('<%= listAll.getUserId() %>');" class="listLink"><%= listAll.getItemName() %></a></td>
-				<td><%= comFormat.format(listAll.getItemPrice()) %></td>
-				<td><%= comFormat.format(listAll.getStockCount()) %></td>
-				<td class="itemContent">
-				<input type="hidden" name="itemNo"
-					value="<%= listAll.getItemNo() %>" id="<%= listAll.getItemNo() %>">
+					onclick="ContentLink('<%= listAll.getReservationId() %>');">  
 					
-					
-				</td>
+					<input type="hidden" name="ReservationId"
+					value="<%= listAll.getReservationId() %>" id="<%= listAll.getReservationId() %>">
+					<a href="javascript:void(0)"
+					onclick="ContentLink('<%= listAll.getReservationId() %>');">
+				<td><%= listAll.getReservationId() %></td>
+				<td><%= listAll.getUserId() %></td></a>
 			</tr>
 			<%
 			 }
@@ -99,20 +92,29 @@
 
 </div>
 
+
+	<script type="text/javascript">
+	$('tr[data-href]').click(function (e) {
+  if (!$(e.target).is('a')) {
+    window.location = $(e.target).data('href');
+  };
+});
+	</script>
 	
 			<%-- 詳細リンクのfunction --%>
 	<script type="text/javascript">
-	function ContentLink(itemNo){
+	function ContentLink(ReservationId){
 			var form = document.forms[0];
-			var input = document.getElementById(itemNo);
+			var input = document.getElementById(ReservationId);
 			form.appendChild(input);
 			document.body.appendChild(form);
 			form.submit();	<%-- フォーム送信 --%>
 
 		}
 	</script>
+	
 
-
+	
 
 </body>
 </html>
