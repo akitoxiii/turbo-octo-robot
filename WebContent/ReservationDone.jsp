@@ -12,7 +12,7 @@
 <br><br>ご利用ありがとうございます。
 <br><br><br>
 
-<% String yoyakuId = request.getAttribute("yoyakuId"); %>
+<% String yoyakuId = (String)request.getAttribute("yoyakuId"); %>
 
 <h1>予約ID：<%= yoyakuId %></h1>
 
