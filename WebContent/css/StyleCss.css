@@ -1,209 +1,5 @@
 @charset "UTF-8";
 
-HEAD
-.container {
-	text-align: center
-}
-
-.container {
-	text-align: center
-}
-
-body {
-	letter-spacing: 1px;
-	font-family: "Noto Sans JP", sans-serif;
-	background-color: #f9f9f9;
-}
-
-h1 {
-	color: #505050;
-	text-align: left;
-	margin-left: 200px;
-	font-size: 32px;
-	letter-spacing: 13px;
-}
-
-.flex {
-	display: flex;
-	width: 85px;
-	margin: 0 auto;
-	padding-right: 120px;
-}
-
-table {
-	table-layout: fixed;
-	width: 600px;
-	margin: auto;
-	border-collapse: collapse;
-	border: outset 1.5px;
-	border-color: #ddd;
-	border-radius: 7px;
-	background-color: #d1e8b53d;
-}
-
-table  td {
-	border-bottom: 1px dashed;
-	border-color: #79855d;
-	border-collapse: collapse;
-	width: 10%;
-	padding: 8px;
-}
-
-table th {
-	background-color: #d7ffa6;
-	padding: 15px;
-	border-collapse: collapse;
-	border-radius: 7px 7px 0px 0px;
-}
-
-table tr:nth-child(even) td {
-	background: #f6faf7;
-}
-
-caption {
-	margin-bottom: 20px;
-}
-
-td.itemName {
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-}
-
-td.itemContent {
-	white-space: nowrap;
-}
-
-/* 子セレクタの例 */
-table input {
-	background-color: #fff;
-}
-
-table.table_sticky td {
-	border-collapse: separate;
-	border: solid 5px;
-	border-left: 0px;
-	border-right: 0px;
-	border-color: #ffffff;
-	padding: 8px;
-}
-
-/* スクロールバー */
-.table_sticky {
-	display: block;
-	overflow-y: scroll;
-	height: 400px;
-	width: 600px;
-}
-
-table.table_sticky.th {
-	margin: auto;
-	position: sticky;
-	top: 0px;
-	background: #d7ffa6;
-	border-collapse: collapse;
-}
-
-/* table tr:hover td {
-	background-color: #d9efff;
-} */
-#listTable tr:hover td {
-	background-color: #d7ffa6;
-	/* #d9efff */
-}
-
-::-webkit-scrollbar {
-	width: 10px;
-	height: 10px;
-	border-radius: 0px 7px 7px 0px;
-	background: #dae7ca;
-}
-
-::-webkit-scrollbar-thumb {
-	background: #a4b1a4;
-	border-radius: 3px;
-}
-
-.listContainer {
-	text-align: center;
-}
-
-.formTest {
-	margin: auto;
-	/* width: 559px */
-}
-
-/*
- *********** フォームのCSS　***********
- */
-.lead-form {
-	text-align: center;
-	font-size: 20px;
-}
-
-form {
-	width: 460px;
-	margin: 0 auto;
-}
-
-.item {
-	overflow: hidden;
-	margin-bottom: 20px;
-	width: 460px;
-	margin: 0 auto;
-}
-
-.label {
-	float: left;
-	margin-right: 20px;
-	width: 135px;
-	border-left: solid 3px #4CAF50;
-	padding-left: 10px;
-}
-
-.inputs {
-	float: left;
-	width: 300px;
-}
-
-input[type="text"], input[type="email"] {
-	border: solid 1px #aaa;
-	border-radius: 5px;
-	padding: 10px;
-	font-size: 15px;
-}
-
-textarea {
-	border: solid 1px #aaa;
-	border-radius: 5px;
-	padding: 10px;
-	height: 160px;
-	font-size: 15px;
-}
-
-.btn-area {
-	text-align: center;
-}
-
-input[type="submit"] {
-	background: #4CAF50;
-	border: none;
-	color: white;
-	font-size: 17px;
-	font-weight: bold;
-	padding: 10px 20px;
-	margin: 0 5px;
-}
-
-input[type="reset"] {
-	background: #aaa;
-	border: none;
-	color: white;
-	font-size: 17px;
-	font-weight: bold;
-	padding: 10px 20px;
-	margin: 0 5px;
-}
 /* グローバル設定 */
 body {
     font-family: 'Arial', sans-serif;
@@ -212,6 +8,9 @@ body {
     margin: 0;
     padding: 0;
     transition: background-color 0.3s ease, color 0.3s ease;
+    text-align: center; /* ページ全体を中央揃え */
+    background: linear-gradient(135deg, #f0f8f3 0%, #d4e8d2 100%); /* 背景にグラデーションを追加 */
+    scroll-behavior: smooth; /* スムーズなスクロール */
 }
 
 /* ヘッダー */
@@ -230,12 +29,8 @@ header {
     transition: top 0.3s ease, background-color 0.3s ease, padding 0.3s ease;
 }
 
-header.visible {
-    top: 0;
-}
-
 header.scrolled {
-    background-color: #2d5540;
+    background-color: #275937;
     padding: 10px 20px;
 }
 
@@ -245,28 +40,21 @@ header h1 {
     transition: font-size 0.3s ease;
 }
 
-/* メインコンテンツ */
-.main-container {
-    max-width: 1200px;
-    margin: 100px auto 0 auto;
+/* メインコンテンツ中央揃え */
+.main-container, .login-container, .register-container, .confirmation-container, .completion-container {
+    max-width: 600px;
+    margin: 100px auto; /* 上下中央 */
     padding: 20px;
     background-color: white;
     border-radius: 8px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
     opacity: 0;
     transform: translateY(20px);
     animation: fadeIn 0.8s ease-out forwards;
 }
 
-/* フェードインアニメーション */
-@keyframes fadeIn {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* セクションの動き */
+/* セクション */
 section {
     margin-bottom: 30px;
     opacity: 0;
@@ -288,36 +76,38 @@ section h2 {
     font-size: 1.8em;
 }
 
+/* セクションのボーダーを強調し、緑を基調に */
+section {
+    border-left: 5px solid #88b090;
+    padding: 20px;
+    margin: 20px auto;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+section:hover {
+    background-color: #f0f8f3;
+    transform: translateY(-5px);
+}
+
 /* ボタン */
 button, input[type="button"], input[type="submit"] {
-    background-color: #88b090;
+    background-color: #6ba475;
     color: white;
     border: none;
-    padding: 10px 20px;
-    margin: 10px 0;
+    padding: 12px 24px;
+    font-size: 1.1em;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 1em;
-    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 button:hover, input[type="button"]:hover, input[type="submit"]:hover {
-    background-color: #3c6e47;
-    transform: scale(1.05);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-/* リンク */
-a {
-    color: #3c6e47;
-    text-decoration: none;
-    transition: color 0.3s ease, transform 0.2s ease;
-}
-
-a:hover {
-    text-decoration: underline;
-    color: #2d5540;
-    transform: scale(1.1);
+    background-color: #4e7e5a;
+    transform: translateY(-3px);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
 /* フォーム要素 */
 input[type="text"], input[type="email"], input[type="password"],
@@ -338,13 +128,27 @@ textarea:focus, select:focus {
     outline: none;
 }
 
+/* リンク */
+a {
+    color: #3c6e47;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+}
+
+a:hover {
+    color: #275937;
+    border-bottom: 2px solid #275937;
+}
+
 /* フッター */
 footer {
-    background-color: #2d5540;
+    background-color: #275937;
     color: white;
     text-align: center;
-    padding: 15px;
-    position: fixed;
+    padding: 20px;
+    font-size: 0.9em;
+    position: relative;
     bottom: 0;
     width: 100%;
     transition: background-color 0.3s ease;
@@ -357,6 +161,75 @@ footer a {
 
 footer a:hover {
     color: #b7d1bc;
+}
+
+/* フェードインアニメーション */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 1s ease-out forwards;
+}
+
+.fade-in.visible {
+    opacity: 1;
+}
+
+/* ズームインアニメーション */
+@keyframes zoomIn {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.zoom-in {
+    opacity: 0;
+    transform: scale(0.85);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.zoom-in.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.zoom-in-section {
+    animation: zoomIn 0.8s ease-out forwards;
+}
+
+.zoom-in-section:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+/* 追加アニメーション */
+@keyframes slideIn {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.slide-in {
+    animation: slideIn 1s ease-out forwards;
 }
 
 /* カード */
@@ -393,45 +266,16 @@ footer a:hover {
     color: #555;
 }
 
-/* スクロールトリガーによるアニメーション */
-.fade-in-up {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-.fade-in-up.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* 画像のズームインアニメーション */
-.zoom-in {
-    opacity: 0;
-    transform: scale(0.8);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-.zoom-in.visible {
-    opacity: 1;
-    transform: scale(1);
-}
-
-/* スムーズなスクロール */
-html {
-    scroll-behavior: smooth;
-}
-
 /* メディアクエリ */
 @media (max-width: 768px) {
     .main-container {
         padding: 10px;
     }
-    
+
     header h1 {
         font-size: 1.2em;
     }
-    
+
     button, input[type="button"], input[type="submit"] {
         font-size: 0.9em;
         padding: 8px 16px;
@@ -444,42 +288,6 @@ html {
     footer {
         padding: 10px;
     }
-}
-
-/* 追加アニメーション */
-@keyframes zoomIn {
-    0% {
-        transform: scale(0.8);
-        opacity: 0;
-    }
-    100% {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-.zoom-in-section {
-    animation: zoomIn 0.8s ease-out forwards;
-}
-
-.zoom-in-section:hover {
-    transform: scale(1.05);
-    transition: transform 0.3s ease;
-}
-
-@keyframes slideIn {
-    0% {
-        transform: translateX(-100%);
-        opacity: 0;
-    }
-    100% {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-.slide-in {
-    animation: slideIn 1s ease-out forwards;
 }
 /*
  *********** フォームのCSSここまで　***********

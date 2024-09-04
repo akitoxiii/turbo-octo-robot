@@ -6,57 +6,6 @@
 <meta charset="UTF-8">
 <title>Forest 予約システム - 管理者マイページ</title>
 <link rel="stylesheet" type="text/css" href="css/StyleCss.css">
-<style>
-body {
-	font-family: Arial, sans-serif;
-}
-
-.admin-mypage-container {
-	width: 400px;
-	margin: 0 auto;
-	padding: 30px;
-	border: 1px solid #ccc;
-	border-radius: 10px;
-	background-color: #f9f9f9;
-	text-align: center;
-}
-
-.admin-mypage-container h1 {
-	font-size: 24px;
-	margin-bottom: 20px;
-}
-
-.admin-mypage-container .user-info {
-	margin-bottom: 20px;
-}
-
-.admin-mypage-container .user-info p {
-	margin: 5px 0;
-	font-size: 18px;
-}
-
-.admin-mypage-container input[type="submit"] {
-	width: 100%;
-	padding: 10px;
-	margin: 10px 0;
-	background-color: #4CAF50;
-	border: none;
-	color: white;
-	border-radius: 5px;
-	cursor: pointer;
-}
-
-.admin-mypage-container a {
-	display: block;
-	margin: 10px 0;
-	color: #008CBA;
-	text-decoration: none;
-}
-
-.admin-mypage-container a:hover {
-	text-decoration: underline;
-}
-</style>
 </head>
 <body>
 	<div class="admin-mypage-container">

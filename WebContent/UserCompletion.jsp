@@ -6,46 +6,6 @@
 <meta charset="UTF-8">
 <title>Forest 予約システム - 登録完了</title>
 <link rel="stylesheet" type="text/css" href="css/StyleCss.css">
-<style>
-body {
-	font-family: Arial, sans-serif;
-}
-
-.complete-container {
-	width: 400px;
-	margin: 0 auto;
-	padding: 30px;
-	border: 1px solid #ccc;
-	border-radius: 10px;
-	background-color: #f9f9f9;
-	text-align: center;
-}
-
-.complete-container h1 {
-	font-size: 24px;
-	margin-bottom: 20px;
-}
-
-.complete-container p {
-	font-size: 18px;
-	margin: 10px 0;
-}
-
-.complete-container button {
-	width: 100%;
-	padding: 10px;
-	margin: 10px 0;
-	background-color: #4CAF50;
-	border: none;
-	color: white;
-	border-radius: 5px;
-	cursor: pointer;
-}
-
-.complete-container button:hover {
-	background-color: #45a049;
-}
-</style>
 </head>
 <body>
 	<div class="complete-container">
