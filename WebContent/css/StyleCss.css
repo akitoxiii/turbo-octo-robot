@@ -206,233 +206,280 @@ input[type="reset"] {
 }
 /* グローバル設定 */
 body {
-	font-family: 'Arial', sans-serif;
-	background-color: #f4f7f6;
-	color: #333;
-	margin: 0;
-	padding: 0;
-	transition: background-color 0.3s ease;
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7f6;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* ヘッダー */
 header {
-	background-color: #3c6e47;
-	color: white;
-	padding: 20px;
-	text-align: center;
-	font-size: 1.5em;
-	position: fixed;
-	width: 100%;
-	top: -60px;
-	left: 0;
-	z-index: 1000;
-	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-	transition: top 0.3s ease, background-color 0.3s ease, padding 0.3s ease;
+    background-color: #3c6e47;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 1.5em;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    transition: top 0.3s ease, background-color 0.3s ease, padding 0.3s ease;
 }
 
 header.visible {
-	top: 0;
+    top: 0;
 }
 
 header.scrolled {
-	background-color: #2d5540;
-	padding: 10px 20px;
+    background-color: #2d5540;
+    padding: 10px 20px;
 }
 
 header h1 {
-	margin: 0;
-	font-size: 1.8em;
-	transition: font-size 0.3s ease;
+    margin: 0;
+    font-size: 1.8em;
+    transition: font-size 0.3s ease;
 }
 
 /* メインコンテンツ */
 .main-container {
-	max-width: 1200px;
-	margin: 100px auto 0 auto;
-	padding: 20px;
-	background-color: white;
-	border-radius: 8px;
-	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-	opacity: 0;
-	transform: translateY(20px);
-	animation: fadeIn 0.8s ease-out forwards;
+    max-width: 1200px;
+    margin: 100px auto 0 auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 0.8s ease-out forwards;
 }
 
-keyframes fadeIn {to { opacity:1;
-	transform: translateY(0);
+/* フェードインアニメーション */
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-}
-
-/* セクション */
+/* セクションの動き */
 section {
-	margin-bottom: 30px;
+    margin-bottom: 30px;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
+section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* セクションヘッダー */
 section h2 {
-	color: #2d5540;
-	border-bottom: 2px solid #88b090;
-	padding-bottom: 10px;
-	margin-bottom: 20px;
-	font-size: 1.8em;
-	opacity: 0;
-	transform: translateX(-20px);
-	animation: slideInLeft 0.5s ease-out forwards;
-}
-
-keyframes slideInLeft {to { opacity:1;
-	transform: translateX(0);
-}
-
+    color: #2d5540;
+    border-bottom: 2px solid #88b090;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    font-size: 1.8em;
 }
 
 /* ボタン */
 button, input[type="button"], input[type="submit"] {
-	background-color: #88b090;
-	color: white;
-	border: none;
-	padding: 10px 20px;
-	margin: 10px 0;
-	border-radius: 5px;
-	cursor: pointer;
-	font-size: 1em;
-	transition: background-color 0.3s ease, transform 0.2s ease, box-shadow
-		0.3s ease;
+    background-color: #88b090;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px 0;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
 }
 
 button:hover, input[type="button"]:hover, input[type="submit"]:hover {
-	background-color: #3c6e47;
-	transform: scale(1.05);
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #3c6e47;
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* リンク */
 a {
-	color: #3c6e47;
-	text-decoration: none;
-	transition: color 0.3s ease, transform 0.2s ease;
+    color: #3c6e47;
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.2s ease;
 }
 
 a:hover {
-	text-decoration: underline;
-	color: #2d5540;
-	transform: scale(1.1);
+    text-decoration: underline;
+    color: #2d5540;
+    transform: scale(1.1);
 }
-
 /* フォーム要素 */
 input[type="text"], input[type="email"], input[type="password"],
-	textarea, select {
-	width: 100%;
-	padding: 10px;
-	margin: 10px 0;
-	border: 1px solid #ccc;
-	border-radius: 5px;
-	background-color: #f4f7f6;
-	transition: border-color 0.3s ease, box-shadow 0.3s ease;
+textarea, select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f4f7f6;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus,
-	textarea:focus, select:focus {
-	border-color: #88b090;
-	box-shadow: 0 0 5px rgba(0, 128, 0, 0.3);
-	outline: none;
+textarea:focus, select:focus {
+    border-color: #88b090;
+    box-shadow: 0 0 5px rgba(0, 128, 0, 0.3);
+    outline: none;
 }
 
 /* フッター */
 footer {
-	background-color: #2d5540;
-	color: white;
-	text-align: center;
-	padding: 15px;
-	position: fixed;
-	bottom: 0;
-	width: 100%;
-	transition: background-color 0.3s ease;
+    background-color: #2d5540;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    transition: background-color 0.3s ease;
 }
 
 footer a {
-	color: #88b090;
-	transition: color 0.3s ease;
+    color: #88b090;
+    transition: color 0.3s ease;
 }
 
 footer a:hover {
-	color: #b7d1bc;
+    color: #b7d1bc;
 }
+
 /* カード */
 .card {
-	background-color: white;
-	border: 1px solid #ccc;
-	border-radius: 8px;
-	padding: 20px;
-	margin: 20px 0;
-	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-	opacity: 0;
-	transform: translateY(20px);
-	animation: fadeInCard 0.6s ease-out forwards;
-	transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInCard 0.6s ease-out forwards;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
-	transform: translateY(-10px);
-	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+    transform: translateY(-10px);
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
 }
 
-keyframes fadeInCard {to { opacity:1;
-	transform: translateY(0);
+@keyframes fadeInCard {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-}
 .card h3 {
-	color: #3c6e47;
+    color: #3c6e47;
 }
 
 .card p {
-	color: #555;
+    color: #555;
 }
+
 /* スクロールトリガーによるアニメーション */
 .fade-in-up {
-	opacity: 0;
-	transform: translateY(30px);
-	transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
 .fade-in-up.visible {
-	opacity: 1;
-	transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
 }
+
 /* 画像のズームインアニメーション */
 .zoom-in {
-	opacity: 0;
-	transform: scale(0.8);
-	transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
 .zoom-in.visible {
-	opacity: 1;
-	transform: scale(1);
+    opacity: 1;
+    transform: scale(1);
 }
+
 /* スムーズなスクロール */
 html {
-	scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
+
 /* メディアクエリ */
-@media ( max-width : 768px) {
-	.main-container {
-		padding: 10px;
-	}
-	header h1 {
-		font-size: 1.2em;
-	}
-	button, input[type="button"], input[type="submit"] {
-		font-size: 0.9em;
-		padding: 8px 16px;
-	}
-	header {
-		padding: 15px 10px;
-	}
-	footer {
-		padding: 10px;
-	}
+@media (max-width: 768px) {
+    .main-container {
+        padding: 10px;
+    }
+    
+    header h1 {
+        font-size: 1.2em;
+    }
+    
+    button, input[type="button"], input[type="submit"] {
+        font-size: 0.9em;
+        padding: 8px 16px;
+    }
+
+    header {
+        padding: 15px 10px;
+    }
+
+    footer {
+        padding: 10px;
+    }
+}
+
+/* 追加アニメーション */
+@keyframes zoomIn {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.zoom-in-section {
+    animation: zoomIn 0.8s ease-out forwards;
+}
+
+.zoom-in-section:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.slide-in {
+    animation: slideIn 1s ease-out forwards;
 }
 /*
  *********** フォームのCSSここまで　***********

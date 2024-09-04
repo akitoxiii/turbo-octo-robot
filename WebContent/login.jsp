@@ -6,61 +6,6 @@
 <meta charset="UTF-8">
 <title>Forest 予約システム - ログイン</title>
 <link rel="stylesheet" type="text/css" href="css/StyleCss.css">
-<style>
-/* 重複や競合を避けるため、特定のクラスにスタイルを適用 */
-* {
-	box-sizing: border-box;
-}
-
-.login-container {
-	width: 300px;
-	margin: 0 auto;
-	padding: 30px;
-	border: 1px solid #ccc;
-	border-radius: 10px;
-	background-color: #f9f9f9;
-	text-align: center;
-}
-
-.login-container h1 {
-	font-size: 24px;
-	margin-bottom: 20px;
-}
-
-.login-container input[type="text"], .login-container input[type="password"]
-	{
-	width: 100%;
-	padding: 10px;
-	margin: 10px 0;
-	border: 1px solid #ccc;
-	border-radius: 5px;
-}
-
-.login-container input[type="submit"], .login-container input[type="button"]
-	{
-	width: 100%;
-	padding: 10px;
-	margin: 10px 0;
-	border: none;
-	color: white;
-	border-radius: 5px;
-	cursor: pointer;
-	font-size: 1em;
-}
-
-.login-container input[type="submit"] {
-	background-color: #4CAF50;
-}
-
-.login-container input[type="button"] {
-	background-color: #008CBA;
-}
-
-.error-message {
-	color: red;
-	margin-bottom: 10px;
-}
-</style>
 </head>
 <body>
 	<div class="login-container">
