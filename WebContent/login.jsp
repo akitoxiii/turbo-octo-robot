@@ -8,6 +8,10 @@
 <link rel="stylesheet" type="text/css" href="css/StyleCss.css">
 <style>
 /* 重複や競合を避けるため、特定のクラスにスタイルを適用 */
+* {
+	box-sizing: border-box;
+}
+
 .login-container {
 	width: 300px;
 	margin: 0 auto;
