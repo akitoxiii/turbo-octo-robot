@@ -42,11 +42,11 @@ public class AdminCompletionServlet extends HttpServlet {
 			String sql = "INSERT INTO USER_TABLE (USER_ID, USER_EMAIL, USER_PASSWORD, USER_NAME, USER_ADDRESS, USER_PHONE, USER_PRIVILEGE) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
 			// USER_IDを生成する
-			String userId = generateUserId(con);
-			System.out.println("生成されたユーザーID: " + userId); // デバッグ用
+			String UserID = generateUserId(con);
+			System.out.println("生成されたユーザーID: " + UserID); // デバッグ用
 
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, userId);
+			pstmt.setString(1, UserID);
 			pstmt.setString(2, email);
 			pstmt.setString(3, password);
 			pstmt.setString(4, name);
@@ -57,7 +57,7 @@ public class AdminCompletionServlet extends HttpServlet {
 			int result = pstmt.executeUpdate();
 			if (result > 0) {
 				// 登録成功、ユーザーIDをリクエストに設定して完了画面へ
-				request.setAttribute("userId", userId);
+				request.setAttribute("NewUserId", UserID);
 
 				// セッションから取得したログインユーザー情報をリクエストスコープにセット
 				request.setAttribute("userId", loginUserId);

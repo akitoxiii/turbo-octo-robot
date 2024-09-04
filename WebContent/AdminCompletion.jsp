@@ -58,7 +58,7 @@ body {
 
 		<p>
 			会員ID:
-			<%=request.getAttribute("userId")%></p>
+			<%=request.getAttribute("NewUserId")%></p>
 
 		<p>ご利用ありがとうございます。</p>
 

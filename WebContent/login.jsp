@@ -7,10 +7,7 @@
 <title>Forest 予約システム - ログイン</title>
 <link rel="stylesheet" type="text/css" href="css/StyleCss.css">
 <style>
-body {
-	font-family: Arial, sans-serif;
-}
-
+/* 重複や競合を避けるため、特定のクラスにスタイルを適用 */
 .login-container {
 	width: 300px;
 	margin: 0 auto;
@@ -40,11 +37,15 @@ body {
 	width: 100%;
 	padding: 10px;
 	margin: 10px 0;
-	background-color: #4CAF50;
 	border: none;
 	color: white;
 	border-radius: 5px;
 	cursor: pointer;
+	font-size: 1em;
+}
+
+.login-container input[type="submit"] {
+	background-color: #4CAF50;
 }
 
 .login-container input[type="button"] {
