@@ -1,9 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
-    <%@page import="model.UserIdBean"%>
-    <%@page import="javax.servlet.http.HttpSession"%>
-    
+	pageEncoding="UTF-8"%>
+
+<%@page import="model.UserIdBean"%>
+<%@page import="model.ReservationBean"%>
+<%@page import="model.ReservationDao"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="javax.servlet.http.HttpSession"%>
+<%@page import="java.util.Date"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,6 +20,8 @@
 	rel="stylesheet">
 <%-- ============ Googleフォント・noto san ここまで ============ --%>
 
+<link rel="stylesheet" type="text/css" href="css/StyleCss.css">
+
 
 <title>Insert title here</title>
 </head>
@@ -24,58 +30,84 @@
 <body>
 
 
-<h1>時間選択画面</h1>
-<br><br>
+	<h1>時間選択画面</h1>
+	<br>
+	<br>
 
-<p class="lead-form">時間を選択してください</p>
+	<p class="lead-form">時間を選択してください</p>
+	<br>
+	<form method="post" action="Reservation">
 
-<form>
-  
-  <% HttpSession session = request.getSession();
+		<% 
   
   
   
-  if(ログインセッションスコープの権限が０なら){
+  // if(ログインセッションスコープの権限が０なら){
   %>
-  
-  
-  <div class="item">
-    <label class="label">会員ID</label>
-    <input class="inputs" type="text" name="userId">
-  </div>
-  
-  <% } %>
-  
-  
 
-  <div class="item">
-    <p class="label">予約時間</p>
-    <div class="inputs">
-    
-     <% // DBで予約日時でセレクトするDaoを作り、それで帰ってきた件数をintで受ける。２なら表示しない。
-     int reservationTime = rs.saerchTime(予約セッションの日にち,9)
-     if(!(reservationTime ==2)){
+
+		<div class="item">
+			<label class="label">会員ID</label> <input class="inputs" type="text"
+				name="userId">
+		</div>
+
+		<% // } %>
+
+
+
+		<div class="item">
+			<p class="label">予約時間</p>
+			<div class="inputs">
+
+
+				
+				<% 
+				// セッションスコープから取得
+				 ReservationBean reseBean = (ReservationBean)session.getAttribute("reseBean");
+     
+  // 予約時間を20240801のような形式で保存(reservationBeanでStrimgで保存しているので、もうそうなっている？)
+  		// ①日にち
+  		//  SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+  		// Date date = sdf.parse(reseBean.getReservationDate());
+  		 // String date = sdf.format(reseBean.getReservationDate());
+  		 String date = reseBean.getReservationDate();
+  		 
+  		
+  		// ②時間
+  		
+     
+     // DBで予約日時でセレクトするDaoを作り、それで帰ってきた件数をintで受ける。２なら表示しない。
+     ReservationDao rs = new ReservationDao();
+     
+     int reservationTime = rs.saerchTime(date,"9");
+     if(reservationTime <2){
       %>
-    
-    <input id="9am" type="radio" name="time" value="9am"><label for="9am">9:00</label><br>
-    <% } %>
-    
-    <input id="10am" type="radio" name="time" value="10am"><label for="10am">10:00</label><br>
-    <input id="11am" type="radio" name="time" value="11am"><label for="11am">11:00</label><br>
-    <input id="12pm" type="radio" name="time" value="12pm"><label for="12pm">12:00</label><br>
-    <input id="13pm" type="radio" name="time" value="13pm"><label for="13pm">13:00</label><br>
-    <input id="14pm" type="radio" name="time" value="14pm"><label for="14pm">14:00</label><br>
-    <input id="15pm" type="radio" name="time" value="15pm"><label for="15pm">15:00</label><br>
-    <input id="16pm" type="radio" name="time" value="16pm"><label for="16pm">16:00</label><br>
-    </div>
-  </div>
-  
 
-  <div class="btn-area">
-    <input type="submit" value="送信">
-  </div>
+				<input id="9" type="radio" name="time" value="9"><label
+					for="9">9:00</label><br>
+				<%  } %>
 
-</form>
+				<input id="10" type="radio" name="time" value="10"><label
+					for="10">10:00</label><br> <input id="11" type="radio"
+					name="time" value="11"><label for="11">11:00</label><br>
+				<input id="12" type="radio" name="time" value="12"><label
+					for="12">12:00</label><br> <input id="13" type="radio"
+					name="time" value="13"><label for="13">13:00</label><br>
+				<input id="14" type="radio" name="time" value="14"><label
+					for="14">14:00</label><br> <input id="15" type="radio"
+					name="time" value="15"><label for="15">15:00</label><br>
+				<input id="16" type="radio" name="time" value="16"><label
+					for="16">16:00</label><br>
+			</div>
+		</div>
+		<br>
+		<br>
+
+		<div class="btn-area">
+			<input type="submit" value="送信">
+		</div>
+
+	</form>
 
 
 
