@@ -43,10 +43,12 @@
 		
 		
 		
-		<a href="Reservation?action=ok">予約</a>
+		<form action="ReservationDelete" method="post">
+		<input type="hidden" name="ReservationId"
+					value="<%= contentBean.getReservationId() %>" id="<%= contentBean.getReservationId() %>">
+		</form>
 		<br>
 	<br>
-	<a href="Reservation">やりなおす</a>
 	
 
 	</div>

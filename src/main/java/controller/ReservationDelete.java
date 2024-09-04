@@ -10,19 +10,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.ReservationBean;
 import model.ReservationDao;
 
 /**
- * Servlet implementation class myReservationList
+ * Servlet implementation class ReservationDelete
  */
-public class myReservationList extends HttpServlet {
+public class ReservationDelete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public myReservationList() {
+    public ReservationDelete() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -42,33 +41,36 @@ public class myReservationList extends HttpServlet {
 		// TODO Auto-generated method stub
 		// doGet(request, response);
 		
+		// ========================================
+		HttpSession session = request.getSession();
+		// ========================================
+		
+		int pri = session.getAttribute("");
 		
 		
 		request.setCharacterEncoding("UTF-8");
 		
+		// フォームから値を取得し、intに変換する
+		String ReservationId = request.getParameter("ReservationId");
 		
-		
-		
+		// デリート
 		ReservationDao dao = new ReservationDao();
-		ReservationBean contentBean = new ReservationBean();
+		int count = dao.deleteDao(ReservationId);
 		
-		// フォームから値を取得する
-		HttpSession session = request.getSession();
-		String userId = (String)session.getAttribute("userId");
+		// リストを作ってList.jspに送る
+		// ArrayList<ReservationBean> allList = new ArrayList<>();
 		
-		// String UserId = request.getParameter("UserId");
-
-		// 予約検索メソッドを呼び出し、結果をBeanにつめて取得
+		// allList = dao.allSeachDao();
 		
-		contentBean =dao.selectSeachDao(userId);
-
-		// 	スコープへ保存
-		request.setAttribute("contentBean", contentBean);
-	
+		// スコープへ保存
+		request.setAttribute("count",count);
+		// request.setAttribute("allList",allList);
+		
 		// フォワード
 		ServletContext app = this.getServletContext();
-		RequestDispatcher dispatcher = app.getRequestDispatcher("/ReservationInfo.jsp");
+		RequestDispatcher dispatcher = app.getRequestDispatcher("/List.jsp");
 		dispatcher.forward(request,response);
+		
 		
 		
 		

@@ -483,7 +483,7 @@ public class ReservationDao {
 	 * 削除機能
 	 * 
 	 */
-	public int deleteDao(int ReservationId) {
+	public int deleteDao(String ReservationId) {
 		int num =0;
 
 		try {
@@ -500,7 +500,7 @@ public class ReservationDao {
 			String sql ="DELETE FROM RESERVATION_TABLE WHERE RESERVATION_ID =?";
 
 			stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, ReservationId);			
+			stmt.setString(1, ReservationId);			
 			num = stmt.executeUpdate();
 
 
