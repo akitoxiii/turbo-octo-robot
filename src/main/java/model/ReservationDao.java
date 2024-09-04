@@ -278,7 +278,7 @@ public class ReservationDao {
 
 
 			// プレースホルダでDB内の全商品をSELECTするSQL
-			String sql ="SELECT * FROM RESERVATION_TABLE JOIN USER_TABLE ON RESERVATION_TABLE.USER_NO = USER_TABLE.USER_NO";
+			String sql ="SELECT * FROM RESERVATION_TABLE FULL JOIN USER_TABLE ON RESERVATION_TABLE.USER_ID = USER_TABLE.USER_ID";
 
 			// プリコンパイル
 			stmt = conn.prepareStatement(sql);
@@ -288,6 +288,7 @@ public class ReservationDao {
 
 			while(rs.next()) {
 				ReservationBean rb = new ReservationBean();
+				rb.setUserName(rs.getString("USER_NAME"));
 				rb.setUserId(rs.getString("USER_ID"));
 				rb.setReservationId(rs.getString("RESERVATION_ID"));
 				rb.setUserId(rs.getString("USER_ID"));
@@ -333,13 +334,13 @@ public class ReservationDao {
 	 * 
 	 */
 	
-	public ArrayList<ReservationBean> selectSeachDao(String userId){
+	public ReservationBean selectSeachDao(String userId){
 
 		ResultSet rs = null;
 		String sql = null;
 
-		ArrayList<ReservationBean> userList = new ArrayList<>();
-
+		ReservationBean rb = new ReservationBean();
+		
 		try {
 			// ドライバーのロード（ドライバーを探す）
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -349,7 +350,7 @@ public class ReservationDao {
 
 
 
-					sql="SELECT * FROM RESERVATION_TABLE WHERE USER_ID =?";
+					sql="SELECT * FROM RESERVATION_TABLE FULL JOIN USER_TABLE ON RESERVATION_TABLE.USER_ID = USER_TABLE.USER_ID WHERE RESERVATION_TABLE.USER_ID =?";
 
 					// プリコンパイル
 					stmt = conn.prepareStatement(sql);
@@ -362,13 +363,12 @@ public class ReservationDao {
 
 
 			while(rs.next()) {
-				ReservationBean rb = new ReservationBean();
 				rb.setUserId(rs.getString("USER_ID"));
+				rb.setUserName(rs.getString("USER_NAME"));
 				rb.setReservationId(rs.getString("RESERVATION_ID"));
 				rb.setUserId(rs.getString("USER_ID"));
 				rb.setReservationDate(rs.getString("RESERVATION_DATE"));
-				rb.setReservationTime(rs.getString("RESERVATION_TIME"));
-				userList.add(rb);	
+				rb.setReservationTime(rs.getString("RESERVATION_TIME"));	
 
 			}
 
@@ -393,7 +393,7 @@ public class ReservationDao {
 			}
 		}
 
-		return userList;
+		return rb;
 
 	}
 	
