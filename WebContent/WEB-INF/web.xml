@@ -29,4 +29,14 @@
     <servlet-name>ReservationViewCon</servlet-name>
     <url-pattern>/ReservationViewCon</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>myReservationList</display-name>
+    <servlet-name>myReservationList</servlet-name>
+    <servlet-class>controller.myReservationList</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>myReservationList</servlet-name>
+    <url-pattern>/myReservationList</url-pattern>
+  </servlet-mapping>
 </web-app>
