@@ -45,12 +45,14 @@ public class ReservationDelete extends HttpServlet {
 		HttpSession session = request.getSession();
 		// ========================================
 		
-		int pri = session.getAttribute("");
+		// ユーザーが顧客か管理者か判定する変数
+		int pri = (int)session.getAttribute("userPrivilege");
+		String screen = "";
 		
 		
 		request.setCharacterEncoding("UTF-8");
 		
-		// フォームから値を取得し、intに変換する
+		// フォームから値を取得する
 		String ReservationId = request.getParameter("ReservationId");
 		
 		// デリート
@@ -66,9 +68,18 @@ public class ReservationDelete extends HttpServlet {
 		request.setAttribute("count",count);
 		// request.setAttribute("allList",allList);
 		
+		if(pri == 0) {
+			screen = "/AdminMypage.jsp";
+			
+		}else if(pri ==1) {
+			screen = "UserMypage.jsp";
+		}
+		
+		
+		
 		// フォワード
 		ServletContext app = this.getServletContext();
-		RequestDispatcher dispatcher = app.getRequestDispatcher("/List.jsp");
+		RequestDispatcher dispatcher = app.getRequestDispatcher(screen);
 		dispatcher.forward(request,response);
 		
 		

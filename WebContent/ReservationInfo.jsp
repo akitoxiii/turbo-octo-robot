@@ -15,7 +15,16 @@
 </head>
 <body>
 
-<% 
+<% if(request.getAttribute("contentBean") ==null){ %>
+	
+	<div>
+	<p class="inputs">予約情報はありません</p>
+	
+	</div>
+	
+	<% 
+}else{
+
  ReservationBean contentBean = (ReservationBean)request.getAttribute("contentBean");
 
 	%>
@@ -42,10 +51,11 @@
 		
 		
 		
-		
+		<%-- ここで削除をする --%>
 		<form action="ReservationDelete" method="post">
 		<input type="hidden" name="ReservationId"
 					value="<%= contentBean.getReservationId() %>" id="<%= contentBean.getReservationId() %>">
+					<input type="submit" value="削除" class="deletebutton" id="test">
 		</form>
 		<br>
 	<br>
@@ -53,7 +63,7 @@
 
 	</div>
 
-
+<% } %>
 
 
 </body>
