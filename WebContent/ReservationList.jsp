@@ -58,6 +58,7 @@
 			<tr>
 				<th width="100">予約ID</th>
 				<th width="10">ユーザーID</th>
+				<th width="100">名前</th>
 			</tr>
 		</thead>
 
@@ -75,6 +76,7 @@
 					onclick="ContentLink('<%= listAll.getReservationId() %>');">
 				<td><%= listAll.getReservationId() %></td>
 				<td><%= listAll.getUserId() %></td></a>
+				<td><%= listAll.getUserName() %></td></a>
 			</tr>
 			<%
 			 }

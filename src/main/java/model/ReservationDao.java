@@ -399,6 +399,77 @@ public class ReservationDao {
 	
 	
 	
+	/*
+	 * 
+	 * 予約IDで一件だけ検索するDao（予約情報詳細画面で使う）
+	 * 
+	 */
+	
+	
+	
+	
+	public ReservationBean idSeachDao(String reservationId){
+
+		ResultSet rs = null;
+		String sql = null;
+
+		ReservationBean rb = new ReservationBean();
+		
+		try {
+			// ドライバーのロード（ドライバーを探す）
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+
+			// 接続
+			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl","RICE","OKOME");
+
+
+
+					sql="SELECT * FROM RESERVATION_TABLE FULL JOIN USER_TABLE ON RESERVATION_TABLE.USER_ID = USER_TABLE.USER_ID WHERE RESERVATION_TABLE.RESERVATION_ID =?";
+
+					// プリコンパイル
+					stmt = conn.prepareStatement(sql);
+					// パラメーターセット
+					stmt.setString(1, reservationId);
+				
+
+			// 実行
+			rs = stmt.executeQuery();
+
+
+			while(rs.next()) {
+				rb.setUserId(rs.getString("USER_ID"));
+				rb.setUserName(rs.getString("USER_NAME"));
+				rb.setReservationId(rs.getString("RESERVATION_ID"));
+				rb.setUserId(rs.getString("USER_ID"));
+				rb.setReservationDate(rs.getString("RESERVATION_DATE"));
+				rb.setReservationTime(rs.getString("RESERVATION_TIME"));	
+
+			}
+
+			rs.close();
+
+
+
+		}catch(SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				// ステートメントを実行していたらクローズ
+				if(stmt != null) {
+					stmt.close();
+				}
+				// データベース接続していたらクローズ
+				if(conn != null) {
+					conn.close();
+				}
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return rb;
+
+	}
 	
 	
 	

@@ -46,11 +46,11 @@ public class ReservationViewCon extends HttpServlet {
 		ReservationBean contentBean = new ReservationBean();
 		
 		// フォームから値を取得する
-		String userId = request.getParameter("userId");
+		String ReservationId = request.getParameter("ReservationId");
 
 		// 予約検索メソッドを呼び出し、結果をBeanにつめて取得
 		
-		contentBean =dao.selectSeachDao(userId);
+		contentBean =dao.idSeachDao(ReservationId);
 
 		// 	スコープへ保存
 		request.setAttribute("contentBean", contentBean);
