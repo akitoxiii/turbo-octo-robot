@@ -218,4 +218,10 @@ footer a:hover {
 }
 /*
  *********** フォームのCSSここまで　***********
+
  */
+ 
+ table {
+    margin-left: auto;
+    margin-right: auto;
+}
