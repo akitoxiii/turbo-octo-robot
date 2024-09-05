@@ -18,9 +18,9 @@
 		</div>
 		<form action="reservationServlet" method="post">
 			<input type="button" value="予約する"
-				onclick="location.href='reservation.jsp'"> <input
+				onclick="location.href='Reservation.jsp'"> <input
 				type="button" value="予約確認"
-				onclick="location.href='reservationInfo.jsp'">
+				onclick="location.href='myReservationList'">
 		</form>
 		<!-- ログアウトリンクをLogoutServletに設定 -->
 		<form action="LogoutServlet" method="post">

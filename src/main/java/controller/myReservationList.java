@@ -8,20 +8,21 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.ReservationBean;
 import model.ReservationDao;
 
 /**
- * Servlet implementation class ReservationViewCon
+ * Servlet implementation class myReservationList
  */
-public class ReservationViewCon extends HttpServlet {
+public class myReservationList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReservationViewCon() {
+    public myReservationList() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,16 +42,25 @@ public class ReservationViewCon extends HttpServlet {
 		// TODO Auto-generated method stub
 		// doGet(request, response);
 		
+		
+		
 		request.setCharacterEncoding("UTF-8");
+		
+		
+		
+		
 		ReservationDao dao = new ReservationDao();
 		ReservationBean contentBean = new ReservationBean();
 		
 		// フォームから値を取得する
-		String ReservationId = request.getParameter("ReservationId");
+		HttpSession session = request.getSession();
+		String userId = (String)session.getAttribute("userId");
+		
+		// String UserId = request.getParameter("UserId");
 
 		// 予約検索メソッドを呼び出し、結果をBeanにつめて取得
 		
-		contentBean =dao.idSeachDao(ReservationId);
+		contentBean =dao.selectSeachDao(userId);
 
 		// 	スコープへ保存
 		request.setAttribute("contentBean", contentBean);
@@ -59,6 +69,14 @@ public class ReservationViewCon extends HttpServlet {
 		ServletContext app = this.getServletContext();
 		RequestDispatcher dispatcher = app.getRequestDispatcher("/ReservationInfo.jsp");
 		dispatcher.forward(request,response);
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 	}

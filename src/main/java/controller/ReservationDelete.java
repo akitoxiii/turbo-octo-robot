@@ -8,20 +8,20 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import model.ReservationBean;
 import model.ReservationDao;
 
 /**
- * Servlet implementation class ReservationViewCon
+ * Servlet implementation class ReservationDelete
  */
-public class ReservationViewCon extends HttpServlet {
+public class ReservationDelete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReservationViewCon() {
+    public ReservationDelete() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,24 +41,55 @@ public class ReservationViewCon extends HttpServlet {
 		// TODO Auto-generated method stub
 		// doGet(request, response);
 		
+		// ========================================
+		HttpSession session = request.getSession();
+		// ========================================
+		
+		// ユーザーが顧客か管理者か判定する変数
+		int pri = (int)session.getAttribute("userPrivilege");
+		String screen = "";
+		
+		
 		request.setCharacterEncoding("UTF-8");
-		ReservationDao dao = new ReservationDao();
-		ReservationBean contentBean = new ReservationBean();
 		
 		// フォームから値を取得する
 		String ReservationId = request.getParameter("ReservationId");
-
-		// 予約検索メソッドを呼び出し、結果をBeanにつめて取得
 		
-		contentBean =dao.idSeachDao(ReservationId);
-
-		// 	スコープへ保存
-		request.setAttribute("contentBean", contentBean);
-	
+		// デリート
+		ReservationDao dao = new ReservationDao();
+		int count = dao.deleteDao(ReservationId);
+		
+		// リストを作ってList.jspに送る
+		// ArrayList<ReservationBean> allList = new ArrayList<>();
+		
+		// allList = dao.allSeachDao();
+		
+		// スコープへ保存
+		request.setAttribute("count",count);
+		// request.setAttribute("allList",allList);
+		
+		if(pri == 0) {
+			screen = "/AdminMypage.jsp";
+			
+		}else if(pri ==1) {
+			screen = "/UserMypage.jsp";
+		}
+		
+		
+		
 		// フォワード
 		ServletContext app = this.getServletContext();
-		RequestDispatcher dispatcher = app.getRequestDispatcher("/ReservationInfo.jsp");
+		RequestDispatcher dispatcher = app.getRequestDispatcher(screen);
 		dispatcher.forward(request,response);
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 	}

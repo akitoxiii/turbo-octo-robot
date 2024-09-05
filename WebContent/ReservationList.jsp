@@ -23,7 +23,7 @@
 
 <div class="container">
 
-<%-- 削除機能の結果表示 --%>
+<%-- 削除機能の結果表示 
 	<%
 	Integer count = (Integer)request.getAttribute("count");
  if(count == null){
@@ -41,6 +41,7 @@
 	<%	
 	} 
  %>
+ --%>
 
 
 <br>
@@ -53,11 +54,16 @@
 	 %>
 
 <div class="section">
+<br>
+<a href="AdminMypage">メニューへ戻る</a>
+
+
 	<table class="table_sticky" id="listTable">
 		<thead>
 			<tr>
 				<th width="100">予約ID</th>
 				<th width="10">ユーザーID</th>
+				<th width="100">名前</th>
 			</tr>
 		</thead>
 
@@ -75,6 +81,7 @@
 					onclick="ContentLink('<%= listAll.getReservationId() %>');">
 				<td><%= listAll.getReservationId() %></td>
 				<td><%= listAll.getUserId() %></td></a>
+				<td><%= listAll.getUserName() %></td></a>
 			</tr>
 			<%
 			 }

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-    <%-- カレンダー、コレクションのインポート --%>
+    <%-- カレンダー、コレクション等のインポート --%>
     <%@page import="java.util.Calendar"%>
     <%@page import="java.util.Collections"%>
     <%@page import="java.util.Date"%>
@@ -154,7 +154,7 @@ if ((firstDayWeek + i) % 7 == 0) { %>
 <% 
 
 // カレンダーに当日の年、月、１日をセットする
-cl.set(cl.get(Calendar.YEAR),cl.get(Calendar.MONTH)+2,firstDay);
+cl.set(cl.get(Calendar.YEAR),cl.get(Calendar.MONTH)+1,firstDay);
 
 
 
@@ -165,7 +165,7 @@ firstDayWeek = cl.get(Calendar.DAY_OF_WEEK) - 1;  // 月の最初の曜日をint
 
 %>
 
-<%= month[(cl.get(Calendar.MONTH)-1)] %>
+<%= month[(cl.get(Calendar.MONTH))] %>
 <br>
 
 

@@ -14,8 +14,28 @@
 <title>予約詳細画面</title>
 </head>
 <body>
+<br>
 
-<% 
+<% if(request.getAttribute("contentBean") ==null){ %>
+	
+	<div>
+	<p class="inputs">予約情報はありません</p>
+	
+	</div>
+	
+	<% 
+}else{
+	int pri = (int)session.getAttribute("userPrivilege");
+	if(pri==0){ %>
+	<a href="ReservationList">戻る</a>
+	
+	<% 	
+	}else{ %>
+	
+	<a href="UserMypage">メニューへ戻る</a>
+	<%	
+	}
+
  ReservationBean contentBean = (ReservationBean)request.getAttribute("contentBean");
 
 	%>
@@ -42,16 +62,19 @@
 		
 		
 		
-		
-		<a href="Reservation?action=ok">予約</a>
+		<%-- ここで削除をする --%>
+		<form action="ReservationDelete" method="post">
+		<input type="hidden" name="ReservationId"
+					value="<%= contentBean.getReservationId() %>" id="<%= contentBean.getReservationId() %>">
+					<input type="submit" value="削除" class="deletebutton" id="test">
+		</form>
 		<br>
 	<br>
-	<a href="Reservation">やりなおす</a>
 	
 
 	</div>
 
-
+<% } %>
 
 
 </body>

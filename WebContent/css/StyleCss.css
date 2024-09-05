@@ -294,4 +294,10 @@ textarea:focus, select:focus {
 }
 /*
  *********** フォームのCSSここまで　***********
+
  */
+ 
+ table {
+    margin-left: auto;
+    margin-right: auto;
+}

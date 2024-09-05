@@ -29,4 +29,24 @@
     <servlet-name>ReservationViewCon</servlet-name>
     <url-pattern>/ReservationViewCon</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>myReservationList</display-name>
+    <servlet-name>myReservationList</servlet-name>
+    <servlet-class>controller.myReservationList</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>myReservationList</servlet-name>
+    <url-pattern>/myReservationList</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ReservationDelete</display-name>
+    <servlet-name>ReservationDelete</servlet-name>
+    <servlet-class>controller.ReservationDelete</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ReservationDelete</servlet-name>
+    <url-pattern>/ReservationDelete</url-pattern>
+  </servlet-mapping>
 </web-app>
