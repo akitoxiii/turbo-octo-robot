@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-    <%-- カレンダー、コレクションのインポート --%>
+    <%-- カレンダー、コレクション等のインポート --%>
     <%@page import="java.util.Calendar"%>
     <%@page import="java.util.Collections"%>
     <%@page import="java.util.Date"%>
