@@ -87,6 +87,23 @@
 														.text("");
 											}
 										});
+
+						// パスワード確認フィールドからフォーカスが外れたときにチェック
+						$("#confirm-password")
+								.on(
+										"blur",
+										function() {
+											var password = $("#password").val();
+											var confirmPassword = $(
+													"#confirm-password").val();
+											if (password !== confirmPassword) {
+												$("#confirm-password-error")
+														.text("パスワードが一致しません。");
+											} else {
+												$("#confirm-password-error")
+														.text("");
+											}
+										});
 					});
 </script>
 </head>
