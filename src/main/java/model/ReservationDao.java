@@ -278,7 +278,7 @@ public class ReservationDao {
 
 
 			// プレースホルダでDB内の全商品をSELECTするSQL
-			String sql ="SELECT * FROM RESERVATION_TABLE FULL JOIN USER_TABLE ON RESERVATION_TABLE.USER_ID = USER_TABLE.USER_ID";
+			String sql ="SELECT * FROM RESERVATION_TABLE JOIN USER_TABLE ON RESERVATION_TABLE.USER_ID = USER_TABLE.USER_ID";
 
 			// プリコンパイル
 			stmt = conn.prepareStatement(sql);
