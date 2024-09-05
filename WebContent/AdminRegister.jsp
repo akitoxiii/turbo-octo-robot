@@ -31,11 +31,11 @@
 												event.preventDefault();
 											}
 
-											// 電話番号の形式チェック（数字のみ許可）
+											// 電話番号の形式チェック（数字とハイフンを許可）
 											var phone = $("#phone").val();
-											var phonePattern = /^[0-9]+$/;
+											var phonePattern = /^[0-9-]+$/;
 											if (!phonePattern.test(phone)) {
-												alert("正しい電話番号を入力してください。");
+												alert("正しい電話番号を入力してください。(数字とハイフンのみ)。");
 												event.preventDefault();
 											}
 										});
