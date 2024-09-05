@@ -11,6 +11,7 @@
 	$(document)
 			.ready(
 					function() {
+						// フォーム送信時のバリデーション
 						$("form")
 								.submit(
 										function(event) {
@@ -27,19 +28,6 @@
 												$("#email-error").text("");
 											}
 
-											// パスワードの一致確認
-											var password = $("#password").val();
-											var confirmPassword = $(
-													"#confirm-password").val();
-											if (password !== confirmPassword) {
-												$("#confirm-password-error")
-														.text("パスワードが一致しません。");
-												isValid = false;
-											} else {
-												$("#confirm-password-error")
-														.text("");
-											}
-
 											// 電話番号の形式チェック（ハイフン許可）
 											var phone = $("#phone").val();
 											var phonePattern = /^[0-9-]+$/;
@@ -51,44 +39,12 @@
 												$("#phone-error").text("");
 											}
 
-											// 最終的なフォーム送信時のバリデーション
-											var emailError = $("#email-error")
-													.text();
-											var passwordError = $(
-													"#confirm-password-error")
-													.text();
-											var phoneError = $("#phone-error")
-													.text();
-
-											if (emailError || passwordError
-													|| phoneError) {
-												alert("入力にエラーがあります。修正してください。");
-												event.preventDefault();
-											}
-
 											if (!isValid) {
-												event.preventDefault();
+												event.preventDefault(); // フォーム送信を防止
 											}
 										});
 
-						// パスワード確認フィールドでリアルタイムチェック
-						$("#confirm-password")
-								.on(
-										"input",
-										function() {
-											var password = $("#password").val();
-											var confirmPassword = $(
-													"#confirm-password").val();
-											if (password !== confirmPassword) {
-												$("#confirm-password-error")
-														.text("パスワードが一致しません。");
-											} else {
-												$("#confirm-password-error")
-														.text("");
-											}
-										});
-
-						// パスワード確認フィールドからフォーカスが外れたときにチェック
+						// パスワード確認フィールドのフォーカスが外れた時にチェック
 						$("#confirm-password")
 								.on(
 										"blur",
@@ -96,12 +52,18 @@
 											var password = $("#password").val();
 											var confirmPassword = $(
 													"#confirm-password").val();
-											if (password !== confirmPassword) {
-												$("#confirm-password-error")
-														.text("パスワードが一致しません。");
-											} else {
-												$("#confirm-password-error")
-														.text("");
+
+											// パスワードが空ではないかチェックしてからバリデーションを行う
+											if (password !== ""
+													&& confirmPassword !== "") {
+												if (password !== confirmPassword) {
+													$("#confirm-password-error")
+															.text(
+																	"パスワードが一致しません。");
+												} else {
+													$("#confirm-password-error")
+															.text("");
+												}
 											}
 										});
 					});
