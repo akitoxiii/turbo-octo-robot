@@ -14,6 +14,7 @@
 <title>予約詳細画面</title>
 </head>
 <body>
+<br>
 
 <% if(request.getAttribute("contentBean") ==null){ %>
 	
@@ -24,6 +25,16 @@
 	
 	<% 
 }else{
+	int pri = (int)session.getAttribute("userPrivilege");
+	if(pri==0){ %>
+	<a href="ReservationList">戻る</a>
+	
+	<% 	
+	}else{ %>
+	
+	<a href="UserMypage">メニューへ戻る</a>
+	<%	
+	}
 
  ReservationBean contentBean = (ReservationBean)request.getAttribute("contentBean");
 

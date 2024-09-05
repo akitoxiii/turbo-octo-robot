@@ -23,7 +23,7 @@
 
 <div class="container">
 
-<%-- 削除機能の結果表示 --%>
+<%-- 削除機能の結果表示 
 	<%
 	Integer count = (Integer)request.getAttribute("count");
  if(count == null){
@@ -41,6 +41,7 @@
 	<%	
 	} 
  %>
+ --%>
 
 
 <br>
@@ -53,6 +54,10 @@
 	 %>
 
 <div class="section">
+<br>
+<a href="AdminMypage">メニューへ戻る</a>
+
+
 	<table class="table_sticky" id="listTable">
 		<thead>
 			<tr>

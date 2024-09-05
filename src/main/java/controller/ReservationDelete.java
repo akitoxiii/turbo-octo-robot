@@ -72,7 +72,7 @@ public class ReservationDelete extends HttpServlet {
 			screen = "/AdminMypage.jsp";
 			
 		}else if(pri ==1) {
-			screen = "UserMypage.jsp";
+			screen = "/UserMypage.jsp";
 		}
 		
 		
