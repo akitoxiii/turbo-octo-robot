@@ -19,8 +19,9 @@
 		<form action="ReservationListCon" method="get">
 			<input type="submit" value="全予約一覧">
 		</form>
-		<form action="reservationServlet" method="get">
-			<input type="submit" value="予約する">
+		<form>
+			<input type="button" value="予約する"
+				onclick="location.href='Reservation.jsp'">
 		</form>
 		<form action="CustomerListServlet" method="get">
 			<input type="submit" value="会員一覧 (CSV出力)">

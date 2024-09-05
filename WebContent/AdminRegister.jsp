@@ -6,21 +6,47 @@
 <meta charset="UTF-8">
 <title>Forest 予約システム - 新規管理者登録</title>
 <link rel="stylesheet" type="text/css" href="css/StyleCss.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+	$(document)
+			.ready(
+					function() {
+						$("form")
+								.submit(
+										function(event) {
+											// メールアドレス形式のチェック
+											var email = $("#email").val();
+											var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+											if (!emailPattern.test(email)) {
+												alert("正しいメールアドレスを入力してください。");
+												event.preventDefault();
+											}
+
+											// パスワードの一致確認
+											var password = $("#password").val();
+											var confirmPassword = $(
+													"#confirm-password").val();
+											if (password !== confirmPassword) {
+												alert("パスワードが一致しません。");
+												event.preventDefault();
+											}
+
+											// 電話番号の形式チェック（数字のみ許可）
+											var phone = $("#phone").val();
+											var phonePattern = /^[0-9]+$/;
+											if (!phonePattern.test(phone)) {
+												alert("正しい電話番号を入力してください。");
+												event.preventDefault();
+											}
+										});
+					});
+</script>
 </head>
 <body>
 	<div class="register-container">
 		<h1>新規管理者登録画面</h1>
 		<p>会員情報を入力してください</p>
 
-		<%-- ログインユーザー情報表示 --%>
-		<div class="user-info">
-			<p>
-				ID:
-				<%=request.getAttribute("userId")%></p>
-			<p><%=request.getAttribute("userName")%></p>
-		</div>
-
-		<%-- エラーメッセージ表示 --%>
 		<div class="error-message">
 			<%=request.getAttribute("userError") != null ? request.getAttribute("userError") : ""%>
 		</div>
