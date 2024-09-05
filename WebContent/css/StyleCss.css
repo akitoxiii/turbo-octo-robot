@@ -225,3 +225,122 @@ footer a:hover {
     margin-left: auto;
     margin-right: auto;
 }
+
+
+/* グループ・セレクタの礼 */
+table,input{
+	text-align: center;
+}
+
+/* グローティングコンテンツそのものの中央ぞろえ */
+table{
+	table-layout: fixed;
+	width: 600px;
+	margin: auto;
+	 border-collapse: collapse;
+	border: outset 1.5px;
+	border-color: #ddd;
+	border-radius: 7px;
+	background-color: #d1e8b53d;
+}
+
+table  td{
+	 border-bottom:1px dashed; 
+	border-color: #79855d;
+	border-collapse: collapse;
+	width: 10%;
+	padding: 8px;
+}
+table th{
+	background-color:#d7ffa6;
+	padding: 15px;
+	border-collapse: collapse;
+	border-radius: 7px 7px 0px 0px;
+}
+
+table tr:nth-child(even) td {
+	background: #f6faf7;
+}
+
+caption{
+	margin-bottom:20px;
+}
+
+td.itemName {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+td.itemContent {
+  white-space: nowrap;
+}
+
+
+/* 子セレクタの例 */
+table input{
+	background-color:#fff;
+}
+
+
+table.table_sticky td{
+	border-collapse: separate;
+	border: solid 5px;
+	border-left: 0px;
+	border-right: 0px;
+	border-color: #ffffff;
+	padding: 8px;
+	
+}
+
+
+/* スクロールバー */
+.table_sticky{
+	display: block;
+	overflow-y: scroll;
+	height: 400px;
+	width: 600px;
+	
+}
+
+table.table_sticky.th{
+	margin: auto;
+	position: sticky;
+	top:0px;
+	background:#d7ffa6;
+	border-collapse: collapse;
+}
+
+/* table tr:hover td {
+	background-color: #d9efff;
+} */
+
+#listTable tr:hover td{
+	background-color: #d7ffa6;
+	/* #d9efff */
+	
+}
+
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+   border-radius: 0px 7px 7px 0px;
+	background: #dae7ca;
+}
+ 
+::-webkit-scrollbar-thumb {
+  background: #a4b1a4;
+  border-radius: 3px;
+}
+
+
+.listContainer{
+	text-align: center;
+}
+
+.formTest{
+	margin: auto;
+	/* width: 559px */
+}
