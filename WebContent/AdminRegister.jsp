@@ -11,34 +11,64 @@
 	$(document)
 			.ready(
 					function() {
-						$("form")
-								.submit(
-										function(event) {
-											// メールアドレス形式のチェック
-											var email = $("#email").val();
+						// メールアドレスバリデーション
+						$("#email")
+								.on(
+										"input",
+										function() {
+											var email = $(this).val();
 											var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
 											if (!emailPattern.test(email)) {
-												alert("正しいメールアドレスを入力してください。");
-												event.preventDefault();
+												$("#email-error").text(
+														"正しいメールアドレスを入力してください。");
+											} else {
+												$("#email-error").text("");
 											}
+										});
 
-											// パスワードの一致確認
+						// パスワード確認バリデーション
+						$("#confirm-password, #password")
+								.on(
+										"input",
+										function() {
 											var password = $("#password").val();
 											var confirmPassword = $(
 													"#confirm-password").val();
 											if (password !== confirmPassword) {
-												alert("パスワードが一致しません。");
-												event.preventDefault();
-											}
-
-											// 電話番号の形式チェック（数字とハイフンを許可）
-											var phone = $("#phone").val();
-											var phonePattern = /^[0-9-]+$/;
-											if (!phonePattern.test(phone)) {
-												alert("正しい電話番号を入力してください。(数字とハイフンのみ)。");
-												event.preventDefault();
+												$("#password-error").text(
+														"パスワードが一致しません。");
+											} else {
+												$("#password-error").text("");
 											}
 										});
+
+						// 電話番号バリデーション（数字とハイフンのみ許可）
+						$("#phone")
+								.on(
+										"input",
+										function() {
+											var phone = $(this).val();
+											var phonePattern = /^[0-9-]+$/;
+											if (!phonePattern.test(phone)) {
+												$("#phone-error")
+														.text(
+																"正しい電話番号を入力してください（数字とハイフンのみ）。");
+											} else {
+												$("#phone-error").text("");
+											}
+										});
+
+						// 最終的なフォーム送信時のバリデーション
+						$("form").submit(function(event) {
+							var emailError = $("#email-error").text();
+							var passwordError = $("#password-error").text();
+							var phoneError = $("#phone-error").text();
+
+							if (emailError || passwordError || phoneError) {
+								alert("入力にエラーがあります。修正してください。");
+								event.preventDefault();
+							}
+						});
 					});
 </script>
 </head>
@@ -53,17 +83,21 @@
 
 		<form action="AdminRegisterServlet" method="post">
 			<label for="email">メールアドレス</label> <input type="email" id="email"
-				name="userMailAddress" placeholder="メールアドレス" required> <label
+				name="userMailAddress" placeholder="メールアドレス" required> <span
+				id="email-error" style="color: red;"></span><br> <label
 				for="password">パスワード</label> <input type="password" id="password"
-				name="password" placeholder="パスワード" required> <label
+				name="password" placeholder="パスワード" required> <span
+				id="password-error" style="color: red;"></span><br> <label
 				for="confirm-password">パスワード確認</label> <input type="password"
 				id="confirm-password" name="confirmPassword" placeholder="パスワード確認"
-				required> <label for="name">名前</label> <input type="text"
-				id="name" name="userName" placeholder="名前" required> <label
-				for="address">住所</label> <input type="text" id="address"
-				name="userAddress" placeholder="住所" required> <label
+				required><br> <label for="name">名前</label> <input
+				type="text" id="name" name="userName" placeholder="名前" required><br>
+
+			<label for="address">住所</label> <input type="text" id="address"
+				name="userAddress" placeholder="住所" required><br> <label
 				for="phone">電話番号</label> <input type="text" id="phone"
-				name="userPhoneNumber" placeholder="電話番号" required> <label
+				name="userPhoneNumber" placeholder="電話番号" required> <span
+				id="phone-error" style="color: red;"></span><br> <label
 				for="privilege">管理権限</label> <select id="privilege" name="privilege"
 				required>
 				<option value="0">顧客</option>
