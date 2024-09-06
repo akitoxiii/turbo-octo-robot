@@ -29,6 +29,8 @@
 <%-- ============ bodyここから ============ --%>
 <body>
 <div class="test1">
+<br>
+	<br>
 
 
 	<h1>時間選択画面</h1>
@@ -48,7 +50,7 @@
 
 
 		<div class="item">
-			<label class="label">会員ID</label> <input class="inputs" type="text"
+			<p class="label">会員ID</p> <input class="inputs" type="text"
 				name="userId">
 		</div>
 

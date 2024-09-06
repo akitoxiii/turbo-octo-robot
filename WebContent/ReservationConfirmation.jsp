@@ -14,6 +14,7 @@
 <title>予約確認画面</title>
 </head>
 <body>
+<div class="test1">
 	<%
 	ReservationBean reseBean = (ReservationBean) session.getAttribute("reseBean");
 	%>
@@ -21,32 +22,38 @@
 	<%
 
 	%>
-
+	<br>
+	<br>
+予約情報をご確認ください
 	<br>
 	<br>
 	<div class="item">
 		<p class="label">会員ID</p>
 
-		<p class="inputs"><%=reseBean.getUserId()%></p>
+		<p class="inputs"><%=reseBean.getUserId()%></p><br>
 
 		<p class="label">予約日</p>
 
-		<p class="inputs"><%=reseBean.getReservationDate()%></p>
+		<p class="inputs"><%=reseBean.getReservationDate()%></p><br>
 
 		<p class="label">予約時間</p>
 
-		<p class="inputs"><%=reseBean.getReservationTime() + ":00"%></p>
+		<p class="inputs"><%=reseBean.getReservationTime() + ":00"%></p><br>
 		
-		<p class="inputs"><%=reseBean.getReservationId()%></p>
+	
 		
-		
+		<br><br>
 		<a href="Reservation?action=ok">予約</a>
 		<br>
-	<br>
+	<br><br>
 	<a href="Reservation">やりなおす</a>
+	<br>
+	<br><br>
+	<br><br>
+	<br><br>
 	
 
-	</div>
+	</div></div>
 
 
 

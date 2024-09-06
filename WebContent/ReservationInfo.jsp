@@ -32,7 +32,7 @@ if(contentBean.getReservationId() ==null){ %>
 }else{
 	int pri = (int)session.getAttribute("userPrivilege");
 	if(pri==0){ %>
-	<a href="ReservationList.jsp">戻る</a>
+	<a href="ReservationListCon">戻る</a>
 	
 	<% 	
 	}else{ %>

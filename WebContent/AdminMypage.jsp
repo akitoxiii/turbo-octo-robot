@@ -13,8 +13,8 @@
 		<div class="user-info">
 			<p>
 				ID:
-				<%=request.getAttribute("userId")%></p>
-			<p><%=request.getAttribute("userName")%></p>
+			<%=session.getAttribute("userId")%></p>
+			<p><%=session.getAttribute("userName")%></p>
 		</div>
 		<form action="ReservationListCon" method="get">
 			<input type="submit" value="全予約一覧">

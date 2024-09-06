@@ -5,11 +5,13 @@
     <%@page import="model.ReservationBean"%>
     
     
+    
 <!DOCTYPE html>
 <html>
 <head>
 
 <link rel="stylesheet" type="text/css" href="css/StyleCss.css">
+
 
 <meta charset="UTF-8">
 <title>全予約一覧</title>
@@ -57,8 +59,8 @@
 <br><br>
 <div class="logo">全予約一覧</div>
 
-<br><br><br>
-<a href="AdminMypage">メニューへ戻る</a><br><br>
+<br><br><br><div style="text-align: left;">
+<a href="AdminMypage.jsp">メニューへ戻る</div><br><br>
 
 
 	<table class="table_sticky" id="listTable">
