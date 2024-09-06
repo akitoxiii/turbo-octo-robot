@@ -22,7 +22,7 @@ public class AdminRegisterServlet extends HttpServlet {
 		String email = request.getParameter("userMailAddress");
 		String password = request.getParameter("password");
 		String confirmPassword = request.getParameter("confirmPassword");
-		String name = request.getParameter("userName");
+		String name = request.getParameter("NewUserName");
 		String address = request.getParameter("userAddress");
 		String phone = request.getParameter("userPhoneNumber");
 		String privilege = request.getParameter("privilege");
@@ -36,12 +36,12 @@ public class AdminRegisterServlet extends HttpServlet {
 
 		// セッションから取得したログインユーザー情報をリクエストスコープにセット
 		request.setAttribute("userId", loginUserId);
-		request.setAttribute("AdminUserName", loginUserName);
+		request.setAttribute("userName", loginUserName);
 
 		// フォームの入力内容を次の画面に渡す
 		request.setAttribute("userMailAddress", email);
 		request.setAttribute("password", password);
-		request.setAttribute("userName", name);
+		request.setAttribute("NewUserName", name);
 		request.setAttribute("userAddress", address);
 		request.setAttribute("userPhoneNumber", phone);
 		request.setAttribute("privilege", privilege);
