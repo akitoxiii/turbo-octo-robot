@@ -40,9 +40,9 @@
 
 		<% 
   
+		int pri = (int)session.getAttribute("userPrivilege");
   
-  
-  // if(ログインセッションスコープの権限が０なら){
+   if(pri == 0){
   %>
 
 
@@ -51,7 +51,7 @@
 				name="userId">
 		</div>
 
-		<% // } %>
+		<%  } %>
 
 
 

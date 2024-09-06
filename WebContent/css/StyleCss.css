@@ -297,9 +297,21 @@ textarea:focus, select:focus {
 
  */
  
+ 
+ .test1{
+	   margin-left: auto;
+    margin-right: auto;
+    color:black;
+    	width: 900px;
+    		background-color: #eaf5ec;
+	 border-radius:7px;
+	 
+ }
+ 
  table {
     margin-left: auto;
     margin-right: auto;
+    color:black;
 }
 
 
@@ -328,7 +340,7 @@ table  td{
 	padding: 8px;
 }
 table th{
-	background-color:#d7ffa6;
+	background-color:#daffca;
 	padding: 15px;
 	border-collapse: collapse;
 	border-radius: 7px 7px 0px 0px;
@@ -393,7 +405,8 @@ table.table_sticky.th{
 } */
 
 #listTable tr:hover td{
-	background-color: #d7ffa6;
+	background-color: #daffca;
+	color:#858b83;
 	/* #d9efff */
 	
 }
@@ -419,4 +432,22 @@ table.table_sticky.th{
 .formTest{
 	margin: auto;
 	/* width: 559px */
+}
+
+.logo {
+	letter-spacing: 1px;
+    font-size: 40px;
+    font-weight: 700;
+ color:#515450;
+}
+
+
+listbutton{
+	border-radius: 5px;
+	color:#403d3d;
+	border: 1.5px solid;
+	border-color: #bcc9bc;
+	background-color: #ecefed;
+	padding: 15px 28px;
+	letter-spacing: 1.5px;
 }

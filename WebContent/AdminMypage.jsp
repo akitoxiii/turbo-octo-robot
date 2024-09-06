@@ -19,7 +19,7 @@
 		<form action="ReservationListCon" method="get">
 			<input type="submit" value="全予約一覧">
 		</form>
-		<form action="reservationServlet" method="get">
+		<form action="Reservation" method="get">
 			<input type="submit" value="予約する">
 		</form>
 		<form action="CustomerListServlet" method="get">
