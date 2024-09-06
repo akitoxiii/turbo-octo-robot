@@ -8,66 +8,74 @@
 <link rel="stylesheet" type="text/css" href="css/StyleCss.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-	$(document)
-			.ready(
-					function() {
-						// フォーム送信時のバリデーション
-						$("form")
-								.submit(
-										function(event) {
-											var isValid = true;
+        $(document).ready(function() {
+            // メールアドレスフィールドがフォーカスを外れたときにバリデーションを実行
+            $("#email").on("blur", function() {
+                var email = $(this).val();
+                var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+                if (!emailPattern.test(email)) {
+                    $("#email-error").text("正しいメールアドレスを入力してください。");
+                } else {
+                    $("#email-error").text("");
+                }
+            });
 
-											// メールアドレス形式のチェック
-											var email = $("#email").val();
-											var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-											if (!emailPattern.test(email)) {
-												$("#email-error").text(
-														"正しいメールアドレスを入力してください。");
-												isValid = false;
-											} else {
-												$("#email-error").text("");
-											}
+            // 電話番号フィールドがフォーカスを外れたときにバリデーションを実行
+            $("#phone").on("blur", function() {
+                var phone = $(this).val();
+                var phonePattern = /^[0-9-]+$/;
+                if (!phonePattern.test(phone)) {
+                    $("#phone-error").text("正しい電話番号を入力してください。");
+                } else {
+                    $("#phone-error").text("");
+                }
+            });
 
-											// 電話番号の形式チェック（ハイフン許可）
-											var phone = $("#phone").val();
-											var phonePattern = /^[0-9-]+$/;
-											if (!phonePattern.test(phone)) {
-												$("#phone-error").text(
-														"正しい電話番号を入力してください。");
-												isValid = false;
-											} else {
-												$("#phone-error").text("");
-											}
+            // パスワード確認フィールドのフォーカスが外れた時にチェック
+            $("#confirm-password").on("blur", function() {
+                var password = $("#password").val();
+                var confirmPassword = $("#confirm-password").val();
 
-											if (!isValid) {
-												event.preventDefault(); // フォーム送信を防止
-											}
-										});
+                // パスワードが空ではないかチェックしてからバリデーションを行う
+                if (password !== "" && confirmPassword !== "") {
+                    if (password !== confirmPassword) {
+                        $("#confirm-password-error").text("パスワードが一致しません。");
+                    } else {
+                        $("#confirm-password-error").text("");
+                    }
+                }
+            });
 
-						// パスワード確認フィールドのフォーカスが外れた時にチェック
-						$("#confirm-password")
-								.on(
-										"blur",
-										function() {
-											var password = $("#password").val();
-											var confirmPassword = $(
-													"#confirm-password").val();
+            // フォーム送信時の最終バリデーション
+            $("form").submit(function(event) {
+                var isValid = true;
 
-											// パスワードが空ではないかチェックしてからバリデーションを行う
-											if (password !== ""
-													&& confirmPassword !== "") {
-												if (password !== confirmPassword) {
-													$("#confirm-password-error")
-															.text(
-																	"パスワードが一致しません。");
-												} else {
-													$("#confirm-password-error")
-															.text("");
-												}
-											}
-										});
-					});
-</script>
+                // メールアドレスの最終チェック
+                var email = $("#email").val();
+                var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+                if (!emailPattern.test(email)) {
+                    $("#email-error").text("正しいメールアドレスを入力してください。");
+                    isValid = false;
+                } else {
+                    $("#email-error").text("");
+                }
+
+                // 電話番号の最終チェック
+                var phone = $("#phone").val();
+                var phonePattern = /^[0-9-]+$/;
+                if (!phonePattern.test(phone)) {
+                    $("#phone-error").text("正しい電話番号を入力してください。");
+                    isValid = false;
+                } else {
+                    $("#phone-error").text("");
+                }
+
+                if (!isValid) {
+                    event.preventDefault(); // フォーム送信を防止
+                }
+            });
+        });
+    </script>
 </head>
 <body>
 	<div class="register-container">
