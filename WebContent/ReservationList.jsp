@@ -52,10 +52,13 @@
 	 ArrayList<ReservationBean> allList = (ArrayList<ReservationBean>)request.getAttribute("allList");
 	 
 	 %>
-
+<div class="test1">
 <div class="section">
-<br>
-<a href="AdminMypage">メニューへ戻る</a>
+<br><br>
+<div class="logo">全予約一覧</div>
+
+<br><br><br>
+<a href="AdminMypage">メニューへ戻る</a><br><br>
 
 
 	<table class="table_sticky" id="listTable">
@@ -95,10 +98,12 @@
 
 
 
-
+<br><br><br><br><br><br><br><br><br>
 
 </div>
 
+</div>
+<br><br><br>
 
 	<script type="text/javascript">
 	$('tr[data-href]').click(function (e) {

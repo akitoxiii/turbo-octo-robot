@@ -42,6 +42,8 @@ public class ReservationViewCon extends HttpServlet {
 		// TODO Auto-generated method stub
 		// doGet(request, response);
 		
+		// リストからIDを取得して詳細画面へ遷移するコントローラー
+		
 		request.setCharacterEncoding("UTF-8");
 		ReservationDao dao = new ReservationDao();
 		ReservationBean contentBean = new ReservationBean();

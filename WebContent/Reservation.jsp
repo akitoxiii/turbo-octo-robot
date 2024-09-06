@@ -57,9 +57,10 @@ ReservationDao dao = new ReservationDao();
 
 
 
-
+<div class="test1">
 <div class="container">
-<h1>予約画面</h1>
+<br><br>
+<div class="logo">予約画面</div>
 <br><br>
 
 
@@ -68,7 +69,7 @@ ReservationDao dao = new ReservationDao();
 <%-- ============ フォーム送信 ============ --%>
 <%-- 今月（配列もカレンダーも０からのカウントなので＋１をする必要がない？） --%>
 <%= month[(cl.get(Calendar.MONTH))] %>
-<br>
+<br><br>
 
 <%-- カレンダーテーブル --%>
 <table>
@@ -166,7 +167,7 @@ firstDayWeek = cl.get(Calendar.DAY_OF_WEEK) - 1;  // 月の最初の曜日をint
 %>
 
 <%= month[(cl.get(Calendar.MONTH))] %>
-<br>
+<br><br>
 
 
 <table>
@@ -228,7 +229,7 @@ firstDayWeek = cl.get(Calendar.DAY_OF_WEEK) - 1;  // 月の最初の曜日をint
 	</tr>
 	
 	</tbody>
-	</table>
+	</table><br><br><br><br>
 
 
 
@@ -250,5 +251,9 @@ firstDayWeek = cl.get(Calendar.DAY_OF_WEEK) - 1;  // 月の最初の曜日をint
 <%-- ============ フォーム送信 ============ --%>
 
 </div>
+</div>
+
+
+
 </body>
 </html>
