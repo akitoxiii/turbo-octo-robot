@@ -25,7 +25,7 @@ public class AdminMypageServlet extends HttpServlet {
 		String loginUserName = (String) session.getAttribute("userName");
 		Integer userPrivilege = (Integer) session.getAttribute("userPrivilege");
 
-		if (loginUserId == null || loginUserName == null || userPrivilege == null || userPrivilege != 1) {
+		if (loginUserId == null || loginUserName == null || userPrivilege == null || userPrivilege != 0) {
 			response.sendRedirect("login.jsp");
 			return;
 		}

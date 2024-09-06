@@ -22,6 +22,13 @@ public class UserMypageServlet extends HttpServlet {
 			return;
 		}
 
+		// Optional: 顧客の場合のみマイページにアクセスできるようにする
+		Integer userPrivilege = (Integer) session.getAttribute("userPrivilege");
+		if (userPrivilege != null && userPrivilege != 1) { // 1が顧客
+			response.sendRedirect("login.jsp");
+			return;
+		}
+
 		// ユーザーが存在する場合、マイページにフォワード
 		request.getRequestDispatcher("UserMypage.jsp").forward(request, response);
 	}
