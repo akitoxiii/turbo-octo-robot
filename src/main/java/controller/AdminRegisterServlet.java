@@ -36,7 +36,7 @@ public class AdminRegisterServlet extends HttpServlet {
 
 		// セッションから取得したログインユーザー情報をリクエストスコープにセット
 		request.setAttribute("userId", loginUserId);
-		request.setAttribute("userName", loginUserName);
+		request.setAttribute("AdminUserName", loginUserName);
 
 		// フォームの入力内容を次の画面に渡す
 		request.setAttribute("userMailAddress", email);
