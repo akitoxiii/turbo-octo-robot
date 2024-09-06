@@ -27,12 +27,12 @@
 }else{
 	int pri = (int)session.getAttribute("userPrivilege");
 	if(pri==0){ %>
-	<a href="ReservationList">戻る</a>
+	<a href="ReservationList.jsp">戻る</a>
 	
 	<% 	
 	}else{ %>
 	
-	<a href="UserMypage">メニューへ戻る</a>
+	<a href="UserMypage.jsp">メニューへ戻る</a>
 	<%	
 	}
 
