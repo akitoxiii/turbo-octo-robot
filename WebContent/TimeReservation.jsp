@@ -105,7 +105,7 @@
 		<br>
 
 		<div class="btn-area">
-			<input type="submit" value="送信">
+			<input type="submit" value="送信"><br><br><br>
 		</div>
 
 	</form>
