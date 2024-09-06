@@ -465,14 +465,15 @@ form{
   margin-bottom: 20px;
 }
 .label{
-  float: left;
+margin-left: 100px;
   margin-right: 20px;
   width:135px;
-  border-left: solid 3px #e0505d;
+  border-left: solid 3px #388e3c;
   padding-left: 10px;
 }
 .inputs{
-  float: left;
+	margin-left: px;
+padding: 10px;
   width:300px;
 }
 input[type="text"],input[type="email"]{
