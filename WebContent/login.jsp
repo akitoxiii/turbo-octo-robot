@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Forest 予約システム - ログイン</title>
 <link rel="stylesheet" type="text/css" href="css/StyleCss.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 	<div class="login-container">
@@ -14,17 +15,66 @@
 		<div class="error-message">
 			<%=request.getAttribute("loginError") != null ? request.getAttribute("loginError") : ""%>
 		</div>
-		<form action="LoginCon" method="post">
-			<input type="text" name="loginId" placeholder="ログインID"
+		<form id="loginForm" action="LoginCon" method="post">
+			<label for="loginId">ログインID</label> <input type="text" id="loginId"
+				name="loginId" placeholder="ログインID"
 				value="<%=request.getParameter("loginId") != null ? request.getParameter("loginId") : ""%>"
-				required> <input type="password" name="loginPassword"
-				placeholder="ログインパスワード" required> <input type="submit"
-				value="ログイン">
+				required> <span id="loginId-error" style="color: red;"></span><br>
+
+			<label for="loginPassword">ログインパスワード</label> <input type="password"
+				id="loginPassword" name="loginPassword" placeholder="ログインパスワード"
+				required> <span id="loginPassword-error" style="color: red;"></span><br>
+
+			<input type="submit" value="ログイン">
 		</form>
 		<form action="registerServlet" method="get">
 			<input type="button" value="新規登録"
 				onclick="location.href='UserRegister.jsp'">
 		</form>
 	</div>
+
+	<script>
+		$(document).ready(function() {
+			// リアルタイムバリデーション
+			$("#loginId").on("input", function() {
+				if ($(this).val().trim() === "") {
+					$("#loginId-error").text("ログインIDを入力してください。");
+				} else {
+					$("#loginId-error").text("");
+				}
+			});
+
+			$("#loginPassword").on("input", function() {
+				if ($(this).val().trim() === "") {
+					$("#loginPassword-error").text("パスワードを入力してください。");
+				} else {
+					$("#loginPassword-error").text("");
+				}
+			});
+
+			// フォーム送信時の最終チェック
+			$('#loginForm').on('submit', function(event) {
+				var isValid = true;
+				var errorMessage = "";
+
+				// ログインIDのチェック
+				if ($('#loginId').val().trim() === "") {
+					isValid = false;
+					$("#loginId-error").text("ログインIDを入力してください。");
+				}
+
+				// パスワードのチェック
+				if ($('#loginPassword').val().trim() === "") {
+					isValid = false;
+					$("#loginPassword-error").text("パスワードを入力してください。");
+				}
+
+				// バリデーションにエラーがあれば送信を防ぐ
+				if (!isValid) {
+					event.preventDefault();
+				}
+			});
+		});
+	</script>
 </body>
 </html>

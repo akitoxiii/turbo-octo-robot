@@ -44,9 +44,9 @@ public class LoginCon extends HttpServlet {
 
 				// 管理者か顧客かで分岐
 				if (user.getUserPrivilege() == 1) {
-					response.sendRedirect("UserMypageServlet"); // UserMypageServlet にリダイレクト
-				} else {
 					response.sendRedirect("AdminMypageServlet"); // AdminMypageServlet にリダイレクト
+				} else {
+					response.sendRedirect("UserMypageServlet"); // UserMypageServlet にリダイレクト
 				}
 			} else {
 				request.setAttribute("loginError", "ログインIDまたはパスワードが正しくありません。");
