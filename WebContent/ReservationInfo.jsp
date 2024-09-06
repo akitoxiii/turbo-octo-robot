@@ -14,6 +14,7 @@
 <title>予約詳細画面</title>
 </head>
 <body>
+<div class="test1">
 <br>
 
 <% if(request.getAttribute("contentBean") ==null){ %>
@@ -43,22 +44,22 @@
 	<br>
 	<div class="item">
 	
-	<p class="label">予約ID</p>
+	<p class="label">予約ID</p><br>
 	
 	<p class="inputs"><%=contentBean.getReservationId()%></p>
+	<br>
 	
-	
-		<p class="label">会員ID</p>
+		<p class="label">会員ID</p><br>
 
-		<p class="inputs"><%=contentBean.getUserId()%></p>
+		<p class="inputs"><%=contentBean.getUserId()%></p><br>
 
-		<p class="label">予約日</p>
+		<p class="label">予約日</p><br>
 
-		<p class="inputs"><%=contentBean.getReservationDate()%></p>
+		<p class="inputs"><%=contentBean.getReservationDate()%></p><br>
 
-		<p class="label">予約時間</p>
+		<p class="label">予約時間</p><br>
 
-		<p class="inputs"><%=contentBean.getReservationTime() + ":00"%></p>
+		<p class="inputs"><%=contentBean.getReservationTime() + ":00"%></p><br>
 		
 		
 		
@@ -71,7 +72,7 @@
 		<br>
 	<br>
 	
-
+</div>
 	</div>
 
 <% } %>
