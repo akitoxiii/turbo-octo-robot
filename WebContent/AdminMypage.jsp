@@ -19,14 +19,9 @@
 		<form action="ReservationListCon" method="get">
 			<input type="submit" value="全予約一覧">
 		</form>
-<<<<<<< HEAD
-		<form action="Reservation" method="get">
-			<input type="submit" value="予約する">
-=======
-		<form>
+		<form action="reservationServlet" method="post">
 			<input type="button" value="予約する"
 				onclick="location.href='Reservation.jsp'">
->>>>>>> branch 'main' of https://github.com/akitoxiii/turbo-octo-robot.git
 		</form>
 		<form action="CustomerListServlet" method="get">
 			<input type="submit" value="会員一覧 (CSV出力)">

@@ -42,8 +42,8 @@ public class LoginCon extends HttpServlet {
 				session.setAttribute("userName", user.getUserName());
 				session.setAttribute("userPrivilege", user.getUserPrivilege());
 
-				// 管理者か顧客かで分岐
-				if (user.getUserPrivilege() == 1) {
+				// 管理者か顧客かで分岐（顧客を1、管理者を0に設定）
+				if (user.getUserPrivilege() == 0) {
 					response.sendRedirect("AdminMypageServlet"); // AdminMypageServlet にリダイレクト
 				} else {
 					response.sendRedirect("UserMypageServlet"); // UserMypageServlet にリダイレクト

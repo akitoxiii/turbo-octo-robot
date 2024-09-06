@@ -16,7 +16,7 @@
 			<p>
 				ID:
 				<%=request.getAttribute("userId")%></p>
-			<p><%=request.getAttribute("userName")%></p>
+			<p><%=request.getAttribute("AdminUserName")%></p>
 		</div>
 
 		<label>メールアドレス</label>
@@ -55,7 +55,7 @@
 					type="hidden" name="password"
 					value="<%=request.getAttribute("password")%>"> <input
 					type="hidden" name="userName"
-					value="<%=request.getAttribute("userName")%>"> <input
+					value="<%=request.getAttribute("NewUserName")%>"> <input
 					type="hidden" name="userAddress"
 					value="<%=request.getAttribute("userAddress")%>"> <input
 					type="hidden" name="userPhoneNumber"
