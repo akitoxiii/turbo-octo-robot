@@ -3,10 +3,18 @@
 <!DOCTYPE html>
 <html>
 <head>
+<<<<<<< HEAD
+<meta charset="UTF-8">
+
+<title>Forest 予約システム - ログイン</title>
+<link rel="stylesheet" type="text/css" href="css/StyleCss.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+=======
     <meta charset="UTF-8">
     <title>Forest 予約システム - ログイン</title>
     <link rel="stylesheet" type="text/css" href="css/StyleCss.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+>>>>>>> branch 'main' of https://github.com/akitoxiii/turbo-octo-robot.git
 </head>
 <body>
     <div class="login-container">

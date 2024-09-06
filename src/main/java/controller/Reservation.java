@@ -175,12 +175,13 @@ public class Reservation extends HttpServlet {
 			reseBean.setReservationTime(reservationTime);
 
 			// 予約ID
-			String yoyakuId = (String) session.getAttribute("nen") + (String) session.getAttribute("tuki")
-			+ (String) session.getAttribute("niti");
+			 String nen = (String) session.getAttribute("nen");
+			 String tuki = (String) session.getAttribute("tuki");
+			String niti = (String) session.getAttribute("niti");
 
 			ReservationDao dao = new ReservationDao();
 
-			String rId = dao.generatingId(yoyakuId, reservationTime);
+			String rId = dao.generatingId(nen, tuki, niti, reservationTime);
 
 			// 予約IDもしまっておく
 			reseBean.setReservationId(rId);

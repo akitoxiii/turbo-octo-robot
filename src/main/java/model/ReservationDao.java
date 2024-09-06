@@ -155,7 +155,7 @@ public class ReservationDao {
 	 * 
 	 */
 	
-	public String generatingId(String day, String time) { // int timeじゃなくてString timeかも
+	public String generatingId(String nen, String tuki, String niti, String time) { // int timeじゃなくてString timeかも
 		
 		String rId ="";
 		int num=0;
@@ -172,10 +172,12 @@ public class ReservationDao {
 		
 		
 		// 二つをつなげて最後日に1か2を付ける
-		rId = day + time;
+		String rDB = nen + "年" + tuki + "月" + niti + "日";
+				
+		rId =nen + tuki + niti + time;	
 		
 		// その時間の予約件数が０なら１、１なら２をつける
-		num = saerchTime(day,time);
+		num = saerchTime(rDB,time);
 		
 		if(num==0) {
 			rId = rId + "1";
@@ -350,7 +352,7 @@ public class ReservationDao {
 
 
 
-					sql="SELECT * FROM RESERVATION_TABLE FULL JOIN USER_TABLE ON RESERVATION_TABLE.USER_ID = USER_TABLE.USER_ID WHERE RESERVATION_TABLE.USER_ID =?";
+					sql="SELECT * FROM RESERVATION_TABLE WHERE USER_ID =?";
 
 					// プリコンパイル
 					stmt = conn.prepareStatement(sql);
@@ -364,13 +366,25 @@ public class ReservationDao {
 
 			while(rs.next()) {
 				rb.setUserId(rs.getString("USER_ID"));
-				rb.setUserName(rs.getString("USER_NAME"));
 				rb.setReservationId(rs.getString("RESERVATION_ID"));
 				rb.setUserId(rs.getString("USER_ID"));
 				rb.setReservationDate(rs.getString("RESERVATION_DATE"));
 				rb.setReservationTime(rs.getString("RESERVATION_TIME"));	
 
 			}
+			
+			sql="SELECT * FROM USER_TABLE WHERE USER_ID =?";
+
+			// プリコンパイル
+			stmt = conn.prepareStatement(sql);
+			// パラメーターセット
+			stmt.setString(1, userId);
+			
+			rs.next();
+			
+			rb.setUserName(rs.getString("USER_NAME"));
+			
+			
 
 			rs.close();
 
