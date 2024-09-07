@@ -15,8 +15,9 @@
 		<div class="user-info">
 			<p>
 				ID:
-				<%=request.getAttribute("userId")%></p>
-			<p><%=request.getAttribute("AdminUserName")%></p>
+				<%=request.getAttribute("userId")%>
+			</p>
+			<p><%=request.getAttribute("userName")%></p>
 		</div>
 
 		<label>メールアドレス</label>
@@ -26,7 +27,7 @@
 		<p><%=request.getAttribute("password")%></p>
 
 		<label>名前</label>
-		<p><%=request.getAttribute("userName")%></p>
+		<p><%=request.getAttribute("NewUserName")%></p>
 
 		<label>住所</label>
 		<p><%=request.getAttribute("userAddress")%></p>
@@ -39,7 +40,14 @@
 			<%
 			String privilege = (String) request.getAttribute("privilege");
 			if (privilege != null) {
-				out.print(privilege.equals("1") ? "管理者" : "顧客");
+				// 1が顧客、0が管理者に変更
+				if (privilege.equals("1")) {
+					out.print("顧客");
+				} else if (privilege.equals("0")) {
+					out.print("管理者");
+				} else {
+					out.print("権限情報がありません");
+				}
 			} else {
 				out.print("権限情報がありません");
 			}

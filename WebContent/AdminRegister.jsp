@@ -127,8 +127,8 @@
 				id="phone-error" style="color: red;"></span><br> <label
 				for="privilege">管理権限</label> <select id="privilege" name="privilege"
 				required>
-				<option value="0">顧客</option>
-				<option value="1">管理者</option>
+				<option value="1">顧客</option>
+				<option value="0">管理者</option>
 			</select>
 
 			<div style="text-align: center;">
