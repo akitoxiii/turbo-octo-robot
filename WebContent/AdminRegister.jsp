@@ -8,91 +8,93 @@
 <link rel="stylesheet" type="text/css" href="css/StyleCss.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-	$(document)
-			.ready(
-					function() {
-						// メールアドレスフィールドがフォーカスを外れたときにバリデーションを実行
-						$("#email")
-								.on(
-										"blur",
-										function() {
-											var email = $(this).val();
-											var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-											if (!emailPattern.test(email)) {
-												$("#email-error").text(
-														"正しいメールアドレスを入力してください。");
-											} else {
-												$("#email-error").text("");
-											}
-										});
+	$(document).ready(function() {
+		// メールアドレスフィールドがフォーカスを外れたときにバリデーションを実行
+		$("#email").on("blur", function() {
+			var email = $(this).val();
+			var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+			if (!emailPattern.test(email)) {
+				$("#email-error").text("正しいメールアドレスを入力してください。");
+			} else {
+				$("#email-error").text("");
+			}
+		});
 
-						// 電話番号フィールドがフォーカスを外れたときにバリデーションを実行
-						$("#phone").on("blur", function() {
-							var phone = $(this).val();
-							var phonePattern = /^[0-9-]+$/;
-							if (!phonePattern.test(phone)) {
-								$("#phone-error").text("正しい電話番号を入力してください。");
-							} else {
-								$("#phone-error").text("");
-							}
-						});
+		// 電話番号フィールドがフォーカスを外れたときにバリデーションを実行
+		$("#phone").on("blur", function() {
+			var phone = $(this).val();
+			var phonePattern = /^[0-9-]+$/;
+			if (!phonePattern.test(phone)) {
+				$("#phone-error").text("正しい電話番号を入力してください。");
+			} else {
+				$("#phone-error").text("");
+			}
+		});
 
-						// パスワード確認フィールドのフォーカスが外れた時にチェック
-						$("#confirm-password")
-								.on(
-										"blur",
-										function() {
-											var password = $("#password").val();
-											var confirmPassword = $(
-													"#confirm-password").val();
+		// パスワード確認フィールドのフォーカスが外れた時にチェック
+		$("#confirm-password").on("blur", function() {
+			var password = $("#password").val();
+			var confirmPassword = $("#confirm-password").val();
 
-											// パスワードが空ではないかチェックしてからバリデーションを行う
-											if (password !== ""
-													&& confirmPassword !== "") {
-												if (password !== confirmPassword) {
-													$("#confirm-password-error")
-															.text(
-																	"パスワードが一致しません。");
-												} else {
-													$("#confirm-password-error")
-															.text("");
-												}
-											}
-										});
+			if (password !== "" && confirmPassword !== "") {
+				if (password !== confirmPassword) {
+					$("#confirm-password-error").text("パスワードが一致しません。");
+				} else {
+					$("#confirm-password-error").text("");
+				}
+			}
+		});
 
-						// フォーム送信時の最終バリデーション
-						$("form")
-								.submit(
-										function(event) {
-											var isValid = true;
+		// パスワードフィールドがフォーカスを外れたときに、英数字7桁でなければエラーメッセージを表示
+		$("#password").on("blur", function() {
+			var password = $(this).val();
+			var passwordPattern = /^[a-zA-Z0-9]{7}$/;  // 英数字7桁の正規表現
+			if (!passwordPattern.test(password)) {
+				$("#password-error").text("パスワードは英数字7桁で入力してください。");
+			} else {
+				$("#password-error").text("");
+			}
+		});
 
-											// メールアドレスの最終チェック
-											var email = $("#email").val();
-											var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-											if (!emailPattern.test(email)) {
-												$("#email-error").text(
-														"正しいメールアドレスを入力してください。");
-												isValid = false;
-											} else {
-												$("#email-error").text("");
-											}
+		// フォーム送信時の最終バリデーション
+		$("form").submit(function(event) {
+			var isValid = true;
 
-											// 電話番号の最終チェック
-											var phone = $("#phone").val();
-											var phonePattern = /^[0-9-]+$/;
-											if (!phonePattern.test(phone)) {
-												$("#phone-error").text(
-														"正しい電話番号を入力してください。");
-												isValid = false;
-											} else {
-												$("#phone-error").text("");
-											}
+			// メールアドレスの最終チェック
+			var email = $("#email").val();
+			var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+			if (!emailPattern.test(email)) {
+				$("#email-error").text("正しいメールアドレスを入力してください。");
+				isValid = false;
+			} else {
+				$("#email-error").text("");
+			}
 
-											if (!isValid) {
-												event.preventDefault(); // フォーム送信を防止
-											}
-										});
-					});
+			// 電話番号の最終チェック
+			var phone = $("#phone").val();
+			var phonePattern = /^[0-9-]+$/;
+			if (!phonePattern.test(phone)) {
+				$("#phone-error").text("正しい電話番号を入力してください。");
+				isValid = false;
+			} else {
+				$("#phone-error").text("");
+			}
+
+			// パスワードの最終チェック（英数字7桁）
+			var password = $("#password").val();
+			var passwordPattern = /^[a-zA-Z0-9]{7}$/;
+			if (!passwordPattern.test(password)) {
+				$("#password-error").text("パスワードは英数字7桁で入力してください。");
+				isValid = false;
+			} else {
+				$("#password-error").text("");
+			}
+
+			if (!isValid) {
+				event.preventDefault(); // フォーム送信を防止
+			}
+		});
+	});
 </script>
 </head>
 <body>
@@ -102,10 +104,6 @@
 
 		<div class="error-message">
 			<%=request.getAttribute("userError") != null ? request.getAttribute("userError") : ""%>
-			<p>
-				ID:
-				<%=request.getAttribute("userId")%></p>
-			<p><%=request.getAttribute("userName")%></p>
 		</div>
 
 		<form action="AdminRegisterServlet" method="post">
@@ -118,6 +116,8 @@
 			<div>
 				<label for="password">パスワード</label><br> <input type="password"
 					id="password" name="password" placeholder="パスワード" required><br>
+				<span id="password-error" style="color: red;"></span><br>
+				<!-- パスワードのエラー表示 -->
 			</div>
 
 			<div>
@@ -152,8 +152,8 @@
 			</div>
 
 			<div style="text-align: center;">
-				<input type="button" value="戻る" onclick="history.back();"><br><br>
-				 <input type="submit" value="次へ"><br>
+				<input type="button" value="戻る" onclick="history.back();"><br>
+				<br> <input type="submit" value="次へ"><br>
 			</div>
 		</form>
 	</div>

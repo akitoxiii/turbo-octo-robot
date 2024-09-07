@@ -60,6 +60,17 @@
 											}
 										});
 
+						// パスワードフィールドがフォーカスを外れたときに、英数字7桁でなければエラーメッセージを表示
+						$("#password").on("blur", function() {
+							var password = $(this).val();
+							var passwordPattern = /^[a-zA-Z0-9]{7}$/;  // 英数字7桁の正規表現
+							if (!passwordPattern.test(password)) {
+								$("#password-error").text("パスワードは英数字7桁で入力してください。");
+							} else {
+								$("#password-error").text("");
+							}
+						});
+
 						// フォーム送信時の最終バリデーション
 						$("form")
 								.submit(
@@ -86,6 +97,17 @@
 												isValid = false;
 											} else {
 												$("#phone-error").text("");
+											}
+
+											// パスワードの最終チェック（英数字7桁）
+											var password = $("#password").val();
+											var passwordPattern = /^[a-zA-Z0-9]{7}$/;
+											if (!passwordPattern.test(password)) {
+												$("#password-error").text(
+														"パスワードは英数字7桁で入力してください。");
+												isValid = false;
+											} else {
+												$("#password-error").text("");
 											}
 
 											if (!isValid) {
@@ -116,6 +138,8 @@
 			<div>
 				<label for="password">パスワード</label><br> <input type="password"
 					id="password" name="password" placeholder="パスワード" required><br>
+				<span id="password-error" style="color: red;"></span><br>
+				<!-- パスワードのエラー表示 -->
 			</div>
 
 			<div>
