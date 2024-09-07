@@ -26,15 +26,12 @@
 				type="password" id="loginPassword" name="loginPassword"
 				placeholder="ログインパスワード" required> <span
 				id="loginPassword-error" style="color: red;"></span><br> <br>
+			<input type="submit" value="ログイン">
 		</form>
 		<form action="registerServlet" method="get">
 			<input type="button" value="新規登録"
 				onclick="location.href='UserRegister.jsp'">
 		</form>
-	</div>
-
-	<input type="submit" value="ログイン">
-	<form action="registerServlet" method="get"></form>
 	</div>
 
 	<script>
