@@ -22,7 +22,7 @@
 				id="loginId" name="loginId" placeholder="ログインID"
 				value="<%=request.getParameter("loginId") != null ? request.getParameter("loginId") : ""%>"
 				required> <span id="loginId-error" style="color: red;"></span><br>
-			<br> <label for="loginPassword">ログインパスワード</label> <input
+			<br> <label for="loginPassword">ログインパスワード</label><br> <input
 				type="password" id="loginPassword" name="loginPassword"
 				placeholder="ログインパスワード" required> <span
 				id="loginPassword-error" style="color: red;"></span><br> <br>
