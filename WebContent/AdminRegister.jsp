@@ -109,31 +109,51 @@
 		</div>
 
 		<form action="AdminRegisterServlet" method="post">
-			<label for="email">メールアドレス</label> <input type="email" id="email"
-				name="userMailAddress" placeholder="メールアドレス" required> <span
-				id="email-error" style="color: red;"></span><br> <label
-				for="password">パスワード</label> <input type="password" id="password"
-				name="password" placeholder="パスワード" required> <label
-				for="confirm-password">パスワード確認</label> <input type="password"
-				id="confirm-password" name="confirmPassword" placeholder="パスワード確認"
-				required> <span id="confirm-password-error"
-				style="color: red;"></span><br> <label for="NewUserName">名前</label> <input
-				type="text" id="NewUserName" name="NewUserName" placeholder="名前" required>
+			<div>
+				<label for="email">メールアドレス</label><br> <input type="email"
+					id="email" name="userMailAddress" placeholder="メールアドレス" required><br>
+				<span id="email-error" style="color: red;"></span><br>
+			</div>
 
-			<label for="address">住所</label> <input type="text" id="address"
-				name="userAddress" placeholder="住所" required> <label
-				for="phone">電話番号</label> <input type="text" id="phone"
-				name="userPhoneNumber" placeholder="電話番号" required> <span
-				id="phone-error" style="color: red;"></span><br> <label
-				for="privilege">管理権限</label> <select id="privilege" name="privilege"
-				required>
-				<option value="1">顧客</option>
-				<option value="0">管理者</option>
-			</select>
+			<div>
+				<label for="password">パスワード</label><br> <input type="password"
+					id="password" name="password" placeholder="パスワード" required><br>
+			</div>
+
+			<div>
+				<label for="confirm-password">パスワード確認</label><br> <input
+					type="password" id="confirm-password" name="confirmPassword"
+					placeholder="パスワード確認" required><br> <span
+					id="confirm-password-error" style="color: red;"></span><br>
+			</div>
+
+			<div>
+				<label for="NewUserName">名前</label><br> <input type="text"
+					id="NewUserName" name="NewUserName" placeholder="名前" required><br>
+			</div>
+
+			<div>
+				<label for="address">住所</label><br> <input type="text"
+					id="address" name="userAddress" placeholder="住所" required><br>
+			</div>
+
+			<div>
+				<label for="phone">電話番号</label><br> <input type="text"
+					id="phone" name="userPhoneNumber" placeholder="電話番号" required><br>
+				<span id="phone-error" style="color: red;"></span><br>
+			</div>
+
+			<div>
+				<label for="privilege">管理権限</label><br> <select id="privilege"
+					name="privilege" required>
+					<option value="1">顧客</option>
+					<option value="0">管理者</option>
+				</select><br>
+			</div>
 
 			<div style="text-align: center;">
-				<input type="button" value="戻る" onclick="history.back();"> <input
-					type="submit" value="次へ">
+				<input type="button" value="戻る" onclick="history.back();"><br><br>
+				 <input type="submit" value="次へ"><br>
 			</div>
 		</form>
 	</div>
