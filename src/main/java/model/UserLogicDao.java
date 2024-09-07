@@ -76,4 +76,48 @@ public class UserLogicDao {
 
 		return user;
 	}
+
+	// 全てのフィールドで完全一致をチェックするメソッド
+	public boolean checkUserExists(String email, String password, String name, String address, String phone,
+			String privilege) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		boolean exists = false;
+
+		try {
+			con = getConnection();
+			// 全てのフィールドが一致するユーザーが存在するかをチェック
+			String sql = "SELECT USER_ID FROM USER_TABLE WHERE USER_EMAIL = ? AND USER_PASSWORD = ? AND USER_NAME = ? AND USER_ADDRESS = ? AND USER_PHONE = ? AND USER_PRIVILEGE = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, email);
+			pstmt.setString(2, password);
+			pstmt.setString(3, name);
+			pstmt.setString(4, address);
+			pstmt.setString(5, phone);
+			pstmt.setString(6, privilege);
+
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				exists = true; // 全てのフィールドが一致するユーザーが存在する
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (con != null)
+					con.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		return exists;
+	}
 }

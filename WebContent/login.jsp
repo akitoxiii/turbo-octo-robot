@@ -19,7 +19,7 @@
 		</div>
 		<form id="loginForm" action="LoginCon" method="post">
 			<div>
-				<label for="loginId">ログインID</label><br> <input type="text"
+				<label for="loginId">ログインID <span style="color: red;">*</span></label><br> <input type="text"
 					id="loginId" name="loginId" placeholder="ログインID"
 					value="<%=request.getParameter("loginId") != null ? request.getParameter("loginId") : ""%>"
 					required><br> <span id="loginId-error"
@@ -27,7 +27,7 @@
 			</div>
 
 			<div>
-				<label for="loginPassword">ログインパスワード</label><br> <input
+				<label for="loginPassword">ログインパスワード <span style="color: red;">*</span></label><br> <input
 					type="password" id="loginPassword" name="loginPassword"
 					placeholder="ログインパスワード" required><br> <span
 					id="loginPassword-error" style="color: red;"></span><br>
