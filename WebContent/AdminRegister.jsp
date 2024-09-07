@@ -117,8 +117,8 @@
 				for="confirm-password">パスワード確認</label> <input type="password"
 				id="confirm-password" name="confirmPassword" placeholder="パスワード確認"
 				required> <span id="confirm-password-error"
-				style="color: red;"></span><br> <label for="name">名前</label> <input
-				type="text" id="name" name="userName" placeholder="名前" required>
+				style="color: red;"></span><br> <label for="NewUserName">名前</label> <input
+				type="text" id="NewUserName" name="NewUserName" placeholder="名前" required>
 
 			<label for="address">住所</label> <input type="text" id="address"
 				name="userAddress" placeholder="住所" required> <label

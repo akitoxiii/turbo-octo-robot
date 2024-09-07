@@ -62,7 +62,7 @@
 					value="<%=request.getAttribute("userMailAddress")%>"> <input
 					type="hidden" name="password"
 					value="<%=request.getAttribute("password")%>"> <input
-					type="hidden" name="userName"
+					type="hidden" name="NewUserName"
 					value="<%=request.getAttribute("NewUserName")%>"> <input
 					type="hidden" name="userAddress"
 					value="<%=request.getAttribute("userAddress")%>"> <input
