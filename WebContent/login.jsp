@@ -24,19 +24,19 @@
             <%=request.getAttribute("loginError") != null ? request.getAttribute("loginError") : ""%>
         </div>
         <form id="loginForm" action="LoginCon" method="post">
-            <label for="loginId">ログインID</label>
+            <label for="loginId">ログインID</label><br>
             <input type="text" id="loginId" name="loginId" placeholder="ログインID"
                 value="<%=request.getParameter("loginId") != null ? request.getParameter("loginId") : ""%>"
                 required>
-            <span id="loginId-error" style="color: red;"></span><br>
+            <span id="loginId-error" style="color: red;"></span><br><br>
 
             <label for="loginPassword">ログインパスワード</label>
             <input type="password" id="loginPassword" name="loginPassword"
                 placeholder="ログインパスワード" required>
-            <span id="loginPassword-error" style="color: red;"></span><br>
+            <span id="loginPassword-error" style="color: red;"></span><br><br>
 
             <input type="submit" value="ログイン">
-        </form>
+        </form><br>
         <form action="registerServlet" method="get">
             <input type="button" value="新規登録"
                 onclick="location.href='UserRegister.jsp'">

@@ -80,33 +80,35 @@
 <body>
 	<div class="register-container">
 		<h1>新規会員登録画面</h1>
-		<p>会員情報を入力してください</p>
+		<p>会員情報を入力してください</p><br><br>
 
 		<div class="error-message">
 			<%=request.getAttribute("userError") != null ? request.getAttribute("userError") : ""%>
 		</div>
 
 		<form action="UserRegisterServlet" method="post">
-			<label for="email">メールアドレス</label> <input type="email" id="email"
+			<label for="email">メールアドレス</label><br>
+			 <input type="email" id="email"
 				name="userMailAddress" placeholder="メールアドレス" required> <span
-				id="email-error" style="color: red;"></span><br> <label
-				for="password">パスワード</label> <input type="password" id="password"
-				name="password" placeholder="パスワード" required> <label
-				for="confirm-password">パスワード確認</label> <input type="password"
+				id="email-error" style="color: red;"></span><br>
+				 <label for="password">パスワード</label><br>
+				  <input type="password" id="password"
+				name="password" placeholder="パスワード" required> <br><label
+				for="confirm-password">パスワード確認</label><br> <input type="password"
 				id="confirm-password" name="confirmPassword" placeholder="パスワード確認"
 				required> <span id="confirm-password-error"
-				style="color: red;"></span><br> <label for="name">名前</label> <input
-				type="text" id="name" name="userName" placeholder="名前" required>
+				style="color: red;"></span><br> <label for="name">名前</label> <br><input
+				type="text" id="name" name="userName" placeholder="名前" required><br>
 
-			<label for="address">住所</label> <input type="text" id="address"
-				name="userAddress" placeholder="住所" required> <label
-				for="phone">電話番号</label> <input type="text" id="phone"
+			<label for="address">住所</label><br> <input type="text" id="address"
+				name="userAddress" placeholder="住所" required><br> <label
+				for="phone">電話番号</label> <br><input type="text" id="phone"
 				name="userPhoneNumber" placeholder="電話番号" required> <span
 				id="phone-error" style="color: red;"></span><br>
 
 			<div style="text-align: center;">
-				<input type="button" value="戻る" onclick="history.back();"> <input
-					type="submit" value="次へ">
+				<input type="button" value="戻る" onclick="history.back();"> <br><br><input
+					type="submit" value="次へ"><br>
 			</div>
 		</form>
 	</div>
