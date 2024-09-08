@@ -8,8 +8,11 @@ body {
     margin: 0;
     padding: 0;
     text-align: center;
-    scroll-behavior: smooth;
-    animation: backgroundShift 5s infinite alternate ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 /* 背景アニメーション */
@@ -24,7 +27,6 @@ body {
         background-position: 0% 50%;
     }
 }
-
 /* ヘッダー */
 header {
     background: linear-gradient(90deg, #2e7d32, #4caf50, #3e2723);
@@ -38,20 +40,8 @@ header {
     left: 0;
     z-index: 1000;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
-    animation: headerPop 2s infinite alternate ease-in-out;
 }
 
-/* ヘッダーのポップアニメーション */
-@keyframes headerPop {
-    0% {
-        transform: scale(1);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
-    }
-    100% {
-        transform: scale(1.1);
-        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.9);
-    }
-}
 /* セクション */
 section {
     margin-bottom: 30px;
@@ -70,10 +60,6 @@ section {
     0% {
         transform: translateY(100px) rotate(5deg);
         opacity: 0;
-    }
-    50% {
-        transform: translateY(-20px) rotate(-3deg);
-        opacity: 0.8;
     }
     100% {
         transform: translateY(0) rotate(0deg);
@@ -99,17 +85,39 @@ section h2 {
     animation: textShake 1.5s infinite alternate ease-in-out;
 }
 
-/* テキストの揺れアニメーション */
-@keyframes textShake {
-    0% {
-        transform: rotate(0deg);
-    }
-    50% {
-        transform: rotate(3deg);
-    }
-    100% {
-        transform: rotate(-3deg);
-    }
+/* カレンダーのテーブル */
+table {
+    width: 80%; /* 必要に応じて幅を調整 */
+    margin: 20px auto; /* テーブルを中央に配置 */
+    border-collapse: collapse; /* テーブルの境界線を重ねる */
+    background-color: #fff; /* テーブルの背景色を設定 */
+    color: #000; /* テーブル内の文字色 */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5); /* テーブルに影を追加 */
+}
+
+table th, table td {
+    padding: 10px;
+    text-align: center; /* テキストを中央揃え */
+    border: 1px solid #ddd; /* セルの境界線を設定 */
+}
+
+/* カレンダーのヘッダー */
+table th {
+    background-color: #388e3c; /* ヘッダーの背景色 */
+    color: white; /* ヘッダーの文字色 */
+    font-weight: bold; /* ヘッダーの文字を太くする */
+}
+/* カレンダーの日付 */
+table td {
+    background-color: #e8f5e9; /* 通常のセルの背景色 */
+    color: #000; /* 通常のセルの文字色 */
+}
+
+table td:hover {
+    background-color: #a5d6a7; /* セルにホバーしたときの背景色 */
+    color: #fff; /* セルにホバーしたときの文字色 */
+    transform: scale(1.05);
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 /* ボタン */
@@ -123,33 +131,18 @@ button, input[type="button"], input[type="submit"] {
     cursor: pointer;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
     transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-    animation: buttonPulse 2s infinite alternate;
-}
-
-/* ボタンの脈動アニメーション */
-@keyframes buttonPulse {
-    0% {
-        transform: scale(1);
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
-    }
-    100% {
-        transform: scale(1.2);
-        box-shadow: 0 15px 40px rgba(34, 139, 34, 0.8);
-    }
 }
 
 button:hover, input[type="button"]:hover, input[type="submit"]:hover {
     background-color: #4caf50;
-    color: #ffffff;
     transform: scale(1.3) rotate(5deg);
     box-shadow: 0 10px 50px rgba(34, 139, 34, 0.9);
-    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 /* フォームのスタイル */
 input[type="text"], input[type="email"], input[type="password"],
 textarea, select {
-    width: 250px; /* ログインパスワードと同じ幅に設定 */
+    width: 250px;
     padding: 12px;
     margin: 10px 0;
     border: 2px solid #4caf50;
@@ -158,6 +151,7 @@ textarea, select {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
+
 /* フォーカス時のスタイル */
 input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus,
 textarea:focus, select:focus {
@@ -174,7 +168,7 @@ textarea:focus, select:focus {
     width: 600px;
 }
 
-table.table_sticky.th {
+table.table_sticky th {
     margin: auto;
     position: sticky;
     top: 0px;
@@ -192,44 +186,6 @@ table.table_sticky.th {
 ::-webkit-scrollbar-thumb {
     background: #a4b1a4;
     border-radius: 3px;
-}
-
-/* テーブルのホバーアニメーション */
-#listTable tr:hover td {
-    background-color: #daffca;
-    color: #858b83;
-    transform: scale(1.05);
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-/* カードアニメーション */
-.card {
-    background-color: rgba(255, 255, 255, 0.9);
-    border: 5px solid #1b5e20;
-    border-radius: 15px;
-    padding: 25px;
-    margin: 30px 0;
-    box-shadow: 0px 10px 25px rgba(34, 139, 34, 0.8);
-    opacity: 0;
-    transform: translateY(100px) scale(0.9);
-    animation: cardDrop 1s ease-out forwards;
-}
-
-@keyframes cardDrop {
-    0% {
-        opacity: 0;
-        transform: translateY(100px) scale(0.9);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
-
-.card:hover {
-    transform: scale(1.3) rotate(5deg);
-    box-shadow: 0 20px 50px rgba(34, 139, 34, 0.8);
-    transition: transform 0.5s ease, box-shadow 0.5s ease;
 }
 
 /* メディアクエリ */
