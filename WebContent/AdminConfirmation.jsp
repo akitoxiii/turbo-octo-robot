@@ -18,8 +18,12 @@
 				<%=request.getAttribute("userId")%>
 			</p>
 			<p><%=request.getAttribute("userName")%></p>
+			<br>
+			<!-- ログインユーザー情報の下に余白を追加 -->
 		</div>
 
+		<br>
+		<!-- メールアドレスの上に余白を追加 -->
 		<label>メールアドレス</label>
 		<p><%=request.getAttribute("userMailAddress")%></p>
 
