@@ -31,10 +31,20 @@
             }
         });
 
-        // パスワード確認フィールドのバリデーション
-        $("#confirm-password").on("blur", function() {
-            var password = $("#password").val();
-            var confirmPassword = $("#confirm-password").val();
+        // パスワードフィールドのバリデーション
+        $("#password").on("blur",　function() {
+			var password = $(this).val();
+			if (password.length < 7) {
+				$("#password-error").text("パスワードは7文字以上で入力してください。");
+				} else {
+					$("#password-error").text("");
+					}
+			});
+
+		// パスワード確認フィールドのバリデーション
+		$("#confirm-password").on("blur", function() {
+			var password = $("#password").val();
+			var confirmPassword = $("#confirm-password").val();
             if (password !== "" && confirmPassword !== "") {
                 if (password !== confirmPassword) {
                     $("#confirm-password-error").text("パスワードが一致しません。");
