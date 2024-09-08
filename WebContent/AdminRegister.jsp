@@ -43,9 +43,10 @@
 								"blur",
 								function() {
 									var password = $(this).val();
-									if (password.length < 7) {
+									var passwordPattern = /^[a-zA-Z0-9]{7}$/; // 英数字7文字の正規表現
+									if (!passwordPattern.test(password)) {
 										$("#password-error").text(
-												"パスワードは7文字以上で入力してください。");
+												"パスワードは7文字の数字と英字（大文字・小文字を含む）で入力してください。");
 									} else {
 										$("#password-error").text("");
 									}
@@ -103,12 +104,13 @@
 												$("#phone-error").text("");
 											}
 
-											// パスワードの最終チェック
+											// パスワードの最終チェック（英数字7文字）
 											var password = $("#password").val();
-											if (password.length < 7) {
+											var passwordPattern = /^[a-zA-Z0-9]{7}$/;
+											if (!passwordPattern.test(password)) {
 												$("#password-error")
 														.text(
-																"パスワードは7文字以上で入力してください。");
+																"パスワードは7文字の数字と英字（大文字・小文字を含む）で入力してください。");
 												isValid = false;
 											} else {
 												$("#password-error").text("");
@@ -142,7 +144,7 @@
 		<div class="error-message" style="color: red;">
 			<%=request.getAttribute("userError") != null ? request.getAttribute("userError") : ""%>
 		</div>
-		
+
 		<%-- ログインユーザー情報表示 --%>
 		<div class="user-info">
 			<p>

@@ -8,99 +8,133 @@
 <link rel="stylesheet" type="text/css" href="css/StyleCss.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    $(document).ready(function() {
-        // メールアドレスフィールドのバリデーション
-        $("#email").on("blur", function() {
-            var email = $(this).val();
-            var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-            if (!emailPattern.test(email) && email !== "") {
-                $("#email-error").text("正しいメールアドレスを入力してください。");
-            } else {
-                $("#email-error").text("");
-            }
-        });
+	$(document)
+			.ready(
+					function() {
+						// メールアドレスフィールドがフォーカスを外れたときにバリデーションを実行
+						$("#email")
+								.on(
+										"blur",
+										function() {
+											var email = $(this).val();
+											var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+											if (!emailPattern.test(email)
+													&& email !== "") {
+												$("#email-error").text(
+														"正しいメールアドレスを入力してください。");
+											} else {
+												$("#email-error").text("");
+											}
+										});
 
-        // 電話番号フィールドのバリデーション
-        $("#phone").on("blur", function() {
-            var phone = $(this).val();
-            var phonePattern = /^[0-9-]+$/;
-            if (!phonePattern.test(phone)) {
-                $("#phone-error").text("正しい電話番号を入力してください。");
-            } else {
-                $("#phone-error").text("");
-            }
-        });
+						// 電話番号フィールドがフォーカスを外れたときにバリデーションを実行
+						$("#phone").on("blur", function() {
+							var phone = $(this).val();
+							var phonePattern = /^[0-9-]+$/;
+							if (!phonePattern.test(phone)) {
+								$("#phone-error").text("正しい電話番号を入力してください。");
+							} else {
+								$("#phone-error").text("");
+							}
+						});
 
-        // パスワードフィールドのバリデーション
-        $("#password").on("blur",　function() {
-			var password = $(this).val();
-			if (password.length < 7) {
-				$("#password-error").text("パスワードは7文字以上で入力してください。");
-				} else {
-					$("#password-error").text("");
-					}
-			});
+						// パスワードフィールドがフォーカスを外れたときにバリデーションを実行
+						$("#password")
+								.on(
+										"blur",
+										function() {
+											var password = $(this).val();
+											var passwordPattern = /^[a-zA-Z0-9]{7}$/; // 英数字7文字の正規表現
+											if (!passwordPattern.test(password)) {
+												$("#password-error")
+														.text(
+																"パスワードは7文字の数字と英字（大文字・小文字を含む）で入力してください。");
+											} else {
+												$("#password-error").text("");
+											}
+										});
 
-		// パスワード確認フィールドのバリデーション
-		$("#confirm-password").on("blur", function() {
-			var password = $("#password").val();
-			var confirmPassword = $("#confirm-password").val();
-            if (password !== "" && confirmPassword !== "") {
-                if (password !== confirmPassword) {
-                    $("#confirm-password-error").text("パスワードが一致しません。");
-                } else {
-                    $("#confirm-password-error").text("");
-                }
-            }
-        });
+						// パスワード確認フィールドがフォーカスを外れた時にバリデーションを実行
+						$("#confirm-password")
+								.on(
+										"blur",
+										function() {
+											var password = $("#password").val();
+											var confirmPassword = $(
+													"#confirm-password").val();
 
-        // フォーム送信時のバリデーション
-        $("form").submit(function(event) {
-            var isValid = true;
+											if (password !== ""
+													&& confirmPassword !== "") {
+												if (password !== confirmPassword) {
+													$("#confirm-password-error")
+															.text(
+																	"パスワードが一致しません。");
+												} else {
+													$("#confirm-password-error")
+															.text("");
+												}
+											}
+										});
 
-            // メールアドレス最終チェック（空欄ならスキップ）
-            var email = $("#email").val();
-            var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-            if (email !== "" && !emailPattern.test(email)) {
-                $("#email-error").text("正しいメールアドレスを入力してください。");
-                isValid = false;
-            } else {
-                $("#email-error").text("");
-            }
+						// フォーム送信時の最終バリデーション
+						$("form")
+								.submit(
+										function(event) {
+											var isValid = true;
 
-            // 電話番号の最終チェック
-            var phone = $("#phone").val();
-            var phonePattern = /^[0-9-]+$/;
-            if (!phonePattern.test(phone)) {
-                $("#phone-error").text("正しい電話番号を入力してください。");
-                isValid = false;
-            } else {
-                $("#phone-error").text("");
-            }
+											// メールアドレスの最終チェック（空欄ならスキップ）
+											var email = $("#email").val();
+											var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+											if (email !== ""
+													&& !emailPattern
+															.test(email)) {
+												$("#email-error").text(
+														"正しいメールアドレスを入力してください。");
+												isValid = false;
+											} else {
+												$("#email-error").text("");
+											}
 
-            // パスワードの最終チェック
-            var password = $("#password").val();
-            if (password.length < 7) {
-                $("#password-error").text("パスワードは7文字以上で入力してください。");
-                isValid = false;
-            } else {
-                $("#password-error").text("");
-            }
+											// 電話番号の最終チェック
+											var phone = $("#phone").val();
+											var phonePattern = /^[0-9-]+$/;
+											if (!phonePattern.test(phone)) {
+												$("#phone-error").text(
+														"正しい電話番号を入力してください。");
+												isValid = false;
+											} else {
+												$("#phone-error").text("");
+											}
 
-            // パスワード確認の最終チェック
-            var confirmPassword = $("#confirm-password").val();
-            if (password !== confirmPassword) {
-                $("#confirm-password-error").text("パスワードが一致しません。");
-                isValid = false;
-            } else {
-                $("#confirm-password-error").text("");
-            }
+											// パスワードの最終チェック（英数字7文字）
+											var password = $("#password").val();
+											var passwordPattern = /^[a-zA-Z0-9]{7}$/;
+											if (!passwordPattern.test(password)) {
+												$("#password-error")
+														.text(
+																"パスワードは7文字の数字と英字（大文字・小文字を含む）で入力してください。");
+												isValid = false;
+											} else {
+												$("#password-error").text("");
+											}
 
-            if (!isValid) {
-                event.preventDefault(); // フォーム送信を防止
-            }
-        });
-    });
+											// パスワード確認の最終チェック
+											var confirmPassword = $(
+													"#confirm-password").val();
+											if (password !== confirmPassword) {
+												$("#confirm-password-error")
+														.text("パスワードが一致しません。");
+												isValid = false;
+											} else {
+												$("#confirm-password-error")
+														.text("");
+											}
+
+											if (!isValid) {
+												event.preventDefault(); // フォーム送信を防止
+											}
+										});
+					});
 </script>
 </head>
 <body>
