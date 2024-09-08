@@ -27,6 +27,7 @@ body {
         background-position: 0% 50%;
     }
 }
+
 /* ヘッダー */
 header {
     background: linear-gradient(90deg, #2e7d32, #4caf50, #3e2723);
@@ -119,7 +120,6 @@ table td:hover {
     transform: scale(1.05);
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
-
 /* ボタン */
 button, input[type="button"], input[type="submit"] {
     background-color: #388e3c;
