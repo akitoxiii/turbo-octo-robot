@@ -23,19 +23,19 @@
 		<label>メールアドレス</label>
 		<p><%=request.getAttribute("userMailAddress")%></p>
 
-		<label>パスワード</label>
+		<label>パスワード <span style="color: red;">*</span></label>
 		<p><%=request.getAttribute("password")%></p>
 
-		<label>名前</label>
+		<label>名前 <span style="color: red;">*</span></label>
 		<p><%=request.getAttribute("NewUserName")%></p>
 
-		<label>住所</label>
+		<label>住所 <span style="color: red;">*</span></label>
 		<p><%=request.getAttribute("userAddress")%></p>
 
-		<label>電話番号</label>
+		<label>電話番号 <span style="color: red;">*</span></label>
 		<p><%=request.getAttribute("userPhoneNumber")%></p>
 
-		<label>管理権限</label>
+		<label>管理権限 <span style="color: red;">*</span></label>
 		<p>
 			<%
 			String privilege = (String) request.getAttribute("privilege");
