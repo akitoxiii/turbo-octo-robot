@@ -211,3 +211,14 @@ table.table_sticky th {
         padding: 15px;
     }
 }
+
+/* ラジオボタンとラベルのスタイル */
+input[type="radio"] {
+    transform: scale(1.5); /* ラジオボタンを大きくする */
+    margin: 10px; /* ラジオボタンとテキストの間に余白をつける */
+}
+
+label {
+    font-size: 1.5em; /* ラベルのフォントサイズを大きくする */
+    margin-right: 20px; /* ラベル間の余白を調整 */
+}
