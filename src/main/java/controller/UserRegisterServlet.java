@@ -39,7 +39,7 @@ public class UserRegisterServlet extends HttpServlet {
 
 		// 全てのフィールドが一致するユーザーの存在チェック
 		UserLogicDao userDao = new UserLogicDao();
-		boolean userExists = userDao.checkUserExists(email, password, name, address, phone, "");
+		boolean userExists = userDao.checkUserExists(email, password, name, address, phone, "1");
 
 		// ユーザーが既に存在する場合
 		if (userExists) {
