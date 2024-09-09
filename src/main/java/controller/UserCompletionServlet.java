@@ -41,7 +41,7 @@ public class UserCompletionServlet extends HttpServlet {
 
 			String sql = "INSERT INTO USER_TABLE (USER_ID, USER_EMAIL, USER_PASSWORD, USER_NAME, USER_ADDRESS, USER_PHONE, USER_PRIVILEGE) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
-			// USER_IDを生成する（例としてシンプルな生成方法を使用）
+			// USER_IDを生成する
 			String userId = generateUserId(con);
 			System.out.println("生成されたユーザーID: " + userId);
 
@@ -52,7 +52,7 @@ public class UserCompletionServlet extends HttpServlet {
 			pstmt.setString(4, name);
 			pstmt.setString(5, address);
 			pstmt.setString(6, phone);
-			pstmt.setInt(7, 0); // 権限: 0 = 一般ユーザー, 1 = 管理者
+			pstmt.setInt(7, 1); // 権限: 0 = 管理者, 1 = 顧客
 
 			int result = pstmt.executeUpdate();
 			if (result > 0) {

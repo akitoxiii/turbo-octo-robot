@@ -25,7 +25,7 @@ public class AdminCompletionServlet extends HttpServlet {
 		// 前の画面から送られてきたユーザー情報を取得
 		String email = (String) request.getParameter("userMailAddress");
 		String password = (String) request.getParameter("password");
-		String name = (String) request.getParameter("NewUserName");
+		String NewUserName = (String) request.getParameter("NewUserName");
 		String address = (String) request.getParameter("userAddress");
 		String phone = (String) request.getParameter("userPhoneNumber");
 		String privilege = (String) request.getParameter("privilege");
@@ -49,7 +49,7 @@ public class AdminCompletionServlet extends HttpServlet {
 			pstmt.setString(1, UserID);
 			pstmt.setString(2, email);
 			pstmt.setString(3, password);
-			pstmt.setString(4, name);
+			pstmt.setString(4, NewUserName);
 			pstmt.setString(5, address);
 			pstmt.setString(6, phone);
 			pstmt.setInt(7, Integer.parseInt(privilege)); // 権限: 0 = 管理者, 1 = 顧客

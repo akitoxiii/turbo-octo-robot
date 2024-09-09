@@ -18,7 +18,8 @@
 										function() {
 											var email = $(this).val();
 											var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-											if (!emailPattern.test(email)) {
+											if (!emailPattern.test(email)
+													&& email !== "") {
 												$("#email-error").text(
 														"正しいメールアドレスを入力してください。");
 											} else {
@@ -37,7 +38,21 @@
 							}
 						});
 
-						// パスワード確認フィールドのフォーカスが外れた時にチェック
+						// パスワードフィールドがフォーカスを外れたときにバリデーションを実行
+						$("#password").on(
+								"blur",
+								function() {
+									var password = $(this).val();
+									var passwordPattern = /^[a-zA-Z0-9]{7}$/; // 英数字7文字の正規表現
+									if (!passwordPattern.test(password)) {
+										$("#password-error").text(
+												"パスワードは7文字の数字と英字（大文字・小文字を含む）で入力してください。");
+									} else {
+										$("#password-error").text("");
+									}
+								});
+
+						// パスワード確認フィールドがフォーカスを外れた時にバリデーションを実行
 						$("#confirm-password")
 								.on(
 										"blur",
@@ -46,7 +61,6 @@
 											var confirmPassword = $(
 													"#confirm-password").val();
 
-											// パスワードが空ではないかチェックしてからバリデーションを行う
 											if (password !== ""
 													&& confirmPassword !== "") {
 												if (password !== confirmPassword) {
@@ -66,10 +80,12 @@
 										function(event) {
 											var isValid = true;
 
-											// メールアドレスの最終チェック
+											// メールアドレスの最終チェック（空欄ならスキップ）
 											var email = $("#email").val();
 											var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-											if (!emailPattern.test(email)) {
+											if (email !== ""
+													&& !emailPattern
+															.test(email)) {
 												$("#email-error").text(
 														"正しいメールアドレスを入力してください。");
 												isValid = false;
@@ -88,6 +104,30 @@
 												$("#phone-error").text("");
 											}
 
+											// パスワードの最終チェック（英数字7文字）
+											var password = $("#password").val();
+											var passwordPattern = /^[a-zA-Z0-9]{7}$/;
+											if (!passwordPattern.test(password)) {
+												$("#password-error")
+														.text(
+																"パスワードは7文字の数字と英字（大文字・小文字を含む）で入力してください。");
+												isValid = false;
+											} else {
+												$("#password-error").text("");
+											}
+
+											// パスワード確認の最終チェック
+											var confirmPassword = $(
+													"#confirm-password").val();
+											if (password !== confirmPassword) {
+												$("#confirm-password-error")
+														.text("パスワードが一致しません。");
+												isValid = false;
+											} else {
+												$("#confirm-password-error")
+														.text("");
+											}
+
 											if (!isValid) {
 												event.preventDefault(); // フォーム送信を防止
 											}
@@ -100,40 +140,75 @@
 		<h1>新規管理者登録画面</h1>
 		<p>会員情報を入力してください</p>
 
-		<div class="error-message">
+		<!-- ユーザーID重複エラーメッセージ -->
+		<div class="error-message" style="color: red;">
 			<%=request.getAttribute("userError") != null ? request.getAttribute("userError") : ""%>
+		</div>
+
+		<%-- ログインユーザー情報表示 --%>
+		<div class="user-info">
 			<p>
 				ID:
-				<%=request.getAttribute("userId")%></p>
+				<%=request.getAttribute("userId")%>
+			</p>
 			<p><%=request.getAttribute("userName")%></p>
 		</div>
 
 		<form action="AdminRegisterServlet" method="post">
-			<label for="email">メールアドレス</label> <input type="email" id="email"
-				name="userMailAddress" placeholder="メールアドレス" required> <span
-				id="email-error" style="color: red;"></span><br> <label
-				for="password">パスワード</label> <input type="password" id="password"
-				name="password" placeholder="パスワード" required> <label
-				for="confirm-password">パスワード確認</label> <input type="password"
-				id="confirm-password" name="confirmPassword" placeholder="パスワード確認"
-				required> <span id="confirm-password-error"
-				style="color: red;"></span><br> <label for="name">名前</label> <input
-				type="text" id="name" name="userName" placeholder="名前" required>
+			<div>
+				<label for="email">メールアドレス</label><br> <input type="email"
+					id="email" name="userMailAddress" placeholder="メールアドレス"
+					value="<%=request.getAttribute("userMailAddress") != null ? request.getAttribute("userMailAddress") : ""%>"><br>
+				<span id="email-error" style="color: red;"></span><br>
+			</div>
 
-			<label for="address">住所</label> <input type="text" id="address"
-				name="userAddress" placeholder="住所" required> <label
-				for="phone">電話番号</label> <input type="text" id="phone"
-				name="userPhoneNumber" placeholder="電話番号" required> <span
-				id="phone-error" style="color: red;"></span><br> <label
-				for="privilege">管理権限</label> <select id="privilege" name="privilege"
-				required>
-				<option value="1">顧客</option>
-				<option value="0">管理者</option>
-			</select>
+			<div>
+				<label for="password">パスワード <span style="color: red;">*</span></label><br>
+				<input type="password" id="password" name="password"
+					placeholder="パスワード" required><br> <span
+					id="password-error" style="color: red;"></span><br>
+			</div>
+
+			<div>
+				<label for="confirm-password">パスワード確認 <span
+					style="color: red;">*</span></label><br> <input type="password"
+					id="confirm-password" name="confirmPassword" placeholder="パスワード確認"
+					required><br> <span id="confirm-password-error"
+					style="color: red;"></span><br>
+			</div>
+
+			<div>
+				<label for="NewUserName">名前 <span style="color: red;">*</span></label><br>
+				<input type="text" id="NewUserName" name="NewUserName"
+					placeholder="名前" required><br>
+			</div>
+
+			<div>
+				<label for="address">住所 <span style="color: red;">*</span></label><br>
+				<input type="text" id="address" name="userAddress" placeholder="住所"
+					required><br>
+			</div>
+
+			<div>
+				<label for="phone">電話番号 <span style="color: red;">*</span></label><br>
+				<input type="text" id="phone" name="userPhoneNumber"
+					placeholder="電話番号" required><br> <span
+					id="phone-error" style="color: red;"></span><br>
+			</div>
+
+			<div>
+				<label for="privilege">管理権限 <span style="color: red;">*</span></label><br>
+				<select id="privilege" name="privilege" required>
+					<option value="1"
+						<%=request.getAttribute("privilege") != null && request.getAttribute("privilege").equals("1") ? "selected" : ""%>>顧客</option>
+					<option value="0"
+						<%=request.getAttribute("privilege") != null && request.getAttribute("privilege").equals("0") ? "selected" : ""%>>管理者</option>
+				</select><br>
+			</div>
 
 			<div style="text-align: center;">
-				<input type="button" value="戻る" onclick="history.back();"> <input
-					type="submit" value="次へ">
+				<input type="button" value="戻る" onclick="history.back();"><br>
+				<br> <input type="submit" value="次へ"><br>
 			</div>
 		</form>
 	</div>

@@ -8,8 +8,12 @@ body {
     margin: 0;
     padding: 0;
     text-align: center;
-    scroll-behavior: smooth;
-    animation: backgroundShift 5s infinite alternate ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* 修正：高さを修正してレイアウトが崩れないように */
+    box-sizing: border-box; /* 修正：要素のサイズ計算を調整 */
 }
 
 /* 背景アニメーション */
@@ -38,19 +42,6 @@ header {
     left: 0;
     z-index: 1000;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
-    animation: headerPop 2s infinite alternate ease-in-out;
-}
-
-/* ヘッダーのポップアニメーション */
-@keyframes headerPop {
-    0% {
-        transform: scale(1);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
-    }
-    100% {
-        transform: scale(1.1);
-        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.9);
-    }
 }
 
 /* セクション */
@@ -71,10 +62,6 @@ section {
     0% {
         transform: translateY(100px) rotate(5deg);
         opacity: 0;
-    }
-    50% {
-        transform: translateY(-20px) rotate(-3deg);
-        opacity: 0.8;
     }
     100% {
         transform: translateY(0) rotate(0deg);
@@ -100,17 +87,82 @@ section h2 {
     animation: textShake 1.5s infinite alternate ease-in-out;
 }
 
-/* テキストの揺れアニメーション */
-@keyframes textShake {
-    0% {
-        transform: rotate(0deg);
-    }
-    50% {
-        transform: rotate(3deg);
-    }
-    100% {
-        transform: rotate(-3deg);
-    }
+/* カレンダーのテーブル */
+table {
+    width: 80%; /* 必要に応じて幅を調整 */
+    margin: 20px auto; /* テーブルを中央に配置 */
+    border-collapse: collapse; /* テーブルの境界線を重ねる */
+    background-color: #fff; /* テーブルの背景色を設定 */
+    color: #000; /* テーブル内の文字色 */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5); /* テーブルに影を追加 */
+}
+
+table th, table td {
+    padding: 10px;
+    text-align: center; /* テキストを中央揃え */
+    border: 1px solid #ddd; /* セルの境界線を設定 */
+}
+
+/* カレンダーのヘッダー */
+table th {
+    background-color: #388e3c; /* ヘッダーの背景色 */
+    color: white; /* ヘッダーの文字色 */
+    font-weight: bold; /* ヘッダーの文字を太くする */
+}
+
+/* カレンダーの日付 */
+table td {
+    background-color: #e8f5e9; /* 通常のセルの背景色 */
+    color: #000; /* 通常のセルの文字色 */
+}
+
+table td:hover {
+    background-color: #a5d6a7; /* セルにホバーしたときの背景色 */
+    color: #fff; /* セルにホバーしたときの文字色 */
+    transform: scale(1.05);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+/* テーブル全体のスタイルを調整 */
+.table_sticky {
+    display: block;
+    overflow-y: scroll;
+    max-height: 400px; /* 高さの調整 */
+    width: 80%; /* 幅を調整して中央寄せ */
+    margin: 0 auto; /* テーブルを中央揃え */
+    background-color: #fff; /* テーブル背景色 */
+    color: #000; /* テキストの色 */
+    border: 1px solid #ddd; /* ボーダーを追加 */
+    border-radius: 10px; /* 角を丸める */
+    padding: 15px; /* 内側の余白を追加 */
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3); /* 軽い影を追加 */
+}
+
+/* テーブルヘッダー */
+table th {
+    background-color: #8bc34a; /* 少し濃い背景色に変更 */
+    color: white; /* 文字色を白に */
+    padding: 12px 15px; /* ヘッダーの余白を広げる */
+    font-size: 1.2em; /* フォントサイズを大きく */
+}
+
+/* テーブルデータ */
+table td {
+    padding: 12px 15px; /* セル内の余白を広げる */
+    text-align: center; /* テキスト中央揃え */
+    background-color: #f0f4c3; /* 少し淡い背景色に */
+    color: #000; /* 文字の色を黒に */
+    border-bottom: 1px solid #ddd; /* 行の間に境界線を追加 */
+}
+
+table td:hover {
+    background-color: #c5e1a5; /* ホバー時にもう少し濃い色 */
+    transform: scale(1.05);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* テーブルヘッダーやセルの表示方法を修正 */
+table th, table td {
+    white-space: nowrap; /* テキストを改行させず、横に表示する */
 }
 
 /* ボタン */
@@ -124,135 +176,18 @@ button, input[type="button"], input[type="submit"] {
     cursor: pointer;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
     transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-    animation: buttonPulse 2s infinite alternate;
-}
-
-/* ボタンの脈動アニメーション */
-@keyframes buttonPulse {
-    0% {
-        transform: scale(1);
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
-    }
-    100% {
-        transform: scale(1.2);
-        box-shadow: 0 15px 40px rgba(34, 139, 34, 0.8);
-    }
 }
 
 button:hover, input[type="button"]:hover, input[type="submit"]:hover {
     background-color: #4caf50;
-    color: #ffffff;
     transform: scale(1.3) rotate(5deg);
     box-shadow: 0 10px 50px rgba(34, 139, 34, 0.9);
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-/* リンク */
-a {
-    color: #81c784;
-    text-decoration: none;
-    font-size: 1.3em;
-    border-bottom: 3px solid transparent;
-    transition: color 0.3s ease, border-bottom 0.3s ease;
-    animation: linkGlow 1.5s infinite alternate;
 }
 
-/* リンクの発光アニメーション */
-@keyframes linkGlow {
-    0% {
-        text-shadow: 0 0 10px #2e7d32;
-    }
-    100% {
-        text-shadow: 0 0 20px #81c784, 0 0 30px #2e7d32;
-    }
-}
-
-a:hover {
-    color: #ffffff;
-    border-bottom: 3px solid #2e7d32;
-    text-shadow: 0 0 30px #ffffff, 0 0 40px #66ff66;
-    transform: scale(1.2) rotate(-2deg);
-    transition: color 0.3s ease, border-bottom 0.3s ease;
-}
-
-/* フッター */
-footer {
-    background: linear-gradient(45deg, #388e3c, #4caf50, #1b5e20);
-    color: white;
-    text-align: center;
-    padding: 25px;
-    font-size: 1.2em;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    animation: footerPop 3s infinite alternate;
-}
-
-@keyframes footerPop {
-    0% {
-        transform: translateY(0);
-    }
-    100% {
-        transform: translateY(-10px);
-    }
-}
-
-/* フッター内のリンク */
-footer a {
-    color: #81c784;
-    transition: color 0.3s ease;
-    animation: footerLinkPulse 2s infinite alternate;
-}
-
-@keyframes footerLinkPulse {
-    0% {
-        text-shadow: 0 0 10px #388e3c;
-    }
-    100% {
-        text-shadow: 0 0 30px #81c784, 0 0 40px #388e3c;
-    }
-}
-
-footer a:hover {
-    color: #2e7d32;
-    text-shadow: 0 0 20px #ffffff, 0 0 30px #66ff66;
-}
-
-/* カード */
-.card {
-    background-color: rgba(255, 255, 255, 0.9);
-    border: 5px solid #1b5e20;
-    border-radius: 15px;
-    padding: 25px;
-    margin: 30px 0;
-    box-shadow: 0px 10px 25px rgba(34, 139, 34, 0.8);
-    opacity: 0;
-    transform: translateY(100px) scale(0.9);
-    animation: cardDrop 1s ease-out forwards;
-}
-
-@keyframes cardDrop {
-    0% {
-        opacity: 0;
-        transform: translateY(100px) scale(0.9);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
-
-.card:hover {
-    transform: scale(1.3) rotate(5deg
-);
-    box-shadow: 0 20px 50px rgba(34, 139, 34, 0.8);
-    transition: transform 0.5s ease, box-shadow 0.5s ease;
-}
-
-/* フォーム要素 */
+/* フォームのスタイル */
 input[type="text"], input[type="email"], input[type="password"],
 textarea, select {
-    width: 100%;
+    width: 250px;
     padding: 12px;
     margin: 10px 0;
     border: 2px solid #4caf50;
@@ -262,6 +197,7 @@ textarea, select {
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* フォーカス時のスタイル */
 input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus,
 textarea:focus, select:focus {
     border-color: #1b5e20;
@@ -269,14 +205,45 @@ textarea:focus, select:focus {
     outline: none;
 }
 
+/* スクロールバー */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+    border-radius: 0px 7px 7px 0px;
+    background: #dae7ca;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #a4b1a4;
+    border-radius: 3px;
+}
+
+/* メニューへ戻るリンクを見やすくするスタイル */
+a {
+    color: #66ff66; /* リンクの色を明るい緑に変更 */
+    font-size: 1.2em; /* フォントサイズを大きく */
+    text-decoration: none; /* 下線を消す */
+    font-weight: bold; /* 太字にする */
+    margin-bottom: 20px; /* 下に余白を追加 */
+}
+
+a:hover {
+    color: #4caf50; /* ホバー時に色を濃く */
+    text-decoration: underline; /* ホバー時に下線をつける */
+}
+
 /* メディアクエリ */
 @media (max-width: 768px) {
-    .main-container {
-        padding: 10px;
+    form {
+        width: 100%;
     }
-
-    header h1 {
-        font-size: 1.5em;
+    
+    input[type="text"], input[type="email"], input[type="password"] {
+        width: 100%;
+    }
+    
+    header {
+        padding: 15px 10px;
     }
 
     button, input[type="button"], input[type="submit"] {
@@ -284,17 +251,12 @@ textarea:focus, select:focus {
         padding: 10px 20px;
     }
 
-    header {
-        padding: 15px 10px;
-    }
-
     footer {
         padding: 15px;
     }
 }
-/*
- *********** フォームのCSSここまで　***********
 
+<<<<<<< HEAD
  */
  
  
@@ -313,194 +275,33 @@ textarea:focus, select:focus {
     margin-left: auto;
     margin-right: auto;
     color:black;
+=======
+/* ラジオボタンとラベルのスタイル */
+input[type="radio"] {
+    transform: scale(1.5); /* ラジオボタンを大きくする */
+    margin: 10px; /* ラジオボタンとテキストの間に余白をつける */
+>>>>>>> branch 'main' of https://github.com/akitoxiii/turbo-octo-robot.git
 }
 
-
-/* グループ・セレクタの礼 */
-table,input{
-	text-align: center;
+label {
+    font-size: 1.5em; /* ラベルのフォントサイズを大きくする */
+    margin-right: 20px; /* ラベル間の余白を調整 */
 }
 
-/* グローティングコンテンツそのものの中央ぞろえ */
-table{
-	table-layout: fixed;
-	width: 600px;
-	margin: auto;
-	 border-collapse: collapse;
-	border: outset 1.5px;
-	border-color: #ddd;
-	border-radius: 7px;
-	background-color: #d1e8b53d;
+/* ボタンのスタイル */
+.btn {
+    background-color: #4caf50; /* ボタンの背景色 */
+    color: white; /* テキストの色 */
+    padding: 10px 20px; /* 内側の余白 */
+    font-size: 1.2em; /* フォントサイズ */
+    border: none; /* ボーダーなし */
+    border-radius: 5px; /* ボタンの角を丸める */
+    cursor: pointer; /* カーソルをポインタにする */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* ボタンの影 */
+    text-align: center; /* テキストの中央揃え */
 }
 
-table  td{
-	 border-bottom:1px dashed; 
-	border-color: #79855d;
-	border-collapse: collapse;
-	width: 10%;
-	padding: 8px;
-}
-table th{
-	background-color:#daffca;
-	padding: 15px;
-	border-collapse: collapse;
-	border-radius: 7px 7px 0px 0px;
-}
-
-table tr:nth-child(even) td {
-	background: #f6faf7;
-}
-
-caption{
-	margin-bottom:20px;
-}
-
-td.itemName {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-
-td.itemContent {
-  white-space: nowrap;
-}
-
-
-/* 子セレクタの例 */
-table input{
-	background-color:#fff;
-}
-
-
-table.table_sticky td{
-	border-collapse: separate;
-	border: solid 5px;
-	border-left: 0px;
-	border-right: 0px;
-	border-color: #ffffff;
-	padding: 8px;
-	
-}
-
-
-/* スクロールバー */
-.table_sticky{
-	display: block;
-	overflow-y: scroll;
-	height: 400px;
-	width: 600px;
-	
-}
-
-table.table_sticky.th{
-	margin: auto;
-	position: sticky;
-	top:0px;
-	background:#d7ffa6;
-	border-collapse: collapse;
-}
-
-/* table tr:hover td {
-	background-color: #d9efff;
-} */
-
-#listTable tr:hover td{
-	background-color: #daffca;
-	color:#858b83;
-	/* #d9efff */
-	
-}
-
-
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-   border-radius: 0px 7px 7px 0px;
-	background: #dae7ca;
-}
- 
-::-webkit-scrollbar-thumb {
-  background: #a4b1a4;
-  border-radius: 3px;
-}
-
-
-.listContainer{
-	text-align: center;
-}
-
-.formTest{
-	margin: auto;
-	/* width: 559px */
-}
-
-.logo {
-	letter-spacing: 1px;
-    font-size: 40px;
-    font-weight: 700;
- color:#515450;
-}
-
-
-listbutton{
-	border-radius: 5px;
-	color:#403d3d;
-	border: 1.5px solid;
-	border-color: #bcc9bc;
-	background-color: #ecefed;
-	padding: 15px 28px;
-	letter-spacing: 1.5px;
-}
-
-.lead-form{
-  text-align: center;
-  font-size:20px;
-}
-form{
-  width:460px;
-  margin:0 auto;
-}
-.item{
-  overflow: hidden;
-  margin-bottom: 20px;
-}
-.label{
-margin-left: 100px;
-  margin-right: 20px;
-  width:135px;
-  border-left: solid 3px #388e3c;
-  padding-left: 10px;
-}
-.inputs{
-	margin-left: px;
-padding: 10px;
-  width:300px;
-}
-input[type="text"],input[type="email"]{
-  border: solid 1px #aaa;
-  border-radius:5px;
-  padding:10px;
-	width: 250px;
-  font-size: 15px;
-}
-textarea{
-  border: solid 1px #aaa;
-  border-radius:5px;
-  padding: 10px;
-  height: 160px;
-  font-size: 15px;
-}
-.btn-area{
-  text-align: center;
-}
-
-input[type="reset"]{
-  background: #aaa;
-  border: none;
-  color: white;
-  font-size:17px;
-  font-weight:bold;
-  padding: 10px 20px;
-  margin: 0 5px;
+.btn:hover {
+    background-color: #66ff66; /* ホバー時の背景色 */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* ホバー時の影 */
 }
