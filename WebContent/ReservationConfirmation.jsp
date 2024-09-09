@@ -21,22 +21,10 @@
 
 		<%
 
-<<<<<<< HEAD
-	%>
-	<br>
-	<br>
-	<p class="lead-form">予約情報をご確認ください</p>
-
-	<br>
-	<br>
-	<div class="item">
-		<p class="label">会員ID</p>
-=======
 		%>
 		<br> <br> 予約情報をご確認ください <br> <br>
 		<div class="item">
 			<p class="label">会員ID</p>
->>>>>>> branch 'main' of https://github.com/akitoxiii/turbo-octo-robot.git
 
 			<p class="inputs"><%=reseBean.getUserId()%></p>
 			<br>
@@ -49,22 +37,16 @@
 			<p class="label">予約時間</p>
 
 			<p class="inputs"><%=reseBean.getReservationTime() + ":00"%></p>
-			<br> <br>
-			<br>
+			<br> <br> <br>
 			<form action="Reservation" method="get">
 				<input type="hidden" name="action" value="ok">
 				<button type="submit" class="btn">予約</button>
 			</form>
-			<br>
-			<br>
+			<br> <br>
 			<form action="Reservation" method="get">
 				<button type="submit" class="btn">やりなおす</button>
 			</form>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
+			<br> <br> <br> <br> <br>
 
 
 		</div>
