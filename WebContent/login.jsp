@@ -20,20 +20,21 @@
 		<form id="loginForm" action="LoginCon" method="post">
 
 			<div>
-				<label for="loginId">ログインID <span style="color: red;">*</span></label><br>
-				<input type="text" id="loginId" name="loginId" placeholder="ログインID"
+				<label for="loginId">ログインID <span style="color: red;">*</span></label><br> <input type="text"
+					id="loginId" name="loginId" placeholder="ログインID"
 					value="<%=request.getParameter("loginId") != null ? request.getParameter("loginId") : ""%>"
 					required><br> <span id="loginId-error"
 					style="color: red;"></span><br>
 			</div>
 
+
 			<div>
-				<label for="loginPassword">ログインパスワード <span
-					style="color: red;">*</span></label><br> <input type="password"
-					id="loginPassword" name="loginPassword" placeholder="ログインパスワード"
-					required><br> <span id="loginPassword-error"
-					style="color: red;"></span><br>
+				<label for="loginPassword">ログインパスワード <span style="color: red;">*</span></label><br> <input
+					type="password" id="loginPassword" name="loginPassword"
+					placeholder="ログインパスワード" required><br> <span
+					id="loginPassword-error" style="color: red;"></span><br>
 			</div>
+
 
 			<input type="submit" value="ログイン"><br> <br>
 		</form>
@@ -42,6 +43,7 @@
 				onclick="location.href='UserRegister.jsp'"><br>
 		</form>
 	</div>
+
 
 	<script>
 		$(document).ready(function() {

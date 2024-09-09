@@ -198,7 +198,7 @@ firstDayWeek = cl.get(Calendar.DAY_OF_WEEK) - 1;  // 月の最初の曜日をint
 	
 	<td>
 	<input type="hidden" name="yearId" value="<%= cl.get(Calendar.YEAR) %>" id="yearId">
-	<input type="hidden" name="monthId" value="<%= cl.get(Calendar.MONTH) %>" id="monthId">
+	<input type="hidden" name="monthId" value="<%= cl.get(Calendar.MONTH)+1 %>" id="monthId2">
 	<input type="hidden" name="dayId" value="<%= i %>" id="<%= i %>">	
 		<% //月曜日は表示しない
 		if((firstDayWeek + i) % 7 == 2) {
@@ -217,7 +217,7 @@ firstDayWeek = cl.get(Calendar.DAY_OF_WEEK) - 1;  // 月の最初の曜日をint
 			<%     
 		 }else{
 			 %>
-		<a href="javascript:void(0)" onclick="DayLink('<%= i %>','monthId','yearId');"><%= i %></a> </td>
+		<a href="javascript:void(0)" onclick="DayLink('<%= i %>','monthId2','yearId');"><%= i %></a> </td>
 		<%
 } %>
 	<% // 空白＋日付の数が７になったら列を変える
