@@ -60,7 +60,7 @@
 <div class="logo">全予約一覧</div>
 
 <br><br><br><div style="text-align: left;">
-<a href="AdminMypage.jsp">メニューへ戻る</div><br><br>
+<a href="AdminMypage.jsp">メニューへ戻る</div></a><br><br>
 
 
 	<table class="table_sticky" id="listTable">
@@ -77,15 +77,16 @@
 		
 			 for(ReservationBean listAll : allList){
 			 %>
-			 <tr data-href="javascript:void(0)"
-					onclick="ContentLink('<%= listAll.getReservationId() %>');">  
+			 <tr>
+			  <tr data-href="javascript:void(0)"
+					onclick="ContentLink('<%= listAll.getReservationId() %>');"> 
 					
 					<input type="hidden" name="ReservationId"
 					value="<%= listAll.getReservationId() %>" id="<%= listAll.getReservationId() %>">
 					<a href="javascript:void(0)"
 					onclick="ContentLink('<%= listAll.getReservationId() %>');">
 				<td><%= listAll.getReservationId() %></td>
-				<td><%= listAll.getUserId() %></td></a>
+				<td><%= listAll.getUserId() %></td>
 				<td><%= listAll.getUserName() %></td></a>
 			</tr>
 			<%

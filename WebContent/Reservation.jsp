@@ -68,7 +68,8 @@ ReservationDao dao = new ReservationDao();
 <form method="post" action="Reservation"></form>
 <%-- ============ フォーム送信 ============ --%>
 <%-- 今月（配列もカレンダーも０からのカウントなので＋１をする必要がない？） --%>
-<%= month[(cl.get(Calendar.MONTH))] %>
+<p class="lead-form">
+<%= month[(cl.get(Calendar.MONTH))] %></p>
 <br><br>
 
 <%-- カレンダーテーブル --%>
@@ -165,8 +166,8 @@ firstDayWeek = cl.get(Calendar.DAY_OF_WEEK) - 1;  // 月の最初の曜日をint
 
 
 %>
-
-<%= month[(cl.get(Calendar.MONTH))] %>
+<p class="lead-form">
+<%= month[(cl.get(Calendar.MONTH))] %></p>
 <br><br>
 
 

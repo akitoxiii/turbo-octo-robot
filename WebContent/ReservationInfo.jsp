@@ -20,8 +20,26 @@
 <% 
 ReservationBean contentBean = (ReservationBean)request.getAttribute("contentBean");
 
+int pri = (int)session.getAttribute("userPrivilege");
 
-if(contentBean.getReservationId() ==null){ %>
+if(contentBean.getReservationId() ==null){ 
+	
+	if(pri==0){ %>
+	<a href="AdminMypage.jsp">戻る</a>
+		
+	<div>
+	<p class="inputs">予約情報はありません</p>
+	
+	</div>
+	
+	<% 	
+	}else{ %>
+	<div style="text-align: left;">
+	<a href="UserMypage.jsp">メニューへ戻る</a></div>
+	<%	
+
+
+%>
 	
 	<div>
 	<p class="inputs">予約情報はありません</p>
@@ -29,8 +47,9 @@ if(contentBean.getReservationId() ==null){ %>
 	</div>
 	
 	<% 
+	}
 }else{
-	int pri = (int)session.getAttribute("userPrivilege");
+	
 	if(pri==0){ %>
 	<a href="ReservationListCon">戻る</a>
 	
@@ -48,22 +67,26 @@ if(contentBean.getReservationId() ==null){ %>
 	<br>
 	<div class="item">
 	
-	<p class="label">予約ID</p><br>
+	<p class="label">予約ID</p>
 	
 	<p class="inputs"><%=contentBean.getReservationId()%></p>
 	<br><br>
 	
-		<p class="label">会員ID</p><br>
+		<p class="label">会員ID</p>
 
-		<p class="inputs"><%=contentBean.getUserId()%></p><br><br>
+		<p class="inputs"><%=contentBean.getUserId()%></p><br><br><br>
+		
+		<p class="label">名前</p>
+		
+		<p class="inputs"><%=contentBean.getUserName()%></p><br><br><br>
 
-		<p class="label">予約日</p><br>
+		<p class="label">予約日</p>
 
-		<p class="inputs"><%=contentBean.getReservationDate()%></p><br><br>
+		<p class="inputs"><%=contentBean.getReservationDate()%></p><br><br><br>
 
-		<p class="label">予約時間</p><br>
+		<p class="label">予約時間</p>
 
-		<p class="inputs"><%=contentBean.getReservationTime() + ":00"%></p><br><br>
+		<p class="inputs"><%=contentBean.getReservationTime() + ":00"%></p><br><br><br>
 		
 		
 		

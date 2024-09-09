@@ -24,7 +24,8 @@
 	%>
 	<br>
 	<br>
-予約情報をご確認ください
+	<p class="lead-form">予約情報をご確認ください</p>
+
 	<br>
 	<br>
 	<div class="item">
