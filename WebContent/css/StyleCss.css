@@ -102,13 +102,13 @@ table th, table td {
     text-align: center; /* テキストを中央揃え */
     border: 1px solid #ddd; /* セルの境界線を設定 */
 }
+
 /* カレンダーのヘッダー */
 table th {
     background-color: #388e3c; /* ヘッダーの背景色 */
     color: white; /* ヘッダーの文字色 */
     font-weight: bold; /* ヘッダーの文字を太くする */
 }
-
 /* カレンダーの日付 */
 table td {
     background-color: #e8f5e9; /* 通常のセルの背景色 */
@@ -158,6 +158,11 @@ table td:hover {
     background-color: #c5e1a5; /* ホバー時にもう少し濃い色 */
     transform: scale(1.05);
     transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* テーブルヘッダーやセルの表示方法を修正 */
+table th, table td {
+    white-space: nowrap; /* テキストを改行させず、横に表示する */
 }
 
 /* ボタン */
