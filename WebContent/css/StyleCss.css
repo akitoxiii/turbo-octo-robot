@@ -258,10 +258,31 @@ a:hover {
     }
 }
 
+<<<<<<< HEAD
+ */
+ 
+ 
+ .test1{
+	   margin-left: auto;
+    margin-right: auto;
+    color:black;
+    	width: 870px;
+    		background-color: #eaf5ec;
+	 border-radius:7px;
+	 padding: 80px;
+	 
+ }
+ 
+ table {
+    margin-left: auto;
+    margin-right: auto;
+    color:black;
+=======
 /* ラジオボタンとラベルのスタイル */
 input[type="radio"] {
     transform: scale(1.5); /* ラジオボタンを大きくする */
     margin: 10px; /* ラジオボタンとテキストの間に余白をつける */
+>>>>>>> branch 'main' of https://github.com/akitoxiii/turbo-octo-robot.git
 }
 
 label {

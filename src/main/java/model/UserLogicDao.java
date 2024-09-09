@@ -9,8 +9,8 @@ public class UserLogicDao {
 
 	// データベース接続情報
 	private static final String URL = "jdbc:oracle:thin:@localhost:1521:orcl"; // JDBC URLを適宜設定
-	private static final String USER = "COFFEE"; // スキーマ名
-	private static final String PASSWORD = "COFFEE_TREE"; // スキーマのパスワード
+	private static final String USER = "RICE"; // スキーマ名
+	private static final String PASSWORD = "OKOME"; // スキーマのパスワード
 
 	// データベース接続を取得するメソッド
 	public Connection getConnection() throws Exception {

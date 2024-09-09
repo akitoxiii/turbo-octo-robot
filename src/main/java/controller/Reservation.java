@@ -189,7 +189,7 @@ public class Reservation extends HttpServlet {
 			// リクエストから会員IDの取得
 			String userId = "";
 			// 会員IDが飛んできていなければ、ログイン情報を使用する。飛んできていれば、飛んできたものをそのまま保存する
-			if (request.getParameter("userId") == null) {
+			if (request.getParameter("userId") == null || request.getParameter("userId").equals("")) {
 				userId = (String) session.getAttribute("userId");
 			} else {
 				userId = request.getParameter("userId");

@@ -18,6 +18,12 @@
 			<%=request.getAttribute("loginError") != null ? request.getAttribute("loginError") : ""%>
 		</div>
 		<form id="loginForm" action="LoginCon" method="post">
+<<<<<<< HEAD
+			<label for="loginId">ログインID</label><br> <input type="text" id="loginId"
+				name="loginId" placeholder="ログインID"
+				value="<%=request.getParameter("loginId") != null ? request.getParameter("loginId") : ""%>"
+				required> <span id="loginId-error" style="color: red;"></span><br>
+=======
 			<div>
 				<label for="loginId">ログインID <span style="color: red;">*</span></label><br> <input type="text"
 					id="loginId" name="loginId" placeholder="ログインID"
@@ -25,14 +31,32 @@
 					required><br> <span id="loginId-error"
 					style="color: red;"></span><br>
 			</div>
+>>>>>>> branch 'main' of https://github.com/akitoxiii/turbo-octo-robot.git
 
+<<<<<<< HEAD
+
+            <label for="loginPassword">ログインパスワード</label>
+            <input type="password" id="loginPassword" name="loginPassword"
+                placeholder="ログインパスワード" required>
+            <span id="loginPassword-error" style="color: red;"></span><br><br>
+=======
 			<div>
 				<label for="loginPassword">ログインパスワード <span style="color: red;">*</span></label><br> <input
 					type="password" id="loginPassword" name="loginPassword"
 					placeholder="ログインパスワード" required><br> <span
 					id="loginPassword-error" style="color: red;"></span><br>
 			</div>
+>>>>>>> branch 'main' of https://github.com/akitoxiii/turbo-octo-robot.git
 
+<<<<<<< HEAD
+            <input type="submit" value="ログイン">
+        </form><br>
+        <form action="registerServlet" method="get">
+            <input type="button" value="新規登録"
+                onclick="location.href='UserRegister.jsp'">
+        </form>
+    </div>
+=======
 			<input type="submit" value="ログイン"><br> <br>
 		</form>
 		<form action="registerServlet" method="get">
@@ -40,6 +64,7 @@
 				onclick="location.href='UserRegister.jsp'"><br>
 		</form>
 	</div>
+>>>>>>> branch 'main' of https://github.com/akitoxiii/turbo-octo-robot.git
 
 	<script>
 		$(document).ready(function() {

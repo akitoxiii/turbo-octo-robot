@@ -21,10 +21,22 @@
 
 		<%
 
+<<<<<<< HEAD
+	%>
+	<br>
+	<br>
+	<p class="lead-form">予約情報をご確認ください</p>
+
+	<br>
+	<br>
+	<div class="item">
+		<p class="label">会員ID</p>
+=======
 		%>
 		<br> <br> 予約情報をご確認ください <br> <br>
 		<div class="item">
 			<p class="label">会員ID</p>
+>>>>>>> branch 'main' of https://github.com/akitoxiii/turbo-octo-robot.git
 
 			<p class="inputs"><%=reseBean.getUserId()%></p>
 			<br>
