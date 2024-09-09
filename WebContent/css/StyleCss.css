@@ -127,7 +127,7 @@ table td:hover {
     display: block;
     overflow-y: scroll;
     max-height: 400px; /* 高さの調整 */
-    width: 80%; /* 幅を調整して中央寄せ */
+    width: 90%; /* テーブルの幅を広げる */
     margin: 0 auto; /* テーブルを中央揃え */
     background-color: #fff; /* テーブル背景色 */
     color: #000; /* テキストの色 */
@@ -143,6 +143,7 @@ table th {
     color: white; /* 文字色を白に */
     padding: 12px 15px; /* ヘッダーの余白を広げる */
     font-size: 1.2em; /* フォントサイズを大きく */
+    min-width: 150px; /* 各列の最小幅を設定 */
 }
 
 /* テーブルデータ */
@@ -152,6 +153,7 @@ table td {
     background-color: #f0f4c3; /* 少し淡い背景色に */
     color: #000; /* 文字の色を黒に */
     border-bottom: 1px solid #ddd; /* 行の間に境界線を追加 */
+    min-width: 150px; /* 各セルの最小幅を設定 */
 }
 
 table td:hover {
