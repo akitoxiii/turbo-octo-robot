@@ -127,7 +127,7 @@ table td:hover {
     display: block;
     overflow-y: scroll;
     max-height: 400px; /* 高さの調整 */
-    width: 80%; /* 幅を調整して中央寄せ */
+    width: 90%; /* テーブルの幅を広げる */
     margin: 0 auto; /* テーブルを中央揃え */
     background-color: #fff; /* テーブル背景色 */
     color: #000; /* テキストの色 */
@@ -143,6 +143,7 @@ table th {
     color: white; /* 文字色を白に */
     padding: 12px 15px; /* ヘッダーの余白を広げる */
     font-size: 1.2em; /* フォントサイズを大きく */
+    min-width: 150px; /* 各列の最小幅を設定 */
 }
 
 /* テーブルデータ */
@@ -152,6 +153,7 @@ table td {
     background-color: #f0f4c3; /* 少し淡い背景色に */
     color: #000; /* 文字の色を黒に */
     border-bottom: 1px solid #ddd; /* 行の間に境界線を追加 */
+    min-width: 150px; /* 各セルの最小幅を設定 */
 }
 
 table td:hover {
@@ -256,32 +258,10 @@ a:hover {
     }
 }
 
-<<<<<<< HEAD
- */
- 
- 
- .test1{
-	   margin-left: auto;
-    margin-right: auto;
-    color:black;
-    	width: 870px;
-    		background-color: #eaf5ec;
-	 border-radius:7px;
-	 padding: 80px;
-	 
- }
- 
- table {
-    margin-left: auto;
-    margin-right: auto;
-    color:black;
-=======
 /* ラジオボタンとラベルのスタイル */
 input[type="radio"] {
     transform: scale(1.5); /* ラジオボタンを大きくする */
     margin: 10px; /* ラジオボタンとテキストの間に余白をつける */
->>>>>>> branch 'main' of https://github.com/akitoxiii/turbo-octo-robot.git
-}
 
 label {
     font-size: 1.5em; /* ラベルのフォントサイズを大きくする */
@@ -302,6 +282,7 @@ label {
 }
 
 .btn:hover {
-    background-color: #66ff66; /* ホバー時の背景色 */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* ホバー時の影 */
+	background-color: #66ff66; /* ホバー時の背景色 */
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* ホバー時の影 */
+}
 }
